@@ -1,5 +1,16 @@
 ## Release Notes
 
+### Version: 1.10
+
+_Date of release: 19/4/2016_
+
+- Fixed a bug that allowed developers to name resources or their properties using Java reserved keywords or invalid characters that both lead to compilation errors. Github [entry](https://github.com/s-case/mde/commit/ba57acbf965a3cf6e45cbe1b225673750d35d2ee) 
+- Added new supported datatypes for the resource properties. Now the MDE engine supports the following datatypes: String, Integer, Double, Float, Long, Boolean, Date all of which can be used as naming properties as well. Github  [entry](https://github.com/s-case/mde/commit/e10f8d7a6f2b77c93e1978940eefaa9f89c8b224).
+- Updated the code template for the POM.xml generation so as to use java 1.8 and UTF-8. [entry](https://github.com/s-case/mde/commit/dba8ae51e7ae83fe9a0b3e51c93c913480a039e8)
+- Fixed a UI Bug issue that occurred only in Linux environment. In specific when a user clicked to add a resource/property or rename any existing ones an empty persistent window appeared. Github [entry](https://github.com/s-case/mde/commit/bdb11b2f0b58db46008c1af9d171a223d69cfa20)
+- Fixed an issue that caused the MDE engine to crash when the input YAML file is empty. Moreover the MDE Wizards do not allow developers to finish the plugin without providing any resources. Github [entry](https://github.com/s-case/mde/commit/74ac7f04600f489dd4726890fff728d7a16d5665)
+
+
 ### Version: 1.9
 
 _Date of release: 11/4/2016_
