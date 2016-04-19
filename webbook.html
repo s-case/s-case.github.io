@@ -66,6 +66,16 @@
   ga('send', 'pageview');
 
 </script>
+<style>
+ul li {
+   list-style-type: disc;
+   list-style-position: inside;
+}
+ol li {
+   list-style-type: decimal;
+   list-style-position: inside;
+}
+</style>
 </head>
 
 
@@ -105,8 +115,8 @@
         <li><a href="index.html#poll">Poll</a></li>
         <li><a href="index.html#offerings">Offerings</a></li>
         <li><a href="index.html#contact">Contact</a></li>
-        <li><a href="webbook.html">About</a></li>
-        <li><a href="webbook.html">Web Book</a></li>
+        <li><a href="webbook.html#1">About</a></li>
+        <li><a href="webbook.html#1">Web Book</a></li>
         <li><a href="ecosystem.html">Ecosystem &amp; Docs</a></li>
         <li><a href="releasenotes.html">Releases</a></li>
         <li><a href="https://www.surveymonkey.com/r/VLGKQBL" target="_blank">Survey*</a></li>
@@ -119,14 +129,14 @@
 
   <div class="container">
       <div class="row">
-        <div class="col-md-3">
+          <div class="col-md-3">
           <ul class="nav nav-pills nav-stacked" id="menu">
-            <li id="link1"><a href="#">What is S-CASE</a></li>
-            <li id="link2"><a href="#">Getting started</a></li>
-            <li id="link3"><a href="#">Requirements Modeling</a></li>
-            <li id="link4"><a href="#">Web Service Composition</a></li>
-            <li id="link5"><a href="#">Code Generation</a></li>
-            <li id="link6"><a href="#">Deployment</a></li>
+            <li id="link1"><a href="#1">What is S-CASE</a></li>
+            <li id="link2"><a href="#2">Getting started</a></li>
+            <li id="link3"><a href="#3">Requirements Modeling</a></li>
+            <li id="link4"><a href="#4">Web Service Composition</a></li>
+            <li id="link5"><a href="#5">Code Generation</a></li>
+            <li id="link6"><a href="#6">Deployment</a></li>
           </ul>
         </div>
         <div class="col-md-9 main">
@@ -192,7 +202,7 @@
   }
 
   hideContentDivs();
-  $('#page1').show();
+  $("#page"+window.location.hash.substr(1)).show();
   </script>
   <!-- END SUPPORT FOR MARKDOWN -->
 </section>

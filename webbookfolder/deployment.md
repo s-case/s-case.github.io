@@ -21,7 +21,7 @@ your machine to the VM (manually)  by simply using basic command like:
 So, this should trigger post-receive hook on the git in the master git on the VM.
 The trigger will automatically:
 
-1. Configure Postgres user’s password, port and puts the password in an environment variable called: PASSWD (The password here is generated randomly using `pwgen`)
-2. Postgres is restarted
-3. Builds the code and war file is placed in jetty webapps.
-4. Restarts the jetty.
+  1. Configure Postgres user’s password, port and puts the password in an environment variable called: PASSWD (The password here is generated randomly using `pwgen`)
+  2. Postgres is restarted
+  3. Builds the code and war file is placed in jetty webapps.
+  4. Restarts the jetty.
