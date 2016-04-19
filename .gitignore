@@ -1,0 +1,5 @@
+.project
+.settings
+*.pprj
+*.swp
+.DS_Store

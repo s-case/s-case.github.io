@@ -1,0 +1,41 @@
+
+<div class="modal-header">
+    <h3 class="modal-title">S-CASE</h3>
+</div>
+<div class="modal-body">
+  <div id="modalVideo" ng-show="showVideo">
+    <iframe id="popup-youtube-player" width="560" height="315" src="https://www.youtube.com/embed/wvqtPoXSeic?enablejsapi=1&version=3&playerapiid=ytplayer" frameborder="0" allowfullscreen allowscriptaccess="always"></iframe>
+  </div>
+  <div id="modalForm" ng-show="!showVideo">
+    <div id="wufoo-mjk947188kbcn">
+      Fill out my <a href="https://kyrchat.wufoo.com/forms/mjk947188kbcn">online form</a>.
+    </div>
+    <div id="wuf-adv" style="font-family:inherit;font-size: small;color:#a7a7a7;text-align:center;display:block;">Online contact and registration forms from <a href="http://www.wufoo.com">Wufoo</a>.</div>
+    <script type="text/javascript">var mjk947188kbcn;(function(d, t) {
+      var s = d.createElement(t), options = {
+      'userName':'kyrchat',
+      'formHash':'mjk947188kbcn',
+      'autoResize':false,
+      'height':'400',
+      'async':true,
+      'host':'wufoo.com',
+      'header':'show',
+      'ssl':true};
+      s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'www.wufoo.com/scripts/embed/form.js';
+      s.onload = s.onreadystatechange = function() {
+      var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
+      try { mjk947188kbcn = new WufooForm();mjk947188kbcn.initialize(options);mjk947188kbcn.display(); } catch (e) {}};
+      var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
+      })(document, 'script');
+    </script>
+  </div>
+</div>
+<div class="modal-footer" ng-show="showVideo">
+    <button id="get" class="btn btn-primary" type="button" ng-click="next()">Get S-CASE</button>
+</div>
+<script>
+ga('send', 'event', 'video', 'open', 'developer', '1');
+$('#get').on('click', function() {
+  $('#popup-youtube-player')[0].contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' + '","args":""}', '*');
+});
+</script>

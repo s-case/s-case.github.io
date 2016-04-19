@@ -1,0 +1,1336 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>S-CASE Asset Registry REST API</title>
+    <style type="text/css">
+      body { 
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+	display: none;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+    </style>
+  </head>
+  <body>
+  <h1>S-CASE Asset Registry REST API</h1>
+    <div class="app-desc">Description of S-CASE Asset Registry REST API</div>
+    <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
+    <div class="app-desc">Contact Info: <a href="hello@helloreverb.com">hello@helloreverb.com</a></div>
+    <div class="app-desc">Version: 1.0.8</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+  
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h2>Table of Contents </h2>
+  <div class="method-summary"></div>
+  <ol>
+  <li><a href="#create"><code><span class="http-method">post</span> /artefact</code></a></li>
+  <li><a href="#delete"><code><span class="http-method">delete</span> /artefact/{id}</code></a></li>
+  <li><a href="#exists"><code><span class="http-method">get</span> /artefact/exists/{id}</code></a></li>
+  <li><a href="#get"><code><span class="http-method">get</span> /artefact/{id}</code></a></li>
+  <li><a href="#searchArtefacts"><code><span class="http-method">get</span> /artefact/directsearch</code></a></li>
+  <li><a href="#searchArtefacts_1"><code><span class="http-method">get</span> /artefact/search</code></a></li>
+  <li><a href="#update"><code><span class="http-method">put</span> /artefact/{id}</code></a></li>
+  <li><a href="#find"><code><span class="http-method">get</span> /domain/{id}</code></a></li>
+  <li><a href="#findAll"><code><span class="http-method">get</span> /domain/domains</code></a></li>
+  <li><a href="#create"><code><span class="http-method">post</span> /project</code></a></li>
+  <li><a href="#delete"><code><span class="http-method">delete</span> /project/{id}</code></a></li>
+  <li><a href="#delete_1"><code><span class="http-method">delete</span> /project/{name}</code></a></li>
+  <li><a href="#get"><code><span class="http-method">get</span> /project/{id}</code></a></li>
+  <li><a href="#get_2"><code><span class="http-method">get</span> /project/{name}</code></a></li>
+  <li><a href="#searchProjects"><code><span class="http-method">get</span> /project/directsearch</code></a></li>
+  <li><a href="#searchProjects_3"><code><span class="http-method">get</span> /project/search</code></a></li>
+  <li><a href="#update"><code><span class="http-method">put</span> /project/{id}</code></a></li>
+  <li><a href="#find"><code><span class="http-method">get</span> /subdomain/{id}</code></a></li>
+  <li><a href="#findAll"><code><span class="http-method">get</span> /subdomain/subdomains</code></a></li>
+  <li><a href="#version"><code><span class="http-method">get</span> /version</code></a></li>
+  </ol>
+
+  <div class="method"><a name="create"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /artefact</code></pre></div>
+    <div class="method-summary">Creates and stores a new artefact in the repository (<span class="nickname">create</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Artefact to be stored in the Asset Repo </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json;charset&#x3D;UTF-8</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    No content (artefact has been created successfully)
+    <h4 class="field-label">400</h4>
+    Request incorrect
+    <h4 class="field-label">404</h4>
+    Not found
+    <h4 class="field-label">500</h4>
+    Internal Server error
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="delete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /artefact/{id}</code></pre></div>
+    <div class="method-summary">Deletes an artefact from the repository (<span class="nickname">delete</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Artefact ID of the artefact that shall be deleted from the Asset Repo </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json;charset&#x3D;UTF-8</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    No content
+    <h4 class="field-label">400</h4>
+    Request incorrect
+    <h4 class="field-label">404</h4>
+    Not found
+    <h4 class="field-label">500</h4>
+    Internal Server error
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="exists"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /artefact/exists/{id}</code></pre></div>
+    <div class="method-summary">Checks if an artefact does exist in the repository (<span class="nickname">exists</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Artefact ID </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      Boolean
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+    <h4 class="field-label">204</h4>
+    No content
+    <h4 class="field-label">400</h4>
+    Request incorrect
+    <h4 class="field-label">404</h4>
+    Not found
+    <h4 class="field-label">500</h4>
+    Internal Server errorm
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="get"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /artefact/{id}</code></pre></div>
+    <div class="method-summary">Finds an artefact in the repository by ID (<span class="nickname">get</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Artefact ID </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#JsonArtefact">JsonArtefact</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+    <h4 class="field-label">204</h4>
+    No content
+    <h4 class="field-label">400</h4>
+    Request incorrect
+    <h4 class="field-label">404</h4>
+    Not found
+    <h4 class="field-label">500</h4>
+    Internal Server error
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="searchArtefacts"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /artefact/directsearch</code></pre></div>
+    <div class="method-summary">Finds a list of artefacts by search query. &lt;BR&gt;The search query has to be submitted in the Elastic Search JSON search syntax. (<span class="nickname">searchArtefacts</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">q (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Search query in the Elastic Search JSON syntax </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#ArtefactDTO">ArtefactDTO</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+    <h4 class="field-label">204</h4>
+    No content
+    <h4 class="field-label">400</h4>
+    Request incorrect
+    <h4 class="field-label">404</h4>
+    Not found
+    <h4 class="field-label">500</h4>
+    Internal Server error
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="searchArtefacts_1"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /artefact/search</code></pre></div>
+    <div class="method-summary">Finds a list of artefacts by free text search strings. &lt;BR&gt;All query parameters are optional and can be combined as needed but at least one parameter has to be submitted. (<span class="nickname">searchArtefacts_1</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">query (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Free text string that should be used to search inside of an artefact </div><div class="param">domain (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Domain name string an artefact should be assigned to </div><div class="param">subdomain (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Subdomain name string an artefact should be assigned to </div><div class="param">type (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The Artefact Type of an artefact (e.g. USE_CASE) </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#ArtefactDTO">ArtefactDTO</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+    <h4 class="field-label">204</h4>
+    No content
+    <h4 class="field-label">400</h4>
+    Request incorrect
+    <h4 class="field-label">404</h4>
+    Not found
+    <h4 class="field-label">500</h4>
+    Internal Server error
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="update"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /artefact/{id}</code></pre></div>
+    <div class="method-summary">Updates an artefact in the repository (<span class="nickname">update</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; artefact id </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The artefact to be updated </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json;charset&#x3D;UTF-8</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    No content
+    <h4 class="field-label">400</h4>
+    Request incorrect
+    <h4 class="field-label">404</h4>
+    Not found
+    <h4 class="field-label">500</h4>
+    Internal Server error
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="find"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /domain/{id}</code></pre></div>
+    <div class="method-summary">Finds a domain by ID in the repository (<span class="nickname">find</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; domain id </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Domain">Domain</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+    <h4 class="field-label">204</h4>
+    No content
+    <h4 class="field-label">400</h4>
+    Request incorrect
+    <h4 class="field-label">404</h4>
+    Not found
+    <h4 class="field-label">500</h4>
+    Internal Server error
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="findAll"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /domain/domains</code></pre></div>
+    <div class="method-summary">Retrieves a list of all domains in the repository (<span class="nickname">findAll</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Domain">Domain</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+    <h4 class="field-label">204</h4>
+    No content
+    <h4 class="field-label">400</h4>
+    Request incorrect
+    <h4 class="field-label">404</h4>
+    Not found
+    <h4 class="field-label">500</h4>
+    Internal Server error
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="create"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /project</code></pre></div>
+    <div class="method-summary">Creates and stores a new project in the repository (<span class="nickname">create</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The project to be stored inside of the Asset Repo </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json;charset&#x3D;UTF-8</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    No content (project has been created successfully)
+    <h4 class="field-label">400</h4>
+    Request incorrect
+    <h4 class="field-label">404</h4>
+    Not found
+    <h4 class="field-label">500</h4>
+    Internal Server error
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="delete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /project/{id}</code></pre></div>
+    <div class="method-summary">Deletes a project from the Asset Repo by ID (<span class="nickname">delete</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of the project to be deleted </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json;charset&#x3D;UTF-8</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    No content
+    <h4 class="field-label">400</h4>
+    Request incorrect
+    <h4 class="field-label">404</h4>
+    Not found
+    <h4 class="field-label">500</h4>
+    Internal Server error
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="delete_1"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /project/{name}</code></pre></div>
+    <div class="method-summary">Deletes a project from the Asset Repo by name (<span class="nickname">delete_1</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">name (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; name of the project to be deleted </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json;charset&#x3D;UTF-8</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    No content
+    <h4 class="field-label">400</h4>
+    Request incorrect
+    <h4 class="field-label">404</h4>
+    Not found
+    <h4 class="field-label">500</h4>
+    Internal Server error
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="get"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /project/{id}</code></pre></div>
+    <div class="method-summary">Finds a project in the repository by ID (<span class="nickname">get</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; project ID </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#JsonProject">JsonProject</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json;charset&#x3D;UTF-8</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+    <h4 class="field-label">204</h4>
+    No content
+    <h4 class="field-label">400</h4>
+    Request incorrect
+    <h4 class="field-label">404</h4>
+    Not found
+    <h4 class="field-label">500</h4>
+    Internal Server error
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="get_2"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /project/{name}</code></pre></div>
+    <div class="method-summary">Finds a project in the repository by its name (<span class="nickname">get_2</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">name (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; the name of the project </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#JsonProject">JsonProject</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json;charset&#x3D;UTF-8</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+    <h4 class="field-label">204</h4>
+    No content
+    <h4 class="field-label">400</h4>
+    Request incorrect
+    <h4 class="field-label">404</h4>
+    Not found
+    <h4 class="field-label">500</h4>
+    Internal Server error
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="searchProjects"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /project/directsearch</code></pre></div>
+    <div class="method-summary">Finds a list of projects in the repository by search query. &lt;BR&gt;The search query has to be submitted in the Elastic Search JSON search syntax. (<span class="nickname">searchProjects</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">q (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Search query in the Elastic Search JSON syntax </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#ProjectDTO">ProjectDTO</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+    <h4 class="field-label">204</h4>
+    No content
+    <h4 class="field-label">400</h4>
+    Request incorrect
+    <h4 class="field-label">404</h4>
+    Not found
+    <h4 class="field-label">500</h4>
+    Internal Server error
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="searchProjects_3"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /project/search</code></pre></div>
+    <div class="method-summary">Finds a list of projects by free text search strings. &lt;BR&gt; All query parameters are optional and can be combined as needed but at least one parameter has to be submitted. (<span class="nickname">searchProjects_3</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">query (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Free text string that should be used to search inside of a project </div><div class="param">domain (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Domain name string a project should be assigned to </div><div class="param">subdomain (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Subdomain name string a project should be assigned to </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#ProjectDTO">ProjectDTO</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+    <h4 class="field-label">204</h4>
+    No content
+    <h4 class="field-label">400</h4>
+    Request incorrect
+    <h4 class="field-label">404</h4>
+    Not found
+    <h4 class="field-label">500</h4>
+    Internal Server error
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="update"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /project/{id}</code></pre></div>
+    <div class="method-summary">Updates a project in the Asset Repo (<span class="nickname">update</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Project ID </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The project to be updated inside of the Asset Repo </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json;charset&#x3D;UTF-8</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    No content
+    <h4 class="field-label">400</h4>
+    Request incorrect
+    <h4 class="field-label">404</h4>
+    Not found
+    <h4 class="field-label">500</h4>
+    Internal Server error
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="find"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /subdomain/{id}</code></pre></div>
+    <div class="method-summary">Finds a subdomain by ID in the Asset Repository (<span class="nickname">find</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; subdomain ID </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#SubDomain">SubDomain</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+    <h4 class="field-label">204</h4>
+    No content
+    <h4 class="field-label">400</h4>
+    Request incorrect
+    <h4 class="field-label">404</h4>
+    Not found
+    <h4 class="field-label">500</h4>
+    Internal Server error
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="findAll"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /subdomain/subdomains</code></pre></div>
+    <div class="method-summary">Retrieves a list of all subdomains in the Asset Repository (<span class="nickname">findAll</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#SubDomain">SubDomain</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+    <h4 class="field-label">204</h4>
+    No content
+    <h4 class="field-label">400</h4>
+    Request incorrect
+    <h4 class="field-label">404</h4>
+    Not found
+    <h4 class="field-label">500</h4>
+    Internal Server error
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="version"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /version</code></pre></div>
+    <div class="method-summary">Returns the version number (<span class="nickname">version</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+    <h4 class="field-label">204</h4>
+    No content
+    <h4 class="field-label">400</h4>
+    Request incorrect
+    <h4 class="field-label">404</h4>
+    Not found
+    <h4 class="field-label">500</h4>
+    Internal Server error
+  </div> <!-- method -->
+  <hr/>
+
+  <div class="up"><a href="#__Models">Up</a></div>
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#ArtefactDTO"><code>ArtefactDTO</code></a></li>
+    <li><a href="#Domain"><code>Domain</code></a></li>
+    <li><a href="#JsonArtefact"><code>JsonArtefact</code></a></li>
+    <li><a href="#JsonArtefactPayload"><code>JsonArtefactPayload</code></a></li>
+    <li><a href="#JsonProject"><code>JsonProject</code></a></li>
+    <li><a href="#ProjectDTO"><code>ProjectDTO</code></a></li>
+    <li><a href="#SubDomain"><code>SubDomain</code></a></li>
+  </ol>
+
+  <div class="model">
+    <h3 class="field-label"><a name="ArtefactDTO">ArtefactDTO</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">artefact </div><div class="param-desc"><span class="param-type">JsonArtefact</span> </div>
+<div class="param">score </div><div class="param-desc"><span class="param-type">Float</span> </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Domain">Domain</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type">Long</span> </div>
+<div class="param">version </div><div class="param-desc"><span class="param-type">Long</span> </div>
+<div class="param">name </div><div class="param-desc"><span class="param-type">String</span> </div>
+<div class="param">subdomains </div><div class="param-desc"><span class="param-type">array[SubDomain]</span> </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="JsonArtefact">JsonArtefact</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type">Long</span> </div>
+<div class="param">createdBy </div><div class="param-desc"><span class="param-type">String</span> </div>
+<div class="param">updatedBy </div><div class="param-desc"><span class="param-type">String</span> </div>
+<div class="param">createdAt </div><div class="param-desc"><span class="param-type">Date</span> </div>
+<div class="param">updatedAt </div><div class="param-desc"><span class="param-type">Date</span> </div>
+<div class="param">domain </div><div class="param-desc"><span class="param-type">String</span> </div>
+<div class="param">subDomain </div><div class="param-desc"><span class="param-type">String</span> </div>
+<div class="param">privacyLevel </div><div class="param-desc"><span class="param-type">String</span> </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">PUBLIC</div><div class="param-enum">PRIVATE</div>
+<div class="param">version </div><div class="param-desc"><span class="param-type">Long</span> </div>
+<div class="param">projectName </div><div class="param-desc"><span class="param-type">String</span> </div>
+<div class="param">uri </div><div class="param-desc"><span class="param-type">String</span> </div>
+<div class="param">groupId </div><div class="param-desc"><span class="param-type">String</span> </div>
+<div class="param">name </div><div class="param-desc"><span class="param-type">String</span> </div>
+<div class="param">dependencies </div><div class="param-desc"><span class="param-type">array[Long]</span> </div>
+<div class="param">type </div><div class="param-desc"><span class="param-type">String</span> </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">USE_CASE</div><div class="param-enum">ACTIVITY_DIAGRAM</div><div class="param-enum">ANALYSIS_CLASS_DIAGRAM</div><div class="param-enum">STORYBOARD</div><div class="param-enum">TEXTUAL</div><div class="param-enum">STATIC_ONTOLOGY</div><div class="param-enum">DYNAMIC_ONTOLOGY</div><div class="param-enum">AGGREGATED_ONTOLOGY</div><div class="param-enum">CODE_SNIPPET</div><div class="param-enum">NOTE</div><div class="param-enum">CIM</div><div class="param-enum">PIM</div><div class="param-enum">PSM</div><div class="param-enum">CODE</div><div class="param-enum">SERVICE_DESCRIPTION</div><div class="param-enum">COMPOSITE_SERVICE_DESCRIPTION</div><div class="param-enum">SERVICE</div><div class="param-enum">OSRF_PROJECT</div><div class="param-enum">OSRF_FILE</div>
+<div class="param">description </div><div class="param-desc"><span class="param-type">String</span> </div>
+<div class="param">tags </div><div class="param-desc"><span class="param-type">array[String]</span> </div>
+<div class="param">metadata </div><div class="param-desc"><span class="param-type">map[String, String]</span> </div>
+<div class="param">payload </div><div class="param-desc"><span class="param-type">array[JsonArtefactPayload]</span> </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="JsonArtefactPayload">JsonArtefactPayload</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type">Long</span> </div>
+<div class="param">version </div><div class="param-desc"><span class="param-type">Long</span> </div>
+<div class="param">type </div><div class="param-desc"><span class="param-type">String</span> </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">BINARY</div><div class="param-enum">TEXTUAL</div>
+<div class="param">format </div><div class="param-desc"><span class="param-type">String</span> </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">IMAGE</div><div class="param-enum">XMI</div><div class="param-enum">TEXT_ISO_639_3</div><div class="param-enum">TEXT_UTF8</div><div class="param-enum">OWL</div><div class="param-enum">N3</div><div class="param-enum">RDF</div><div class="param-enum">JAVA_CODE</div><div class="param-enum">JAVA_CODE_PACKED</div><div class="param-enum">JSON</div><div class="param-enum">WADL</div><div class="param-enum">XML</div>
+<div class="param">name </div><div class="param-desc"><span class="param-type">String</span> </div>
+<div class="param">payload </div><div class="param-desc"><span class="param-type">array[byte[]]</span> </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="JsonProject">JsonProject</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type">Long</span> </div>
+<div class="param">createdBy </div><div class="param-desc"><span class="param-type">String</span> </div>
+<div class="param">updatedBy </div><div class="param-desc"><span class="param-type">String</span> </div>
+<div class="param">createdAt </div><div class="param-desc"><span class="param-type">Date</span> </div>
+<div class="param">updatedAt </div><div class="param-desc"><span class="param-type">Date</span> </div>
+<div class="param">domain </div><div class="param-desc"><span class="param-type">String</span> </div>
+<div class="param">subDomain </div><div class="param-desc"><span class="param-type">String</span> </div>
+<div class="param">privacyLevel </div><div class="param-desc"><span class="param-type">String</span> </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">PUBLIC</div><div class="param-enum">PRIVATE</div>
+<div class="param">version </div><div class="param-desc"><span class="param-type">Long</span> </div>
+<div class="param">name </div><div class="param-desc"><span class="param-type">String</span> </div>
+<div class="param">artefacts </div><div class="param-desc"><span class="param-type">array[JsonArtefact]</span> </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="ProjectDTO">ProjectDTO</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">project </div><div class="param-desc"><span class="param-type">JsonProject</span> </div>
+<div class="param">score </div><div class="param-desc"><span class="param-type">Float</span> </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="SubDomain">SubDomain</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type">Long</span> </div>
+<div class="param">version </div><div class="param-desc"><span class="param-type">Long</span> </div>
+<div class="param">name </div><div class="param-desc"><span class="param-type">String</span> </div>
+<div class="param">domain </div><div class="param-desc"><span class="param-type">Domain</span> </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>

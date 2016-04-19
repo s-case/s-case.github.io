@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/WSQualityMeasures"
+	xmlns:tns="http://www.example.org/WSQualityMeasures" elementFormDefault="qualified">
+
+    <element name="WSQM" type="tns:WSQM"></element>
+    <complexType name="WSQM">
+    	<sequence>
+    		<element ref="tns:WSQMMeasure" maxOccurs="unbounded" minOccurs="1"></element>
+    	</sequence>
+    </complexType>
+
+	<element name="WSQMMeasure" type="tns:WSQMMeasure"></element>
+	<complexType name="WSQMMeasure">
+		<sequence>
+			<choice>
+				<element ref="tns:InternalMeasure"></element>
+				<element ref="tns:ExternalMeasure"></element>
+			</choice>
+			<element ref="tns:MeasureName"></element>
+			<element ref="tns:MeasureValue"></element>
+			<element ref="tns:MeasureValueKind"></element>
+			<element ref="tns:MeasureDefinition"></element>
+		</sequence>
+	</complexType>
+
+    <element name="InternalMeasure" type="tns:InternalMeasureType"></element>
+    <complexType name="InternalMeasureType">
+    	<sequence>
+    		<element name="InternalMeasureValidationMeans"
+    			type="tns:InternalMeasureValidationMeansType" minOccurs="0">
+    		</element>
+    		<element name="InternalMeasureKind">
+    			<simpleType>
+    				<restriction base="string">
+    					<enumeration value="StaticMeasure"></enumeration>
+    					<enumeration value="DynamicMeasure"></enumeration>
+    				</restriction>
+    			</simpleType>
+    		</element>
+    	</sequence>
+    </complexType>
+    <complexType name="InternalMeasureValidationMeansType">
+    	<sequence>
+    		<element name="InternalValidationMeansAttributes" type="tns:InternalValidationMeansAttributesType" minOccurs="0" maxOccurs="unbounded"></element>
+    	</sequence>
+    	<attribute name="InternalValidationMeansName">
+    	<simpleType>
+    			<restriction base="string">
+    				<enumeration value="MeasurementTheory"></enumeration>
+    				<enumeration value="AxiomaticApproach"></enumeration>
+    			</restriction>
+    		</simpleType>
+    	</attribute>
+    </complexType>
+    <complexType name="InternalValidationMeansAttributesType">
+    	<attribute name="AttributeName" type="string"></attribute>
+    	<attribute name="AttributeValue" type="string"></attribute>
+    </complexType>
+    
+    <element name="ExternalMeasure" type="tns:ExternalMeasureType"></element>
+    <complexType name="ExternalMeasureType">
+    	<sequence>
+    		<element name="ExternalMeasureValidationMeans" type="tns:ExternalMeasureValidationMeansType" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+    <complexType name="ExternalMeasureValidationMeansType">
+    	<sequence>
+    		<element name="ExternalValidationMeansAttribute" type="tns:ExternalValidationMeansAttributeType"></element>
+    	</sequence>
+    	<attribute name="ExternalValidationMeansName">
+    		<simpleType>
+    			<restriction base="string">
+    				<enumeration value="MeasurementTheory"></enumeration>
+    				<enumeration value="AxiomaticApproach"></enumeration>
+    				<enumeration value="EmpiricalValidation"></enumeration>
+    			</restriction>
+    		</simpleType>
+    	</attribute>
+    </complexType>
+    <complexType name="ExternalValidationMeansAttributeType">
+    	<sequence>
+    		<element name="StatisticalSignificanceLevel "
+    			type="tns:StatisticalSignificanceLevelType" minOccurs="0">
+    		</element>
+    		<element name="PValue" type="tns:PValueType" minOccurs="0"></element>
+    		<element name="StatisticalTestUsed"
+    			type="tns:StatisticalTestUsedType" minOccurs="0">
+    		</element>
+    		<element name="AccuracyLevel"
+    			type="tns:AccuracyLevelType" minOccurs="0">
+    		</element>
+    		<element name="AccuracyIndicatorUsed" type="tns:AccuracyIndicatorUsedType" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+    <complexType name="StatisticalSignificanceLevelType">
+    	<attribute name="Value" type="float"></attribute>
+    </complexType>
+    <complexType name="PValueType">
+    	<attribute name="Value" type="float"></attribute>
+    </complexType>
+    <complexType name="StatisticalTestUsedType">
+    	<attribute name="Name" type="string"></attribute>
+    </complexType>
+    <complexType name="AccuracyLevelType">
+    	<attribute name="Value" type="float"></attribute>
+    </complexType>
+    <complexType name="AccuracyIndicatorUsedType">
+    	<attribute name="Name" type="string"></attribute>
+    </complexType>
+    
+    <element name="MeasureDefinition" type="tns:MeasureDefinitionType"></element>
+    <complexType name="MeasureDefinitionType">
+    	<attribute name="Description" type="string"></attribute>
+    	<attribute name="Formula" type="string"></attribute>
+    </complexType>
+    
+    <element name="MeasureName" type="string"></element>
+
+	<element name="MeasureValue" type="float"></element>
+
+	<element name="MeasureValueKind">
+		<simpleType>
+			<restriction base="string">
+				<enumeration value="Raw"></enumeration>
+				<enumeration value="Average"></enumeration>
+				<enumeration value="St.Dev."></enumeration>
+				<enumeration value="Median"></enumeration>
+			</restriction>
+		</simpleType>
+	</element>
+</schema>

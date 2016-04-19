@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="RESTful web services from requirements" />
+  <meta name="keywords" content="S-CASE, REST, RESTful, web services, API, APIs"/>
+  <meta name="author" content="S-CASE developers" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Migration Guide from S-CASE Version 1.6 to Version 1.7</title>
+
+<!-- =========================
+ FAV AND TOUCH ICONS
+============================== -->
+<link rel="shortcut icon" href="assets/images/favicon.ico">
+<link rel="apple-touch-icon" href="images/icons/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="images/icons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="images/icons/apple-touch-icon-114x114.png">
+
+<!-- =========================
+     STYLESHEETS
+============================== -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/owl.theme.css">
+<link rel="stylesheet" href="css/owl.carousel.css">
+<link rel="stylesheet" href="css/jquery.vegas.min.css">
+<link rel="stylesheet" href="css/animate.min.css">
+
+<link rel="stylesheet" href="assets/icon-fonts/styles.css">
+<link rel="stylesheet" href="css/pixeden-icons.css">
+
+<!-- CUSTOM STYLES -->
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/responsive.css">
+
+<!-- WEBFONT -->
+<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,400italic|Montserrat:700,400|Homemade+Apple' rel='stylesheet' type='text/css'>
+
+<!-- FONT AWESOME -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+<!--[if lt IE 9]>
+			<script src="js/html5shiv.js"></script>
+			<script src="js/respond.min.js"></script>
+		<![endif]-->
+
+<!-- JQUERY -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<!-- START SUPPORT FOR MARKDOWN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.3.0/showdown.min.js"></script>
+<!-- SCRIPTS -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/jquery.nav.js"></script>
+<script src="js/jquery.knob.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/smoothscroll.js"></script>
+<script src="js/jquery.vegas.min.js"></script>
+<script src="js/zerif.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-71013543-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+
+
+<body>
+<!-- =========================
+   PRE LOADER
+============================== -->
+<div class="preloader">
+  <div class="status">&nbsp;</div>
+</div>
+<!-- =========================
+   HOME SECTION
+============================== -->
+
+<!-- TOP BAR -->
+<div id="main-nav" class="navbar navbar-inverse bs-docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header responsive-logo">
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      </button>
+      <div class="navbar-brand">
+      <img src="images/logo.png" alt="Zerif">
+      </div>
+    </div>
+    <nav class="navbar-collapse collapse" role="navigation" id="bs-navbar-collapse">
+    <ul class="nav navbar-nav navbar-right responsive-nav main-nav-list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#focus">Focus</a></li>
+      <li><a href="index.html#installation">Get Started</a></li>
+      <li><a href="index.html#features">Features</a></li>
+      <li><a href="index.html#demo">Demo</a></li>
+      <li><a href="index.html#offerings">Offerings</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="webbook.html">About</a></li>
+      <li><a href="webbook.html">Web Book</a></li>
+      <li><a href="ecosystem.html">Ecosystem &amp; Docs</a></li>
+      <li><a href="releasenotes.html">Releases</a></li>
+      <li><a href="https://www.surveymonkey.com/r/VLGKQBL" target="_blank">Survey*</a></li>
+    </ul>
+    </nav>
+  </div>
+</div>
+<!-- / END TOP BAR -->
+
+<section class="focus left-align" id="notes">
+
+  <div class="container">
+        <div id="targetDiv"></div>
+      </div><!-- /.container -->
+
+      <!-- START SUPPORT FOR MARKDOWN -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.3.0/showdown.min.js"></script>
+      <script>
+      jQuery.get('migrationguide.md', function(data) {
+        target = document.getElementById('targetDiv'),
+        converter = new showdown.Converter(),
+        html = converter.makeHtml(data);
+        target.innerHTML = html;
+      }, 'text');
+      </script>
+      <!-- END SUPPORT FOR MARKDOWN -->
+</section>
+
+<!-- =========================
+   FOOTER
+============================== -->
+
+<footer>
+<div class="container">
+
+	<!-- COMPANY EMAIL-->
+	<div class="col-md-3 company-details">
+		<div class="icon-top green-text">
+		<i class="icon-fontawesome-webfont-329"></i>
+		</div>
+		 s-case-support@iti.gr
+	</div>
+
+
+	<!-- SOCIAL ICON AND COPYRIGHT -->
+	<div class="col-lg-9 col-sm-9 copyright">
+		<ul class="social">
+			<li><a href="https://www.facebook.com/SCasefp7"><i class="icon-facebook"></i></a></li>
+			<li><a href="http://www.twitter.com/scasefp7"><i class="icon-twitter-alt"></i></a></li>
+      <li><a href="http://bit.ly/SCasegrp"><i class="icon-linkedin"></i></a></li>
+			<li><a href="http://bit.ly/SCasegplus"><i class="icon-google"></i></a></li>
+			<li><a href="http://www.scasefp7.eu/"><i class="icon-dribbble"></i></a></li>
+		</ul>
+		 <!-- ©2013 Zerif LLC -->
+	</div>
+</div> <!-- / END CONTAINER -->
+</footer> <!-- / END FOOOTER  -->
+</body>
+</html>

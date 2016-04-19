@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:WSQM xmlns:tns="http://www.example.org/WSQualityMeasures" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/WSQualityMeasures WSQualityMeasures.xsd ">
+<!-- This XML file describes the internal and external qualities collected for the ArtistRegistry Web Service (http://yesso.eu/samples/artist-registry.zip)-->
+
+  <tns:WSQMMeasure>
+    <tns:InternalMeasure>
+      <tns:InternalMeasureValidationMeans InternalValidationMeansName="">
+        <tns:InternalValidationMeansAttributes AttributeName="" AttributeValue=""/>
+      </tns:InternalMeasureValidationMeans>
+      <tns:InternalMeasureKind>StaticMeasure</tns:InternalMeasureKind>
+    </tns:InternalMeasure>
+    <tns:MeasureName>LOC</tns:MeasureName>
+    <tns:MeasureValue>322</tns:MeasureValue>
+    <tns:MeasureValueKind>Raw</tns:MeasureValueKind>
+    <tns:MeasureDefinition Description="Lines of Code" Formula="na"/>
+  </tns:WSQMMeasure>
+  <tns:WSQMMeasure>
+    <tns:InternalMeasure>
+      <tns:InternalMeasureValidationMeans InternalValidationMeansName="">
+        <tns:InternalValidationMeansAttributes AttributeName="" AttributeValue=""/>
+      </tns:InternalMeasureValidationMeans>
+      <tns:InternalMeasureKind>StaticMeasure</tns:InternalMeasureKind>
+    </tns:InternalMeasure>
+    <tns:MeasureName>CC</tns:MeasureName>
+    <tns:MeasureValue>1.56</tns:MeasureValue>
+    <tns:MeasureValueKind>Average</tns:MeasureValueKind>
+    <tns:MeasureDefinition Description="McCabe Cyclomatic Complexity (CC)" Formula="CC(G)=e-n+2p"/>
+  </tns:WSQMMeasure>
+ <tns:WSQMMeasure>
+    <tns:InternalMeasure>
+      <tns:InternalMeasureValidationMeans InternalValidationMeansName="">
+        <tns:InternalValidationMeansAttributes AttributeName="" AttributeValue=""/>
+      </tns:InternalMeasureValidationMeans>
+      <tns:InternalMeasureKind>StaticMeasure</tns:InternalMeasureKind>
+    </tns:InternalMeasure>
+    <tns:MeasureName>WMC</tns:MeasureName>
+    <tns:MeasureValue>14.2</tns:MeasureValue>
+    <tns:MeasureValueKind>Average</tns:MeasureValueKind>
+    <tns:MeasureDefinition Description="Weighted Methods per Class (WMC)" Formula="WMC=SUM(Ci)"/>
+  </tns:WSQMMeasure> 
+  <tns:WSQMMeasure>
+    <tns:InternalMeasure>
+      <tns:InternalMeasureValidationMeans InternalValidationMeansName="">
+        <tns:InternalValidationMeansAttributes AttributeName="" AttributeValue=""/>
+      </tns:InternalMeasureValidationMeans>
+      <tns:InternalMeasureKind>StaticMeasure</tns:InternalMeasureKind>
+    </tns:InternalMeasure>
+    <tns:MeasureName>LCOM</tns:MeasureName>
+    <tns:MeasureValue>0.39</tns:MeasureValue>
+    <tns:MeasureValueKind>Average</tns:MeasureValueKind>
+    <tns:MeasureDefinition Description="Lack of Cohesion of Methods (LCOM)" Formula="LCOM(c)=|P(c)|-|Q(c)| if |P(c)|>|Q(c)|"/>
+  </tns:WSQMMeasure>
+  <tns:WSQMMeasure>
+    <tns:InternalMeasure>
+      <tns:InternalMeasureValidationMeans InternalValidationMeansName="">
+        <tns:InternalValidationMeansAttributes AttributeName="" AttributeValue=""/>
+      </tns:InternalMeasureValidationMeans>
+      <tns:InternalMeasureKind>StaticMeasure</tns:InternalMeasureKind>
+    </tns:InternalMeasure>
+    <tns:MeasureName>Ca</tns:MeasureName>
+    <tns:MeasureValue>0</tns:MeasureValue>
+    <tns:MeasureValueKind>Raw</tns:MeasureValueKind>
+    <tns:MeasureDefinition Description="Afferent Couplings (Ca)" Formula="The number of other packages that depend upon classes within the package"/>
+  </tns:WSQMMeasure>
+  <tns:WSQMMeasure>
+    <tns:InternalMeasure>
+      <tns:InternalMeasureValidationMeans InternalValidationMeansName="">
+        <tns:InternalValidationMeansAttributes AttributeName="" AttributeValue=""/>
+      </tns:InternalMeasureValidationMeans>
+      <tns:InternalMeasureKind>StaticMeasure</tns:InternalMeasureKind>
+    </tns:InternalMeasure>
+    <tns:MeasureName>Ce</tns:MeasureName>
+    <tns:MeasureValue>4</tns:MeasureValue>
+    <tns:MeasureValueKind>Raw</tns:MeasureValueKind>
+    <tns:MeasureDefinition Description="Efferent Couplings (Ce)" Formula="The number of other packages that the classes in the package depend upon"/>
+  </tns:WSQMMeasure>
+  <tns:WSQMMeasure>
+    <tns:InternalMeasure>
+      <tns:InternalMeasureValidationMeans InternalValidationMeansName="">
+        <tns:InternalValidationMeansAttributes AttributeName="" AttributeValue=""/>
+      </tns:InternalMeasureValidationMeans>
+      <tns:InternalMeasureKind>DynamicMeasure</tns:InternalMeasureKind>
+    </tns:InternalMeasure>
+    <tns:MeasureName>DC</tns:MeasureName>
+    <tns:MeasureValue>1.80</tns:MeasureValue>
+    <tns:MeasureValueKind>Raw</tns:MeasureValueKind>
+    <tns:MeasureDefinition Description="Distinct Classes (DC)" Formula="the count of the distinct number of classes that a method uses within a runtime session"/>
+  </tns:WSQMMeasure>
+  <tns:WSQMMeasure>
+    <tns:InternalMeasure>
+      <tns:InternalMeasureValidationMeans InternalValidationMeansName="AxiomaticApproach">
+        <tns:InternalValidationMeansAttributes AttributeName="DynamicCoupling Axiom1: Monotonicity" AttributeValue="OuterR(m1) ⊆ OuterR(m2) ∧ R1 ⊆ R2 ∧ tr1 ⊆ tr2 -> DynCoupling(m1, tr1) ≤ DynCoupling(m2, tr)"/>
+		<tns:InternalValidationMeansAttributes AttributeName="DynamicCoupling Axiom2: NullValue" AttributeValue="The coupling of a module with no outer relationships is null under all execution traces"/>
+		<tns:InternalValidationMeansAttributes AttributeName="DynamicCoupling Axiom3: MergingOfModules" AttributeValue="∀tr(DynCoupling(m1 ∪m2, tr) ≤ DynCoupling(m1, tr) + Coupling(m2, tr))"/>
+      </tns:InternalMeasureValidationMeans>
+      <tns:InternalMeasureKind>DynamicMeasure</tns:InternalMeasureKind>
+    </tns:InternalMeasure>
+    <tns:MeasureName>DCBO</tns:MeasureName>
+    <tns:MeasureValue>1.50</tns:MeasureValue>
+    <tns:MeasureValueKind>Raw</tns:MeasureValueKind>
+    <tns:MeasureDefinition Description="Dynamic Coupling Between Objects (DCBO)" Formula="The number of distinct classes a specific class is coupled to at runtime"/>
+  </tns:WSQMMeasure>  
+  <tns:WSQMMeasure>
+    <tns:InternalMeasure>
+      <tns:InternalMeasureValidationMeans InternalValidationMeansName="EmpiricalValidation">
+        <tns:InternalValidationMeansAttributes AttributeName="" AttributeValue=""/>
+      </tns:InternalMeasureValidationMeans>
+      <tns:InternalMeasureKind>DynamicMeasure</tns:InternalMeasureKind>
+    </tns:InternalMeasure>
+    <tns:MeasureName>OMI</tns:MeasureName>
+    <tns:MeasureValue>2.09</tns:MeasureValue>
+    <tns:MeasureValueKind>Raw</tns:MeasureValueKind>
+    <tns:MeasureDefinition Description="Object Method Invocations (OMI)" Formula="The total number of distinct methods invoked by each method in each object within a runtime session"/>
+  </tns:WSQMMeasure> 
+  <tns:WSQMMeasure>
+    <tns:InternalMeasure>
+      <tns:InternalMeasureValidationMeans InternalValidationMeansName="EmpiricalValidation">
+        <tns:InternalValidationMeansAttributes AttributeName="" AttributeValue=""/>
+      </tns:InternalMeasureValidationMeans>
+      <tns:InternalMeasureKind>DynamicMeasure</tns:InternalMeasureKind>
+    </tns:InternalMeasure>
+    <tns:MeasureName>DMI</tns:MeasureName>
+    <tns:MeasureValue>14.00</tns:MeasureValue>
+    <tns:MeasureValueKind>Raw</tns:MeasureValueKind>
+    <tns:MeasureDefinition Description="Distinct Method Invocations (DMI)" Formula="The count, within a runtime session, of the total number of distinct methods invoked by each method in each objec"/>
+  </tns:WSQMMeasure> 
+   
+  <tns:WSQMMeasure>
+    <tns:ExternalMeasure>
+		<tns:ExternalMeasureValidationMeans ExternalValidationMeansName="EmpiricalValidation">
+    		<tns:ExternalValidationMeansAttribute></tns:ExternalValidationMeansAttribute>
+  		</tns:ExternalMeasureValidationMeans>
+	</tns:ExternalMeasure>
+    <tns:MeasureName>Availability</tns:MeasureName>
+    <tns:MeasureValue>1.0</tns:MeasureValue>
+    <tns:MeasureValueKind>Raw</tns:MeasureValueKind>
+    <tns:MeasureDefinition Description="The availability describes the degree of which web services are available in operational status" Formula="Availability=1-downTime/measuredTime)"/>
+  </tns:WSQMMeasure>
+  <tns:WSQMMeasure>
+    <tns:ExternalMeasure>
+		<tns:ExternalMeasureValidationMeans ExternalValidationMeansName="EmpiricalValidation">
+    		<tns:ExternalValidationMeansAttribute></tns:ExternalValidationMeansAttribute>
+  		</tns:ExternalMeasureValidationMeans>
+	</tns:ExternalMeasure>
+    <tns:MeasureName>Accessability</tns:MeasureName>
+    <tns:MeasureValue>0.971</tns:MeasureValue>
+    <tns:MeasureValueKind>Raw</tns:MeasureValueKind>
+    <tns:MeasureDefinition Description="The accessability describes the probability of which web services platform is accessible while the system is available" Formula="Accessability=numOfAckMsgs/numOfReqMsgs"/>
+  </tns:WSQMMeasure>
+  <tns:WSQMMeasure>
+    <tns:ExternalMeasure>
+		<tns:ExternalMeasureValidationMeans ExternalValidationMeansName="EmpiricalValidation">
+    		<tns:ExternalValidationMeansAttribute>
+      			<tns:StatisticalSignificanceLevel Value="0.900"/>
+      			<tns:PValue Value="0.005"/>
+      			<tns:StatisticalTestUsed Name="T-test"/>
+      			<tns:AccuracyLevel Value="0.923"/>
+      			<tns:AccuracyIndicatorUsed Name="R^2"/>
+    		</tns:ExternalValidationMeansAttribute>
+  		</tns:ExternalMeasureValidationMeans>
+	</tns:ExternalMeasure>
+    <tns:MeasureName>Successability</tns:MeasureName>
+    <tns:MeasureValue>1</tns:MeasureValue>
+    <tns:MeasureValueKind>Raw</tns:MeasureValueKind>
+    <tns:MeasureDefinition Description="The successability correlates with CC and DCBO by a Logisitc Regression Model" Formula="SU=e^(-0,15*CC+0,08*DCBO)/(1+e^(-0,15*CC+0,08*DCBO))"/>
+  </tns:WSQMMeasure>
+    
+</tns:WSQM>

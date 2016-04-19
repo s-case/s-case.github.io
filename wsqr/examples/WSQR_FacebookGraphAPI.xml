@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:WSQR xmlns:tns="http://www.example.org/WSQR_FacebookGraphAPI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/WSQualityMeasures WSQualityRepresentation.xsd ">
+
+  <tns:WSQRMeasure>
+    <tns:ExternalMeasure>
+		<tns:ExternalMeasureValidationMeans ExternalValidationMeansName="MeasurementTheory">
+    		<tns:ExternalValidationMeansAttribute>
+      			<tns:StatisticalSignificanceLevel Value=""/>
+      			<tns:PValue Value=""/>
+      			<tns:StatisticalTestUsed Name=""/>
+      			<tns:AccuracyLevel Value=""/>
+      			<tns:AccuracyIndicatorUsed Name=""/>
+    		</tns:ExternalValidationMeansAttribute>
+  		</tns:ExternalMeasureValidationMeans>
+	</tns:ExternalMeasure>
+    <tns:MeasureName>Performance</tns:MeasureName>
+    <tns:MeasureValue>243,6ms</tns:MeasureValue>
+    <tns:MeasureValueKind>Average</tns:MeasureValueKind>
+    <tns:MeasureDefinition Description="na" Formula="na"/>
+    
+    <tns:ExternalMeasure>
+		<tns:ExternalMeasureValidationMeans ExternalValidationMeansName="MeasurementTheory">
+    		<tns:ExternalValidationMeansAttribute>
+      			<tns:StatisticalSignificanceLevel Value=""/>
+      			<tns:PValue Value=""/>
+      			<tns:StatisticalTestUsed Name=""/>
+      			<tns:AccuracyLevel Value=""/>
+      			<tns:AccuracyIndicatorUsed Name=""/>
+    		</tns:ExternalValidationMeansAttribute>
+  		</tns:ExternalMeasureValidationMeans>
+	</tns:ExternalMeasure>
+    <tns:MeasureName>Popularity</tns:MeasureName>
+    <tns:MeasureValue>0,5%</tns:MeasureValue>
+    <tns:MeasureValueKind>Raw</tns:MeasureValueKind>
+    <tns:MeasureDefinition Description="4.580 web sites use this API out of 845.000 sites" Formula="na"/>
+    
+    <tns:ExternalMeasure>
+		<tns:ExternalMeasureValidationMeans ExternalValidationMeansName="MeasurementTheory">
+    		<tns:ExternalValidationMeansAttribute>
+      			<tns:StatisticalSignificanceLevel Value=""/>
+      			<tns:PValue Value=""/>
+      			<tns:StatisticalTestUsed Name=""/>
+      			<tns:AccuracyLevel Value=""/>
+      			<tns:AccuracyIndicatorUsed Name=""/>
+    		</tns:ExternalValidationMeansAttribute>
+  		</tns:ExternalMeasureValidationMeans>
+	</tns:ExternalMeasure>
+    <tns:MeasureName>Security</tns:MeasureName>
+    <tns:MeasureValue>OAuth Authentication Mechanism</tns:MeasureValue>
+    <tns:MeasureValueKind></tns:MeasureValueKind>
+    <tns:MeasureDefinition Description="The OAuth method is implemented" Formula="na"/>
+    
+    <tns:ExternalMeasure>
+		<tns:ExternalMeasureValidationMeans ExternalValidationMeansName="MeasurementTheory">
+    		<tns:ExternalValidationMeansAttribute>
+      			<tns:StatisticalSignificanceLevel Value=""/>
+      			<tns:PValue Value=""/>
+      			<tns:StatisticalTestUsed Name=""/>
+      			<tns:AccuracyLevel Value=""/>
+      			<tns:AccuracyIndicatorUsed Name=""/>
+    		</tns:ExternalValidationMeansAttribute>
+  		</tns:ExternalMeasureValidationMeans>
+	</tns:ExternalMeasure>
+    <tns:MeasureName>Price</tns:MeasureName>
+    <tns:MeasureValue>free</tns:MeasureValue>
+    <tns:MeasureValueKind></tns:MeasureValueKind>
+    <tns:MeasureDefinition Description="free for less than 100M API calls per day" Formula="na"/>
+    
+ </tns:WSQRMeasure>
+  
+</tns:WSQR>

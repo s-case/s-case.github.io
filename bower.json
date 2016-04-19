@@ -1,0 +1,15 @@
+{
+  "name": "s-case.github.io",
+  "version": "0.0.1",
+  "homepage": "http://s-case.github.io",
+  "authors": [
+    "kyrcha <kyrcha@gmail.com>"
+  ],
+  "keywords": [
+    "s-case"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.0",
+    "holderjs": "~2.6.0"
+  }
+}

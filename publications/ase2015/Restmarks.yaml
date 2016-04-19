@@ -1,0 +1,48 @@
+- !!eu.fp7.scase.inputParser.YamlResource
+  Name: account
+  IsAlgorithmic: false
+  CRUDActivities: [Create, Read, Update, Delete]
+  Properties:
+  - Name: username
+    Type: String
+    Unique: true
+    NamingProperty: true
+  - Name: password
+    Type: String
+    Unique: false
+    NamingProperty: false
+  RelatedResources: [bookmark]
+- !!eu.fp7.scase.inputParser.YamlResource
+  Name: tagSearch
+  IsAlgorithmic: true
+  CRUDActivities: []
+  Properties: []
+  RelatedResources: []
+- !!eu.fp7.scase.inputParser.YamlResource
+  Name: tag
+  IsAlgorithmic: false
+  CRUDActivities: [Create, Read, Update, Delete]
+  Properties:
+  - Name: name
+    Type: String
+    Unique: true
+    NamingProperty: true
+  - Name: description
+    Type: String
+    Unique: false
+    NamingProperty: false
+  RelatedResources: [tagSearch]
+- !!eu.fp7.scase.inputParser.YamlResource
+  Name: bookmark
+  IsAlgorithmic: false
+  CRUDActivities: [Create, Read, Update, Delete]
+  Properties:
+  - Name: url
+    Type: String
+    Unique: true
+    NamingProperty: true
+  - Name: scope
+    Type: String
+    Unique: false
+    NamingProperty: false
+  RelatedResources: [tag]

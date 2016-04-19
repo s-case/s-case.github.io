@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Beautiful Responsive Animated OnePage Template" />
+<meta name="keywords" content="Zerif, responsive, html, template, creative"/>
+<meta name="author" content="Mizanur Rahman" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S-CASE - Scaffolding Scalable Software Services</title>
+
+<!-- =========================
+ FAV AND TOUCH ICONS
+============================== -->
+<link rel="shortcut icon" href="assets/images/favicon.ico">
+<link rel="apple-touch-icon" href="images/icons/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizfes="72x72" href="images/icons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="images/icons/apple-touch-icon-114x114.png">
+
+<!-- =========================
+     STYLESHEETS
+============================== -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/owl.theme.css">
+<link rel="stylesheet" href="css/owl.carousel.css">
+<link rel="stylesheet" href="css/jquery.vegas.min.css">
+<link rel="stylesheet" href="css/animate.min.css">
+
+<link rel="stylesheet" href="assets/icon-fonts/styles.css">
+<link rel="stylesheet" href="css/pixeden-icons.css">
+
+<!-- CUSTOM STYLES -->
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/custom.css">
+
+<!-- WEBFONT -->
+<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,400italic|Montserrat:700,400|Homemade+Apple' rel='stylesheet' type='text/css'>
+
+<!-- FONT AWESOME -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+<!--[if lt IE 9]>
+			<script src="js/html5shiv.js"></script>
+			<script src="js/respond.min.js"></script>
+		<![endif]-->
+
+<!-- JQUERY -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<!-- SCRIPTS -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/jquery.nav.js"></script>
+<script src="js/jquery.knob.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/smoothscroll.js"></script>
+<script src="js/jquery.vegas.min.js"></script>
+<script src="js/zerif.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+ <script src="js/ui-bootstrap-tpls-0.14.3.min.js"></script>
+ <script src="js/angular/modal.js"></script>
+ <script>
+   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+   ga('create', 'UA-71013543-1', 'auto');
+   ga('send', 'pageview');
+ </script>
+</head>
+
+
+<body ng-app="s-case">
+<!-- =========================
+   PRE LOADER
+============================== -->
+<div class="preloader">
+  <div class="status">&nbsp;</div>
+</div>
+<!-- =========================
+   HOME SECTION
+============================== -->
+<header id="home" class="header">
+
+  <!-- TOP BAR -->
+  <div id="main-nav" class="navbar navbar-inverse bs-docs-nav" role="banner">
+    <div class="container">
+      <div class="navbar-header responsive-logo">
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <div class="navbar-brand">
+        <img src="images/logo.png" alt="Zerif">
+        </div>
+      </div>
+      <nav class="navbar-collapse collapse" role="navigation" id="bs-navbar-collapse">
+      <ul class="nav navbar-nav navbar-right responsive-nav main-nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#focus">Focus</a></li>
+        <li><a href="index.html#installation">Get Started</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#demo">Demo</a></li>
+        <li><a href="index.html#offerings">Offerings</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="webbook.html">About</a></li>
+        <li><a href="webbook.html">Web Book</a></li>
+        <li><a href="ecosystem.html">Ecosystem &amp; Docs</a></li>
+        <li><a href="releasenotes.html">Releases</a></li>
+        <li><a href="https://www.surveymonkey.com/r/VLGKQBL" target="_blank">Survey*</a></li>
+      </ul>
+      </nav>
+    </div>
+  </div>
+  <!-- / END TOP BAR -->
+
+	<!-- BIG HEADING WITH CALL TO ACTION BUTTONS AND SHORT MESSAGES -->
+	<div class="container">
+
+		<!-- HEADING -->
+		<h1 class="intro">Easily create RESTful APIs from requirements</h1>
+
+		<!-- CALL TO ACTION BUTTONS -->
+		<div class="buttons inpage-scroll">
+			<div ng-controller="ModalDemoCtrl">
+ 				<button type="button" class="btn btn-primary custom-button blue-btn" ng-click="open('dev')">Developer?</button>
+ 				<button type="button" class="btn btn-primary custom-button green-btn" ng-click="open('biz')">Business?</button>
+ 			</div>
+		</div>
+
+    <div class="row">
+      <h4 class="white-text">Help us understand more about your needs.</h4>
+      <a href="https://www.surveymonkey.com/r/VLGKQBL" target="_blank" class="btn btn-primary custom-button red-btn">Survey</a>
+    </div>
+
+		<!-- 3 SHORT MESSAGE ABOUT COMPANY -->
+    <div class="row bottom-message-section">
+			<div class="col-lg-4 col-sm-4">
+				<div class="short-text">
+					<i class="icon icon-fontawesome-webfont-358"></i> Automate functionality creation
+				</div>
+			</div>
+			<div class="col-lg-4 col-sm-4">
+				<div class="short-text">
+					<i class="icon-fontawesome-webfont-286"></i> Quality backends in time
+				</div>
+			</div>
+			<div class="col-lg-4 col-sm-4">
+				<div class="short-text">
+					<i class="icon-fontawesome-webfont-347"></i> Satisfaction guaranteed
+				</div>
+			</div>
+		</div>
+	</div> <!-- / END BIG HEADING WITH CALL TO ACTION BUTTONS AND SHORT MESSAGES  -->
+
+</header> <!-- / END HOME SECTION  -->
+
+<!-- =========================
+   FOCUS SECTION
+============================== -->
+
+<section class="focus" id="focus">
+<div class="container">
+
+	<!-- SECTION HEADER -->
+	<div class="section-header">
+
+		<!-- SECTION TITLE -->
+		<h2 class="dark-text">Our Focus</h2>
+
+		<!-- SHORT DESCRIPTION ABOUT THE SECTION -->
+		<h6>
+      To automatically generate RESTful Web Services from multi-modal requirements in order to increase your productivity and simplify your development process from inception to deployment and maintenance.
+		</h6>
+	</div>
+	<!-- / END SECTION HEADER -->
+
+	<!-- 4 FOCUS BOXES -->
+	<div class="row">
+
+		<!-- FIRST FOCUS BOXES -->
+		<div class="col-lg-3 col-sm-3 focus-box red wow fadeInLeft animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+			<div class="service-icon">
+				<i class="pixeden pd-icon-book"></i> <!-- FOCUS ICON-->
+			</div>
+			<h5 class="red-border-bottom">Documentation</h5> <!-- FOCUS HEADING -->
+			<p> <!-- FOCUS DESCRIPTION -->
+        S-CASE offers both traceability of code to requirements and automatic creation of web service documentation.
+			</p>
+		</div>
+		<!-- / END FIRST FOCUS BOX. Other boxes has same format -->
+
+		<div class="col-lg-3 col-sm-3 focus-box green wow fadeInLeft animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+			<div class="service-icon">
+				<span class="pixeden pd-icon-config"></span>
+			</div>
+			<h5 class="green-border-bottom">Automation</h5>
+			<p>
+        Automatically add new functionality and generate thousands lines of code.
+			</p>
+		</div>
+
+		<div class="col-lg-3 col-sm-3 focus-box blue wow fadeInRight animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+			<div class="service-icon">
+				<i class="pixeden pd-icon-check"></i>
+			</div>
+			<h5 class="blue-border-bottom">Quality</h5>
+			<p>
+        Our model-driven engineering methodology produces highly reliable and maintainable services.
+			</p>
+		</div>
+
+		<div class="col-lg-3 col-sm-3 focus-box yellow wow fadeInRight animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+			<div class="service-icon">
+				<i class="pixeden pd-icon-help"></i>
+			</div>
+			<h5 class="yellow-border-bottom">Ease of use</h5>
+			<p>
+				 From writing requirements in free text to creating your API through wizards.
+			</p>
+		</div>
+	</div>
+	<!-- / END 4 FOCUS BOXES -->
+
+	<!-- OTHER FOCUSES -->
+	<div class="other-focuses">
+		<h5><span class="section-footer-title">ALSO WE FOCUS ON</span></h5>
+	</div>
+
+	<!-- OTHER FOCUS LIST -->
+	<div class="other-focus-list wow fadeInUp animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+		<ul>
+			<li><i class="icon-display"></i>WEB APPLICATIONS</li>
+			<li><i class="icon-iphone-streamline"></i>MOBILE APPLICATIONS</li>
+			<li><i class="icon-world"></i>WEB SERVICES</li>
+			<li><i class="icon-shop"></i>API MARKETPLACES</li>
+      <li><i class="icon-paperplane"></i>DEPLOYMENT</li>
+		</ul>
+	</div> <!-- / END OTHER FOCUS LIST -->
+</div> <!-- / END CONTAINER -->
+</section>  <!-- / END FOCUS SECTION -->
+
+<!-- =========================
+   SEPARATOR ONE
+============================== -->
+
+<section class="separator-one" id="installation">
+<div class="color-overlay">
+	<h3 class="container text wow fadeInLeft animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+	Install the S-CASE Eclipse plugin and start scaffolding your web services immediately. </h3>
+	<div class="container text wow fadeInRight animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+    <h4>Download &amp; start Eclipse IDE</h4>
+    <h4>Select the menu item <em>Install new software...</em></h4>
+    <h4>Add as a new remote repository the URL: <strong>https://eclipse.scasefp7.com/eclipse/s-case_update_site/</strong></h4>
+    <h4>Follow the installation instructions</h4>
+    <a href="ecosystem.html" class="btn btn-primary custom-button blue-btn">DOCUMENTATION</a>
+	</div>
+</div>
+</section>  <!-- / END SEPARATOR -->
+
+<!-- =========================
+   FEATURES SECTION
+============================== -->
+<section class="features" id="features">
+<div class="container">
+
+		<!-- SECTION HEADER -->
+	<div class="section-header">
+
+		<!-- SECTION TITLE -->
+		<h2 class="dark-text">Features</h2>
+
+		<!-- SHORT DESCRIPTION ABOUT THE SECTION -->
+		<h6>
+			Through S-CASE you can easily design &amp; develop quality RESTful web services.
+		</h6>
+	</div>
+	<!-- / END SECTION HEADER -->
+
+	<!-- FEATURS -->
+	<div class="row">
+
+		<!-- FEATURES COLUMN LEFT -->
+		<div class="col-md-6 col-sm-6 wow fadeInLeft animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+
+			<!-- FEATURE -->
+			<div class="feature">
+				<div class="feature-icon">
+					<i class="icon-heart-1"></i>
+				</div>
+				<h5>RESTful</h5>
+				<p>
+					 Create 3rd level Richardson Maturity Model RESTful APIs that support Hypermedia As The Engine of Application State (HATEOAS).
+				</p>
+			</div>
+			<!-- / END FEATURE -->
+
+			<!-- FEATURE -->
+			<div class="feature">
+				<div class="feature-icon">
+					<i class="icon-lock-1"></i>
+				</div>
+				<h5>Authentication</h5>
+				<p>
+					 Restrict access to selected resources.
+				</p>
+			</div>
+			<!-- / END FEATURE -->
+
+			<!-- FEATURE -->
+			<div class="feature">
+				<div class="feature-icon">
+					<i class="icon-search"></i>
+				</div>
+				<h5>Search</h5>
+				<p>
+					 Add database full-text search functionality and map it to resources of your choice.
+				</p>
+			</div>
+			<!-- / END FEATURE -->
+
+      <!-- FEATURE -->
+      <div class="feature">
+        <div class="feature-icon">
+          <i class="icon-paperplane"></i>
+        </div>
+        <h5>Deploy ready</h5>
+        <p>
+           Ready to deploy back-end in a container of your choice.
+        </p>
+      </div>
+      <!-- / END FEATURE -->
+		</div> <!-- / FEATURES COLUMN LEFT -->
+
+		<!-- FEATURES COLUMN RIGHT -->
+		<div class="col-md-6 col-sm-6 wow fadeInRight animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+      <!-- FEATURE -->
+      <div class="feature">
+        <div class="feature-icon">
+          <i class="icon-settings-streamline-1"></i>
+        </div>
+        <h5>Code Generation</h5>
+        <p>
+           Automated source code generation from user, multi-modal requirements (free text, UML diagrams, storyboards).
+        </p>
+      </div>
+      <!-- / END FEATURE -->
+
+			<!-- FEATURE -->
+			<div class="feature">
+				<div class="feature-icon">
+					<i class="icon-earth-globe-streamline"></i>
+				</div>
+				<h5>External web services</h5>
+				<p>
+					 Incorporate and call any 3rd party REST web service you would like to use.
+				</p>
+			</div>
+			<!-- / END FEATURE -->
+
+			<!-- FEATURE -->
+			<div class="feature">
+				<div class="feature-icon">
+					<i class="icon-database-streamline"></i>
+				</div>
+				<h5>Database</h5>
+				<p>
+					Generate the schema and the database along with the API.
+				</p>
+			</div>
+			<!-- / END FEATURE -->
+
+      <!-- FEATURE -->
+			<div class="feature">
+				<div class="feature-icon">
+					<i class="icon-key"></i>
+				</div>
+				<h5>Authorization</h5>
+				<p>
+					Enable Attribute Based Access Control (ABAC) in your API.
+				</p>
+			</div>
+			<!-- / END FEATURE -->
+		</div> <!-- / END FEATURES COLUMN RIGHT -->
+	</div> <!-- / END FEATURES -->
+</div> <!-- / END CONTAINER -->
+</section> <!-- / END FEATURES SECTION -->
+
+
+<!-- =========================
+   ABOUT US SECTION
+============================== -->
+
+<section class="about-us" id="demo">
+<div class="container">
+
+	<!-- SECTION HEADER -->
+	<div class="section-header">
+
+		<!-- SECTION TITLE -->
+		<h2 class="white-text">RESTReviews</h2>
+
+		<!-- SHORT DESCRIPTION ABOUT THE SECTION -->
+	</div>
+	<!-- / END SECTION HEADER -->
+
+	<!-- 3 COLUMNS OF ABOUT US-->
+	<div class="row">
+
+		<!-- COLUMN 1 - BIG MESSAGE ABOUT THE COMPANY-->
+		<div class="col-lg-3 col-md-3 column">
+		</div>
+
+		<!-- COLUMN 2 - BRIEF ABOUT THE COMPANY-->
+		<div class="col-lg-6 col-md-6 column">
+      <h6 class="white-text">Check out how S-CASE MAGIC happens! See how our demo app, RESTREVIEWS, was built in the following video</h6>
+			<p class="wow fadeInUp animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/d1kiRyoGxOU" frameborder="0" allowfullscreen></iframe>
+			</p>
+		</div>
+
+		<!-- COLUMN 1 - SKILSS-->
+		<div class="col-lg-3 col-md-3 column">
+		</div> <!-- / END SKILLS COLUMN-->
+	</div> <!-- / END 3 COLUMNS OF ABOUT US-->
+  <div class="row">
+    <h6 class="white-text">Check out live RESTREVIEWS, a fully functional web application that was was built using S-CASE in under 15'</h6>
+    <a href="http://109.231.121.89:8080/reviews/" target="_blank" class="btn btn-primary custom-button yellow-btn">DEMO APP</a>
+  </div>
+
+  <!-- CLIENTS -->
+  <div class="our-clients">
+    <h5><span class="section-footer-title">METRICS</span></h5>
+  </div>
+	    <!-- STATS -->
+	    <div class="row">
+
+	        <!-- START COLUMN -->
+	        <div class="col-lg-4 col-sm-4">
+	            <div class="stat wow fadeInUp animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+	                <div class="icon-top red-text">
+	                    <i class="icon-list-1"></i>
+	                </div>
+	                <div class="stat-text">
+	                <h3 class="white-text red-border-bottom">2100</h3>
+	                <h6>Lines of Code</h6>
+	                </div>
+	            </div>
+	        </div> <!-- / END COLUMN -->
+
+	        <!-- START COLUMN -->
+	        <div class="col-lg-4 col-sm-4">
+	            <div class="stat wow fadeInUp animated" data-wow-offset="30" data-wow-duration="1.75s" data-wow-delay="0.30s">
+	                <div class="icon-top green-text">
+	                    <i class="icon-clock-2"></i>
+	                </div>
+	                <div class="stat-text">
+	                <h3 class="white-text green-border-bottom">15'</h3>
+	                <h6>Time to Build</h6>
+	                </div>
+	            </div>
+	        </div> <!-- / END COLUMN -->
+
+	        <!-- START COLUMN -->
+	        <div class="col-lg-4 col-sm-4">
+	            <div class="stat wow fadeInUp animated" data-wow-offset="30" data-wow-duration="2s" data-wow-delay="0.45s">
+	                <div class="icon-top blue-text">
+	                    <i class="icon-fontawesome-webfont-152"></i>
+	                </div>
+	                <div class="stat-text">
+	                <h3 class="white-text blue-border-bottom">0</h3>
+	                <h6>Bugs</h6>
+	                </div>
+	            </div>
+	        </div> <!-- / END COLUMN -->
+
+	    </div>
+</div> <!-- / END CONTAINER -->
+
+</section> <!-- END ABOUT US SECTION -->
+
+<!-- =========================
+   PACKAGES SECTION
+============================== -->
+
+<section class="packages" id="offerings">
+<div class="container">
+
+	<!-- SECTION HEADER -->
+	<div class="section-header">
+
+		<!-- SECTION TITLE -->
+		<h2 class="white-text">Offerings</h2>
+
+		<!-- SHORT DESCRIPTION ABOUT THE SECTION -->
+		<h6 class="white-text">
+			You can take advantage of the S-CASE capabilities through one of the following offerings
+		</h6>
+	</div>
+	<!-- / END SECTION HEADER -->
+
+	<!-- PACKAGES -->
+	<div class="row">
+
+		<!-- FIRST PACKAGE -->
+		<div class="col-lg-4 col-sm-4">
+			<div class="package wow fadeInLeft animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+				<div class="package-header green-bg">
+					<h5>Eclipse Solo</h5>
+				</div>
+				<div class="price dark-bg">
+          <p>Install the S-CASE plugin, import and manually annotate your requirements, scaffold your web services.</p>
+				</div>
+				<ul>
+					<li><i class="icon-check"></i>Code generation from requirements</li>
+					<li><i class="icon-cancel"></i>Use of S-CASE services ecosystem</li>
+					<li><i class="icon-cancel"></i>Cloud backup and search</li>
+				</ul>
+				<a href="#installation" class="btn btn-primary custom-button green-btn">Install</a>
+			</div>
+		</div> <!-- / END FIRST PACKAGE -->
+
+		<div class="col-lg-4 col-sm-4">
+			<div class="package wow fadeInLeft animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+				<div class="package-header blue-bg">
+					<h5>Eclipse Public</h5>
+				</div>
+				<div class="price dark-bg">
+          <p>Sign up in the S-CASE web app, connect the plugin to the S-CASE infrastracture, import your requirements and let the S-CASE services, service you.</p>
+				</div>
+				<ul>
+          <li><i class="icon-check"></i>Code generation from requirements</li>
+					<li><i class="icon-check"></i>Use of S-CASE services ecosystem</li>
+					<li><i class="icon-check"></i>Cloud backup and search</li>
+				</ul>
+				<a href="http://app.scasefp7.com:3000" class="btn btn-primary custom-button blue-btn">Sign Up</a>
+			</div>
+		</div>
+
+		<div class="col-lg-4 col-sm-4">
+				<div class="package wow fadeInUp animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+					<div class="package-header red-bg">
+						<h5>Eclipse Private</h5>
+					</div>
+					<div class="price dark-bg">
+            <p>Want S-CASE just for you? Install its services on your own cloud infrastructure!</p>
+					</div>
+					<ul>
+            <li><i class="icon-check"></i>Code generation from requirements</li>
+  					<li><i class="icon-check"></i>Use of S-CASE services ecosystem</li>
+  					<li><i class="icon-check"></i>Cloud backup and search</li>
+					</ul>
+					<a href="https://kyrchat.wufoo.com/forms/zanqcv60ekhiqw/" class="btn btn-primary custom-button red-btn">Contact us</a>
+				</div>
+		</div>
+
+	</div> <!-- / END PACKAGES -->
+
+</div> <!--END CONTAINER  -->
+</section> <!-- END PACKAGES SECTION -->
+
+<!-- =========================
+   PURCHASE NOW
+============================== -->
+
+<section class="purchase-now">
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<h3 class="white-text wow fadeInLeft animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+			Still interested? </h3>
+		</div>
+		<div class="col-md-6 wow fadeInRight animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s">
+			<a href="index.html#contact" class="btn btn-primary custom-button red-btn">Contact us</a>
+		</div>
+	</div>
+</div>
+</section> <!-- / END PURCHASE NOW SECTION-->
+
+<section class="focus left-align" id="contact">
+  <div class="container">
+  	<div class="row">
+  		<div class="col-md-12">
+        <div id="wufoo-zanqcv60ekhiqw">
+        Fill out my <a href="https://kyrchat.wufoo.com/forms/zanqcv60ekhiqw">online form</a>.
+        </div>
+        <div id="wuf-adv" style="font-family:inherit;font-size: small;color:#a7a7a7;text-align:center;display:block;">There are tons of <a href="http://www.wufoo.com/features/">Wufoo features</a> to help make your forms awesome.</div>
+        <script type="text/javascript">var zanqcv60ekhiqw;(function(d, t) {
+        var s = d.createElement(t), options = {
+        'userName':'kyrchat',
+        'formHash':'zanqcv60ekhiqw',
+        'autoResize':true,
+        'height':'458',
+        'async':true,
+        'host':'wufoo.com',
+        'header':'show',
+        'ssl':true};
+        s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'www.wufoo.com/scripts/embed/form.js';
+        s.onload = s.onreadystatechange = function() {
+        var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
+        try { zanqcv60ekhiqw = new WufooForm();zanqcv60ekhiqw.initialize(options);zanqcv60ekhiqw.display(); } catch (e) {}};
+        var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
+        })(document, 'script');</script>
+
+      </div
+    </div>
+  </div>
+</section>
+
+<!-- =========================
+   FOOTER
+============================== -->
+
+<footer>
+<div class="container">
+
+	<!-- COMPANY EMAIL-->
+	<div class="col-md-3 company-details">
+		<div class="icon-top green-text">
+		<i class="icon-fontawesome-webfont-329"></i>
+		</div>
+		 s-case-support@iti.gr
+	</div>
+
+
+	<!-- SOCIAL ICON AND COPYRIGHT -->
+	<div class="col-lg-9 col-sm-9 copyright">
+		<ul class="social">
+			<li><a href="https://www.facebook.com/SCasefp7"><i class="icon-facebook"></i></a></li>
+			<li><a href="http://www.twitter.com/scasefp7"><i class="icon-twitter-alt"></i></a></li>
+      <li><a href="http://bit.ly/SCasegrp"><i class="icon-linkedin"></i></a></li>
+			<li><a href="http://bit.ly/SCasegplus"><i class="icon-google"></i></a></li>
+			<li><a href="http://www.scasefp7.eu/"><i class="icon-dribbble"></i></a></li>
+		</ul>
+		 <!-- ©2013 Zerif LLC -->
+	</div>
+</div> <!-- / END CONTAINER -->
+</footer> <!-- / END FOOOTER  -->
+</body>
+</html>
