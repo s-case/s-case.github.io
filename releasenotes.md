@@ -1,5 +1,16 @@
 ## Release Notes
 
+### Version: 1.11
+
+_Date of release: 26/4/2016_
+
+- Added new service composition command to instantiate the linked ontology. GitHub [entry1](https://github.com/s-case/web-service-composition/commit/90b26e9135bae3ab72aaf9c33d947cb22c35feed), [entry2](https://github.com/s-case/web-service-composition/commit/544ca250f3e4378b9c0e725188b5400c082cf156), [entry3](https://github.com/s-case/web-service-composition/commit/11c6ceeac7694fec01147cee1fc89a32a078989d), [entry4](https://github.com/s-case/s-case-core/commit/34b423a85d666e8949edeabb03140afc0c5cea24), [entry5](https://github.com/s-case/mde/commit/77db918d3dcf2384284e888899f6b2dbb30464d3)
+- Added cservice file to support instantiating the linked ontology. GitHub [entry1](https://github.com/s-case/web-service-composition/commit/512afc6455fda7e5ef06a3ad0e5f82e1599d61e6), [entry2](https://github.com/s-case/web-service-composition/commit/247ba98e78f909fd2e2d82ffe9ad684e9ca2bd56)
+- Added tracing for code generation command. GitHub [entry](https://github.com/s-case/mde/commit/74fe530784ec5791cfc3dd2f6503164735053000)
+- Added fix for invalid diagram filenames. GitHub [entry1](https://github.com/s-case/storyboard-creator/commit/a0cc1f3673fe0e34433a48992ca2a441061b5fb8), [entry2](https://github.com/s-case/uml-extraction/commit/f5e93e6d6548ff5386050ddd0320358af050a43b)
+- Added fix to avoid errors when UML diagrams are not annotated. GitHub [entry1](https://github.com/s-case/uml-extraction/commit/831265750ff7f97d8c636ae67da5726192603938)
+- Hide menu commands used for debugging. GitHub [entry1](https://github.com/s-case/s-case-core/commit/57e6402774c0bf9b7437a70cd35dfc3a1b907046), [entry2](https://github.com/s-case/requirements-editor/commit/ce0b6fbb520a4f0843df5235b7ca1183f95f7850), [entry3](https://github.com/s-case/storyboard-creator/commit/e670e69923071e6513bdd7e6b28b134dbada94c8), [entry4](https://github.com/s-case/web-service-composition/commit/3c6c0b76222777d9cf0f59dc65241c8312aeff2b)
+
 ### Version: 1.10
 
 _Date of release: 19/4/2016_
@@ -9,7 +20,7 @@ _Date of release: 19/4/2016_
 - Updated the code template for the POM.xml generation so as to use java 1.8 and UTF-8. [entry](https://github.com/s-case/mde/commit/dba8ae51e7ae83fe9a0b3e51c93c913480a039e8)
 - Fixed a UI Bug issue that occurred only in Linux environment. In specific when a user clicked to add a resource/property or rename any existing ones an empty persistent window appeared. Github [entry](https://github.com/s-case/mde/commit/bdb11b2f0b58db46008c1af9d171a223d69cfa20)
 - Fixed an issue that caused the MDE engine to crash when the input YAML file is empty. Moreover the MDE Wizards do not allow developers to finish the plugin without providing any resources. Github [entry](https://github.com/s-case/mde/commit/74ac7f04600f489dd4726890fff728d7a16d5665)
-
+- Added fix for parsing storyboards with consecutive conditions. GitHub [entry](https://github.com/s-case/storyboard-creator/commit/4eb6778908f8f0ab3c245608d823594ad6151def)
 
 ### Version: 1.9
 
