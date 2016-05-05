@@ -1,5 +1,7 @@
 ### Deployment
 
+#### Localhost
+
 #### Flexiant Cloud
 
 In order to deploy the web service into a virtual machine in the Flexiant cloud,

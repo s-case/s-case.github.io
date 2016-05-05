@@ -139,61 +139,6 @@ ol li {
       </div>
   </div><!-- /.container -->
 
-  <!-- START SUPPORT FOR MARKDOWN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.3.0/showdown.min.js"></script>
-  <script>
-  jQuery.get('webbookfolder/whatisscase.md', function(data) {
-    target = document.getElementById('page1'),
-    converter = new showdown.Converter(),
-    html = converter.makeHtml(data);
-    target.innerHTML = html;
-  }, 'text');
-  jQuery.get('webbookfolder/gettingstarted.md', function(data) {
-    target = document.getElementById('page2'),
-    converter = new showdown.Converter(),
-    html = converter.makeHtml(data);
-    target.innerHTML = html;
-  }, 'text');
-  jQuery.get('webbookfolder/reqmodeling.md', function(data) {
-    target = document.getElementById('page3'),
-    converter = new showdown.Converter(),
-    html = converter.makeHtml(data);
-    target.innerHTML = html;
-  }, 'text');
-  jQuery.get('webbookfolder/wsc.md', function(data) {
-    target = document.getElementById('page4'),
-    converter = new showdown.Converter(),
-    html = converter.makeHtml(data);
-    target.innerHTML = html;
-  }, 'text');
-  jQuery.get('webbookfolder/codegen.md', function(data) {
-    target = document.getElementById('page5'),
-    converter = new showdown.Converter(),
-    html = converter.makeHtml(data);
-    target.innerHTML = html;
-  }, 'text');
-  jQuery.get('webbookfolder/deployment.md', function(data) {
-    target = document.getElementById('page6'),
-    converter = new showdown.Converter(),
-    html = converter.makeHtml(data);
-    target.innerHTML = html;
-  }, 'text');
-
-  $('#menu a').click(function(e){
-       hideContentDivs();
-       var tmp_div = $(this).parent().index();
-       $('.main div').eq(tmp_div).show();
-     });
-
-  function hideContentDivs(){
-      $('.main div').each(function(){
-      $(this).hide();});
-  }
-
-  hideContentDivs();
-  $("#page"+window.location.hash.substr(1)).show();
-  </script>
-  <!-- END SUPPORT FOR MARKDOWN -->
 </section>
 
 <!-- =========================
@@ -230,6 +175,59 @@ ol li {
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <!-- START SUPPORT FOR MARKDOWN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.3.0/showdown.min.js"></script>
+<script>
+jQuery.get('webbookfolder/whatisscase.md', function(data) {
+  target = document.getElementById('page1'),
+  converter = new showdown.Converter(),
+  html = converter.makeHtml(data);
+  target.innerHTML = html;
+}, 'text');
+jQuery.get('webbookfolder/gettingstarted.md', function(data) {
+  target = document.getElementById('page2'),
+  converter = new showdown.Converter(),
+  html = converter.makeHtml(data);
+  target.innerHTML = html;
+}, 'text');
+jQuery.get('webbookfolder/reqmodeling.md', function(data) {
+  target = document.getElementById('page3'),
+  converter = new showdown.Converter(),
+  html = converter.makeHtml(data);
+  target.innerHTML = html;
+}, 'text');
+jQuery.get('webbookfolder/wsc.md', function(data) {
+  target = document.getElementById('page4'),
+  converter = new showdown.Converter(),
+  html = converter.makeHtml(data);
+  target.innerHTML = html;
+}, 'text');
+jQuery.get('webbookfolder/codegen.md', function(data) {
+  target = document.getElementById('page5'),
+  converter = new showdown.Converter(),
+  html = converter.makeHtml(data);
+  target.innerHTML = html;
+}, 'text');
+jQuery.get('webbookfolder/deployment.md', function(data) {
+  target = document.getElementById('page6'),
+  converter = new showdown.Converter(),
+  html = converter.makeHtml(data);
+  target.innerHTML = html;
+}, 'text');
+
+$('#menu a').click(function(e){
+     hideContentDivs();
+     var tmp_div = $(this).parent().index();
+     $('.main div').eq(tmp_div).show();
+   });
+
+function hideContentDivs(){
+    $('.main div').each(function(){
+    $(this).hide();});
+}
+
+hideContentDivs();
+$("#page"+window.location.hash.substr(1)).show();
+</script>
+<!-- END SUPPORT FOR MARKDOWN -->
 <!-- SCRIPTS -->
 <script src="js/bootstrap.min.js"></script>
 <script src="js/wow.min.js"></script>

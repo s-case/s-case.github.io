@@ -1,3 +1,9 @@
 ### Web Service composition
 
-Under development
+#### Plugin
+
+#### Annotation
+
+#### YouREST
+
+##### WSQR
