@@ -144,37 +144,37 @@ ol li {
   <!-- START SUPPORT FOR MARKDOWN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.3.0/showdown.min.js"></script>
   <script>
-  jQuery.get('webbookfolder/whatisscase.md', function(data) {
+  jQuery.get('whatisscase.md', function(data) {
     target = document.getElementById('page1'),
     converter = new showdown.Converter(),
     html = converter.makeHtml(data);
     target.innerHTML = html;
   }, 'text');
-  jQuery.get('webbookfolder/gettingstarted.md', function(data) {
+  jQuery.get('gettingstarted.md', function(data) {
     target = document.getElementById('page2'),
     converter = new showdown.Converter(),
     html = converter.makeHtml(data);
     target.innerHTML = html;
   }, 'text');
-  jQuery.get('webbookfolder/reqmodeling.md', function(data) {
+  jQuery.get('reqmodeling.md', function(data) {
     target = document.getElementById('page3'),
     converter = new showdown.Converter(),
     html = converter.makeHtml(data);
     target.innerHTML = html;
   }, 'text');
-  jQuery.get('webbookfolder/wsc.md', function(data) {
+  jQuery.get('wsc.md', function(data) {
     target = document.getElementById('page4'),
     converter = new showdown.Converter(),
     html = converter.makeHtml(data);
     target.innerHTML = html;
   }, 'text');
-  jQuery.get('webbookfolder/codegen.md', function(data) {
+  jQuery.get('codegen.md', function(data) {
     target = document.getElementById('page5'),
     converter = new showdown.Converter(),
     html = converter.makeHtml(data);
     target.innerHTML = html;
   }, 'text');
-  jQuery.get('webbookfolder/deployment.md', function(data) {
+  jQuery.get('deployment.md', function(data) {
     target = document.getElementById('page6'),
     converter = new showdown.Converter(),
     html = converter.makeHtml(data);
