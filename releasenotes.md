@@ -1,12 +1,14 @@
 ## Release Notes
 
-### Version: 1.11
+### Version: 1.12
 
 _Date of release: 10/5/2016_
 
 - Enabled the UML plugin and connected it to the workflow. GitHub [entry1](https://github.com/s-case/s-case-core/commit/fb28396b492306ba2f2f6597b70c2ae299bd36a4), [entry2](https://github.com/s-case/s-case-core/commit/6a2905ebdbbd5eff7ecb69b6112c1b51a1224d75)
 - Created a unified category for the wizards of all plugins. GitHub [entry1](https://github.com/s-case/requirements-editor/commit/b014ac7f8de838f3ad4269ba24cea216804acb21), [entry2](https://github.com/s-case/storyboard-creator/commit/8bf29106126edc6320b772b430c11248818cc535)
 - Changed service composition plugin dialogs to be more comprehensive. GitHub [entry](https://github.com/s-case/web-service-composition/commit/77f63591a323c4ecf98ab41e8d3edced5d208f02)
+
+### Version: 1.11
 
 _Date of release: 26/4/2016_
 
