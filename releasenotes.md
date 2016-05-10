@@ -2,6 +2,12 @@
 
 ### Version: 1.11
 
+_Date of release: 10/5/2016_
+
+- Enabled the UML plugin and connected it to the workflow. GitHub [entry1](https://github.com/s-case/s-case-core/commit/fb28396b492306ba2f2f6597b70c2ae299bd36a4), [entry2](https://github.com/s-case/s-case-core/commit/6a2905ebdbbd5eff7ecb69b6112c1b51a1224d75)
+- Created a unified category for the wizards of all plugins. GitHub [entry1](https://github.com/s-case/requirements-editor/commit/b014ac7f8de838f3ad4269ba24cea216804acb21), [entry2](https://github.com/s-case/storyboard-creator/commit/8bf29106126edc6320b772b430c11248818cc535)
+- Changed service composition plugin dialogs to be more comprehensive. GitHub [entry](https://github.com/s-case/web-service-composition/commit/77f63591a323c4ecf98ab41e8d3edced5d208f02)
+
 _Date of release: 26/4/2016_
 
 - Added new service composition command to instantiate the linked ontology. GitHub [entry1](https://github.com/s-case/web-service-composition/commit/90b26e9135bae3ab72aaf9c33d947cb22c35feed), [entry2](https://github.com/s-case/web-service-composition/commit/544ca250f3e4378b9c0e725188b5400c082cf156), [entry3](https://github.com/s-case/web-service-composition/commit/11c6ceeac7694fec01147cee1fc89a32a078989d), [entry4](https://github.com/s-case/s-case-core/commit/34b423a85d666e8949edeabb03140afc0c5cea24), [entry5](https://github.com/s-case/mde/commit/77db918d3dcf2384284e888899f6b2dbb30464d3)
