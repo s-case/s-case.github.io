@@ -47,7 +47,7 @@ No matter what code generation preferences the S-CASE developer has selected in 
 
 Once the developer makes any desired modifications using the REST Wizard and fixes any detected errors the Error Notification area becomes blank and the Finish button is enabled. By clicking the Finish button this Wizard is terminated and the code generation process begins or the next Wizard pops up depending on the code generation preferences. The following figure illustrates the REST wizard in its valid state.
 
-![](./codegen_images/RESTWizardValidStatus.png)
+![](./codegen_images/RESTWizardValidStatus.png =500x)
 
 #### Basic Authentication Wizard
 
