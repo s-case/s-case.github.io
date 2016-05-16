@@ -117,4 +117,30 @@ The messages shown by Storyboard Creator are informative, so the user should be 
 
 #### Modeling UML diagrams
 
-Under development
+##### Importing UML diagram images
+
+To create a new uml file from an image the user should start the import wizard by selecting the option *File > Import..* from the menu. Eclipse presents a list of import wizards, where the user can expand the node "S-CASE" and select "Import UML diagram from image".
+
+![Import uml image](reqmodeling_images/ImportUML.png)
+
+The UML image import wizard is based on a standard Eclipse import wizard. The wizard consists of two pages:
+  1. UML diagram image selection,
+  2. Export diagram XMI.
+
+The first page asks the user to select an image file containing the diagram, and denote the type of diagram to be detected – activity or use case diagram. Once an image is selected, a preview of the image is shown in the page. Selecting *Next* continues the wizard.
+
+![Import wizard first page](reqmodeling_images/ImportWizard1.png)
+
+The Export diagram XMI page asks the user to select the location of the resulting model file (a project or a folder in the workspace), and give a *File Name* with a "uml" extension for the resulting file. Selecting the option to open the result in editor will start the associated Eclipse editor (based on the file extension) after the recognition finishes. Several advanced options can also be configured in this page. Note also that by selecting *Advanced<<* and then check the *"Show images"* checkbox, the images resulting from intermediate processing stages of the recognition will be displayed.
+
+![Import wizard second page](reqmodeling_images/ImportWizard2.png)
+
+The recognition starts when the user selects the option to ‘Finish’ the wizard. Progress of the recognition can be monitored in the Eclipse view ‘Progress’. The output of the process is stored in the uml file under the specified project/folder that the user has defined in the wizard.
+
+##### Generating Papyrus UML diagrams
+
+The user has also the option to use *Papyrus* to view or edit the created uml file. The user can right-click on the created uml file and select *"Convert to Papyrus Diagrams"*. The Papyrus diagram is generated and opened with Papyrus editor.
+
+![Generate papyrus uml diagram](reqmodeling_images/papyrusUML.png)
+
+The same process is followed for both activity and use case diagrams.
