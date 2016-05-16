@@ -34,7 +34,7 @@ Once the S-CASE developer is done with providing any Textual Requirements or Web
 
 No matter what code generation preferences the S-CASE developer has selected in the corresponding configuration page, the first Wizard to pop up once the Code Generation engine is started  is the REST editor. This editor helps the developer to correctly model his envisioned RESTful service. Through this Wizard, the developer scaffolds the structure of the whole Web Service that can be later enhanced with more specific functionality using the rest Wizards. The components of this Wizard and their explanation follow bellow alongside two figures that illustrate its state in invalid and valid status:
 
-<img src="./codegen_images/RESTWizardInvalidStatus.png" alt="Drawing" width="80%"/>
+<img src="./codegen_images/RESTWizardInvalidStatus.png" alt="Drawing" width="90%"/>
 
 - Error Notifications: At the top of the Wizard the Code Generation engine displays error notifications to the developer in order to inform him about any invalid input that is detected by it. Such error notifications also provide a helpful tip to the developer on how to fix the detected error.
 - Resources: In this section the wizard lists all the Web Service's resources. Once a resource is clicked the whole wizard page displays its details, namely input/output representations, CRUD API, properties and relations that are all explained later. A developer may create or delete a selected resource by clicking one of the Create resource or Delete resource buttons. If the user checks the Algorithmic option, then the selected resource will be treated by the Code Generation engine as one that runs some sort of custom algorithm rather than a plain data holder "CRUD Resource" that allows only the primitive Create, Read, Update and Delete actions on the specified modeled data it holds, as the REST architectural style specifies.
@@ -47,7 +47,7 @@ No matter what code generation preferences the S-CASE developer has selected in 
 
 Once the developer makes any desired modifications using the REST Wizard and fixes any detected errors the Error Notification area becomes blank and the Finish button is enabled. By clicking the Finish button this Wizard is terminated and the code generation process begins or the next Wizard pops up depending on the code generation preferences. The following figure illustrates the REST wizard in its valid state.
 
-![](./codegen_images/RESTWizardValidStatus.png)
+<img src="./codegen_images/RESTWizardValidStatus.png" alt="Drawing" width="90%"/>
 
 #### Basic Authentication Wizard
 
@@ -57,14 +57,15 @@ The Basic Authentication Wizard is the first to pop up after the REST Wizard, if
 - Username Token: Once a resource is selected as an Authentication Model, its attributes become available as possible username tokens. From this list, the S-CASE developer has to pick one property of the selected Authentication Model, that the envisioned system will use as username. The property to be used as username token must be of type String and of multiplicity one.
 - Password Token: Once the S-CASE developer has selected a Username Token, the rest remaining attributes of the selected Authentication Model are available to be selected as Password tokens. The envisioned system will use this Password token for password data. The property to be used as password token must be of type String and of multiplicity one.
 
-![](./codegen_images/AuthenticationWizardPage1.png)
+<img src="./codegen_images/AuthenticationWizardPage1.png" alt="Drawing" width="90%"/>
+
 
 Once the developer successfully selects an Authentication model and its corresponding username and password tokens the Next button is enabled to proceed to the next Basic Authentication Wizard page. This page allows the developer to define the desired Authentication Mode for every CRUD activity of all the Web Service's Resources. Its components are the following:
 - Web Service Resources: This section lists all the resources of the envisioned system. The developer has to select one authentication mode for every CRUD activity of each resource. Only once this is done, the Finish button is enabled.
 - Authentication Mode: This section allows the developer to select the Authentication Mode for every CRUD Activity of the selected resource. If the All option is selected for a CRUD Activity, then both authenticated users and guests will be able to access its functionality, otherwise only authenticated users will have access to it.
 - Apply To All - One click Authentication: This section provides a quick way to set-up the authentication mode of all the envisioned system’s CRUD Activities with one click. Hence, in order to allow All to access any CRUD Activity of the Web Service, one should select the All option and click the Apply to all button.
 
-![](./codegen_images/AuthenticationWizardPage2.png)
+<img src="./codegen_images/AuthenticationWizardPage2.png" alt="Drawing" width="90%"/>
 
 #### Database Keyword Searching Wizard
 
@@ -75,7 +76,7 @@ The Database Keyword Searching Wizard is triggered according to the Code Generat
 
 The following figure illustrates an instance of the Database Keyword Searching Wizard
 
-![](./codegen_images/SearchWizard.png)
+<img src="./codegen_images/SearchWizard.png" alt="Drawing" width="90%"/>
 
 #### External Service Composition Wizard
 
@@ -92,7 +93,7 @@ The External Service Composition Wizard is the last one to pop up, if the Code G
 - Persisting Output to local database: When this check box is selected, the response of the external composition will be persisted to the web service's local database. In case there exists a CRUD Resource that fully models such a response it can be used by selecting the "Existent" type and then the resource at task. Otherwise, the "Auto" type creates automatically the required Java code and underlying database structures so as to persist the external composition responses.
 
 
-![](./codegen_images/ExternalCompositionPage1.png)
+<img src="./codegen_images/ExternalCompositionPage1.png" alt="Drawing" width="90%"/>
 
 #### Modeling Complex Datatypes with the External Service Composition Wizard
 
@@ -102,7 +103,7 @@ In the case some input or output model attribute of a modelled external composit
 
 The very first step should be really a manual query to the 3rd party web service in order to elicit the response structure that has to be modeled. For the shake of this example, lets assume that the 3rd party web service response is as the figure below illustrates (example taken from http://json.org/example.html): 
 
-![](./codegen_images/ExampleOfComplexType.png)
+<img src="./codegen_images/ExampleOfComplexType.png" alt="Drawing" width="90%"/>
 
 The next step is the decomposition of the response to its components. So, by observing this response, the S-CASE developer should conclude that it comprises a complex object named “widget” of some unknown Class (let’s name it ComplexTypeWidget). As one may observe, this Class comprises four attributes, one of type String named “debug” and three other objects of some other unknown classes, named “window”, “image” and “text”. Each of these have the following properties:
 
@@ -136,7 +137,7 @@ The next step is the decomposition of the response to its components. So, by obs
 
 Once the output of the target Web Service is analyzed, its time to model it with the External Composition Wizard. Once the UI appears, the desired algorithmic resource of the envisioned system, which will have to interoperate with the external composition service should be selected and added to the RESTClient Resources list. This is demonstrated in the figure below. In this case, we will use the resource named “externalServiceWithComplexOutput” as the one that will interoperate with the 3rd party service. Once it is selected, the S-CASE developer will have to fill in any other needed information like the 3rd party service’s URL, the CRUD verb to be used while interacting with it and any query parameters or input that it expects as described in the previous section. In this example, since the focus is on modeling complex output, the imaginary 3rd party Web Service does not require any input query parameters or input.
 
-![](./codegen_images/ExtWizardPage1ComplexExample.png)
+<img src="./codegen_images/ExtWizardPage1ComplexExample.png" alt="Drawing" width="90%"/>
 
 Therefore, the next step is to model the output. As we have already concluded, the output of the Web Service comprises a complex type object named “widget”. Hence, we create an output property named “widget” and select “complex” as its type. In case the output model had more output properties of either primitive or complex type, they should also be added at this point. Once all the output properties and their respective data-types are defined the S-CASE developer may click on the “Next” button.
 
@@ -144,11 +145,11 @@ In the next page of this Wizard appears a list of the created RESTClient Resourc
 
 The figure below illustrates the very first steps, once the desired RESTClient Resource is selected. The S-CASE developer should click on the create button and insert one by one all the complex type names that where detected previously. In this case, these names are ComplexTypeWidget, ComplexTypeWindow, ComplexTypeImage and ComplexTypeText. Then, each output property should be linked to one of these types. In this case the desired data type is the ComplexTypeWidget one.
 
-![](./codegen_images/ExtWizardPage2ComplexExample.png)
+<img src="./codegen_images/ExtWizardPage2ComplexExample.png" alt="Drawing" width="90%"/>
 
 The final step is to define the properties of each complex type. These can be of primitive or of complex type as well. The following figure illustrates the complex type ComplexTypeWidget properties modeling. To model it, the S-CASE developer has to create its properties, while the ComplexTypeWidget is selected. In this case these are the “debug” property linked to String data type from the Available Types list, the “window” property of type “ComplexTypeWindow”, the “image” property of type “ComplexTypeImage” and the “text” property of type “ComplexTypeText”. Then the S-CASE developer, should click on the next complex types and add their properties as well, which have already been identified in the previous section and are all of type String and finally click on Finish.
 
-![](./codegen_images/ExtWizardPage2ComplexExampleProperties.png)
+<img src="./codegen_images/ExtWizardPage2ComplexExampleProperties.png" alt="Drawing" width="90%"/>
 
 The produced service by the Code Generation engine will then automatically interoperate with the 3rd party service, decompose its output, store it in the local database, if so selected, and then repackage the output and send it to its client.
 
