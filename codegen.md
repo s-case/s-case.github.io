@@ -5,6 +5,7 @@ The final step in order to produce a Web Service using S-CASE, is to run its cod
 #### Configuring the Code Generation Engine
 
 As the Getting Started section of this Web Book describes, any code generation configuration takes place in the Code Generation configuration page that can be found by right clicking on a project, then selecting "Properties" and then by clicking the "Code generation" page under the "S-CASE" option. The figure below illustrates all the available options:
+
 - The Web Service name field requires the desired name for the output Web Service that will be produced. It has to be one word and a valid string to be included in the generated java package path, e.g. without spaces and all letters are lowercase.
 - The Output Path field specifies a folder in which the code generation engine will output the Web Service genrated code and any intermediate artefacts.
 - If the Import generated project to workspace check box is selected, S-CASE will automatically import in the workspace the generated Web Service project each time the code generation engine is executed.
@@ -14,7 +15,8 @@ As the Getting Started section of this Web Book describes, any code generation c
 - The Database username field requires the username of the user account through which the generated Web Service will be able to access its database. It is important to note that the provided user account must have all the rights to create, update, read and delete a database and any relations it comprises. If the specified rights are not provided the generated Web Service will fail to function properly.
 - The Database password field requires the password of the user account that will be used by the Web Service to interact with the specified database server.
 
-The rest check box configure the generation engine to pop up the required Wizards so that the S-CASE developer will be able to add more functionality other than a plain RESTful Web Service. The options are explained below:
+The rest check boxes configure the generation engine to pop up the required Wizards so that the S-CASE developer will be able to add more functionality other than a plain RESTful Web Service. The options are explained below:
+
 - Basic Authentication: This option when checked, pops up the Basic Authentication Wizard when the code generation engine is executed. This Wizard allows the S-CASE developer embed wide-spread username/password authenticaiton to the generated Web Service.
 - ABAC Authorization: This option when checked, pops up the Attribute Based Access Control Authorization Wizard, which allows the S-CASE developer to embed high level and fine grained authorization rules to his generated Web Service. This functionality will be released shortly.
 - Database Searching: This option when checked, pops up the Database Searching Wizard, which allows the S-CASE developer to select some resources of his envisioned Web Service that will embed wide-spread database keyword searching.
@@ -32,7 +34,7 @@ Once the S-CASE developer is done with providing any Textual Requirements or Web
 
 No matter what code generation preferences the S-CASE developer has selected in the corresponding configuration page, the first Wizard to pop up once the Code Generation engine is started  is the REST editor. This editor helps the developer to correctly model his envisioned RESTful service. Through this Wizard, the developer scaffolds the structure of the whole Web Service that can be later enhanced with more specific functionality using the rest Wizards. The components of this Wizard and their explanation follow bellow alongside two figures that illustrate its state in invalid and valid status:
 
-![](./codegen_images/RESTWizardInvalidStatus.png)
+![](./codegen_images/RESTWizardInvalidStatus.png =800)
 
 - Error Notifications: At the top of the Wizard the Code Generation engine displays error notifications to the developer in order to inform him about any invalid input that is detected by it. Such error notifications also provide a helpful tip to the developer on how to fix the detected error.
 - Resources: In this section the wizard lists all the Web Service's resources. Once a resource is clicked the whole wizard page displays its details, namely input/output representations, CRUD API, properties and relations that are all explained later. A developer may create or delete a selected resource by clicking one of the Create resource or Delete resource buttons. If the user checks the Algorithmic option, then the selected resource will be treated by the Code Generation engine as one that runs some sort of custom algorithm rather than a plain data holder "CRUD Resource" that allows only the primitive Create, Read, Update and Delete actions on the specified modeled data it holds, as the REST architectural style specifies.
