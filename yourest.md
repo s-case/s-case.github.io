@@ -38,6 +38,8 @@ In case that the web service belongs to the logged in user (i.e. current user ha
 
 It should be noted that the operation delete button is only enabled for the logged in user to whom the web service belongs, as for the edit operation. The searching functionality together with the left panel that contains application domains list, limit the results presented to the user, according to keywords (contained in web service title, description and operation names) or the application domain category that the web service was registered.
 
+#### SAT Tool
+
 The “Add a new service” button, redirects the user to the web service registration page. In this page the user interface of the Web Service Annotation Tool (SAT Tool) has been integrated with YouRest. The user can register a new web service by providing a WSDL/WADL or RAML file. For the semantic annotation of an external web service, a valid URL containing the web service description (for WSDL and WADL documents) or the selection of a RAML document selection is required. Thus, when the user selects a valid web service documentation and selects the Parse and align button, the web service description is parsed in the background and the classification algorithms classify the web service operations according to the three-level categorisation method.
 
 ![The Web Service annotation page of YouREST](yourest_images/alignWebService.png) 
