@@ -44,3 +44,20 @@ It should be noted that the operation delete button is only enabled for the logg
 
 In this page the user can register a new web service by providing a WSDL/WADL or RAML file. For the semantic annotation of an external web service, a valid URL containing the web service description (for WSDL and WADL documents) or the selection of a RAML document selection is required. Thus, when the user selects a valid web service documentation and selects the Parse and align button, the web service description is parsed in the background and the classification algorithms classify the web service operations according to the three-level categorisation method.
 
+#### Connection with public web service directories
+
+YouREST, provides two different tabs for presenting the Mashape and ProgrammableWeb Web Services.
+ 
+![The tabular user interface of YouREST](yourest_images/tabularInterface.png)
+
+Each tab, contain the corresponding web services along with the application domains defined in each Public Web Service Directory. Searching is also a functionality.
+
+![The Mashape Web Services in YouREST](yourest_images/mashape.png) 
+![The Programmableweb Web Services in YouREST](yourest_images/programmableWeb.png) 
+ 
+ 
+Each Web Service contains also some metadata as in S-CASE Web services. These can be shown by selecting the button ![search icon](yourest_images/search.png), which displays a dialog that contains all retrieved metadata along with the operations listed in each Web Service.
+
+![Mashape Web Service metadata](yourest_images/mashapeWebService.png)  
+
+
