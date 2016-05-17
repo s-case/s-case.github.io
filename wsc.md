@@ -1,6 +1,6 @@
 ### Web Service composition
 
-The following sections provide an overview of creating web service compositions from Storyboard diagrams.
+The following sections provide an overview of creating web service compositions from Storyboard diagrams or manually.
 
 ##### Import Storyboard diagrams
 
@@ -21,6 +21,32 @@ Each action of the storyboard diagram is replaced by the most suitable web servi
 ![Workflow I/O](wsc_images/workflowio.bmp)
 
 The user has also the option to save the produced workflow graph of web services in an xml format in a .sc file and open it at a later time, without the need to re-importing the storyboard file.
+
+##### Create manual compositions
+
+The user also has the capability to edit the created workflow or create a new one from scratch. In order to create a new workflow the user must press the “Create new workflow”  button ![New Workflow](wsc_images/newWorkflow.png) from the toolbar. As a result, a new view appears containing only the Start and End nodes.
+
+ ![Empty Workflow](wsc_images/emptyWorkflow.png)
+
+By right-clicking on the white canvas of the Service Composition View window, the user can choose to add an operation (web service) or a condition node. If the user chooses to add an operation, a selection window pops up with all the available web services in the ontology, where she/he can choose the operation to be added in the workflow.
+
+ ![Operation Dialog](wsc_images/OperationDialog.bmp)
+
+If the user chooses to add a condition node, a window pops-up for the user to provide a variable name, which can contain any of the previous service’s outputs names (or similar), a value for the variable and a value-checking expression (with operators <, >, ==, !=).
+
+![Add a new condition](wsc_images/addCondition.bmp)
+
+Operation, condition, Start and End nodes can all be linked in order to create the final workflow manually, by right clicking on each node. An operation or a Start node can have only one output edge to another operation or condition or End node, while a condition node can have only two output edges, with (dissimilar) text, to two other nodes (operation or condition or Start/End node).
+ 
+![Link operation node](wsc_images/linkOperation.bmp)
+
+Finally, inputs and outputs of services that are considered as similar by the user can be matched and a connection can be created between them. 
+
+![Match an input with an output variable](wsc_images/matchIO.bmp) 
+
+Nodes of services and conditions and edges that interconnect them can be deleted. Also, variables can be unmatched by deleting the edge between them, while edges between services and input/output variables cannot be deleted. Condition node’s output edges can be renamed, but cannot both have the same name.
+
+The user has also the option to save the workflow graph of web services that he/she has created in an xml format in a .sc file and open it at a later time.
 
 ##### Run the workflow of web services
 
