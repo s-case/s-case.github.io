@@ -98,7 +98,7 @@ The Basic Authentication Wizard is the first to pop up after the REST Wizard, if
 
 <br>
 
-<img src="./codegen_images/AuthenticationWizardPage1.png" alt="Drawing" width="90%"/>
+<img src="./codegen_images/AuthenticationWizardPage1.png" alt="Drawing" width="60%"/>
 
 <br>
 
@@ -112,7 +112,7 @@ Once the developer successfully selects an Authentication model and its correspo
 
 <br>
 
-<img src="./codegen_images/AuthenticationWizardPage2.png" alt="Drawing" width="90%"/>
+<img src="./codegen_images/AuthenticationWizardPage2.png" alt="Drawing" width="60%"/>
 
 <br>
 
@@ -133,7 +133,7 @@ The following figure illustrates an instance of the Database Keyword Searching W
 
 <br>
 
-<img src="./codegen_images/SearchWizard.png" alt="Drawing" width="90%"/>
+<img src="./codegen_images/SearchWizard.png" alt="Drawing" width="60%"/>
 
 <br>
 
@@ -157,7 +157,7 @@ The External Service Composition Wizard is the last one to pop up, if the Code G
 
 <br>
 
-<img src="./codegen_images/ExternalCompositionPage1.png" alt="Drawing" width="90%"/>
+<img src="./codegen_images/ExternalCompositionPage1.png" alt="Drawing" width="60%"/>
 
 <br>
 
@@ -173,11 +173,11 @@ In the case some input or output model attribute of a modelled external composit
 
 <br>
 
-The very first step should be really a manual query to the 3rd party web service in order to elicit the response structure that has to be modeled. For the shake of this example, lets assume that the 3rd party web service response is as the figure below illustrates (example taken from http://json.org/example.html): 
+The very first step should be really a manual query to the 3rd party web service in order to elicit the response structure that has to be modeled. For the shake of this example, lets assume that the 3rd party web service response is as the figure below illustrates (example taken from http://json.org/example.html):
 
 <br>
 
-<img src="./codegen_images/ExampleOfComplexType.png" alt="Drawing" width="90%"/>
+<img src="./codegen_images/ExampleOfComplexType.png" alt="Drawing" width="60%"/>
 
 <br>
 
@@ -231,7 +231,7 @@ Once the output of the target Web Service is analyzed, its time to model it with
 
 <br>
 
-<img src="./codegen_images/ExtWizardPage1ComplexExample.png" alt="Drawing" width="90%"/>
+<img src="./codegen_images/ExtWizardPage1ComplexExample.png" alt="Drawing" width="60%"/>
 
 <br>
 
@@ -247,7 +247,7 @@ The figure below illustrates the very first steps, once the desired RESTClient R
 
 <br>
 
-<img src="./codegen_images/ExtWizardPage2ComplexExample.png" alt="Drawing" width="90%"/>
+<img src="./codegen_images/ExtWizardPage2ComplexExample.png" alt="Drawing" width="60%"/>
 
 <br>
 
@@ -255,7 +255,7 @@ The final step is to define the properties of each complex type. These can be of
 
 <br>
 
-<img src="./codegen_images/ExtWizardPage2ComplexExampleProperties.png" alt="Drawing" width="90%"/>
+<img src="./codegen_images/ExtWizardPage2ComplexExampleProperties.png" alt="Drawing" width="60%"/>
 
 <br>
 
