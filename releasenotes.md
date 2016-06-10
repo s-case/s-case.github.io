@@ -6,6 +6,19 @@ _Date of release: 10/6/2016_
 - Fix for displaying correctly the first annotation in Requirements Editor. GitHub [entry](https://github.com/s-case/requirements-editor/commit/c88fc85d740f2d91ec64f12e2d8e3b4ced34a35b), OpenProject [issue](https://openproject.scasefp7.com/work_packages/199)
 - Fix for supporting multi-word annotations from NLP component. GitHub [entry](https://github.com/s-case/requirements-editor/commit/d1700f8778ec817dbdd6fb4746842133923758e1), OpenProject [issue](https://openproject.scasefp7.com/work_packages/194)
 - Fix for save as functionality of storyboards. GitHub [entry](https://github.com/s-case/storyboard-creator/commit/52bfae3289775511c77fd54e956e31e1e93a9c50), OpenProject [issue](https://openproject.scasefp7.com/work_packages/193)
+- Released ABAC plugin for the MDE module. GitHub
+[entry](https://github.com/s-case/mde/commit/ebfc3f142911b42c7388d08ecfd409ee4dcb0560), OpenProject [issue](https://openproject.scasefp7.com/work_packages/130)
+- Fixed a bug that lead to many compilation errors when the S-CASE developer designed a resource, some parent resource of which had also
+multiple parent resources. GitHub
+[entry](https://github.com/s-case/mde/commit/ebfc3f142911b42c7388d08ecfd409ee4dcb0560)
+- Fixed a bug that allowed the S-CASE developer to create CRUD resources without Create or Read activities. GitHub
+[entry](https://github.com/s-case/mde/commit/ebfc3f142911b42c7388d08ecfd409ee4dcb0560)
+- Fixed a UI bug that lead to improper resource property datatype display, when the property datatype was anything else other than
+String, Integer or Double. GitHub
+[entry](https://github.com/s-case/mde/commit/ebfc3f142911b42c7388d08ecfd409ee4dcb0560), OpenProject [issue](https://openproject.scasefp7.com/work_packages/200)
+- Fixed a UI logic bug, that allowed the developer to select invalid combinations of CRUD Activities and intput/output models. GitHub
+[entry](https://github.com/s-case/mde/commit/3d9b2ed811b1c3878b77ae7bc9b97911c7e902a0), OpenProject [issue](https://openproject.scasefp7.com/work_packages/208)
+
 
 ### Version: 1.12
 
