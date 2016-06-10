@@ -2,6 +2,13 @@
 
 ### Version: 1.12
 
+_Date of release: 10/6/2016_
+- Fix for displaying correctly the first annotation in Requirements Editor. GitHub [entry](https://github.com/s-case/requirements-editor/commit/c88fc85d740f2d91ec64f12e2d8e3b4ced34a35b), OpenProject [issue](https://openproject.scasefp7.com/work_packages/199)
+- Fix for supporting multi-word annotations in Requirements Editor from NLP component. GitHub [entry](https://github.com/s-case/requirements-editor/commit/d1700f8778ec817dbdd6fb4746842133923758e1), OpenProject [issue](https://openproject.scasefp7.com/work_packages/194)
+- Fix for save as functionality of storyboards. GitHub [entry](https://github.com/s-case/storyboard-creator/commit/52bfae3289775511c77fd54e956e31e1e93a9c50), OpenProject [issue](https://openproject.scasefp7.com/work_packages/193)
+
+### Version: 1.12
+
 _Date of release: 10/5/2016_
 
 - Enabled the UML plugin and connected it to the workflow. GitHub [entry1](https://github.com/s-case/s-case-core/commit/fb28396b492306ba2f2f6597b70c2ae299bd36a4), [entry2](https://github.com/s-case/s-case-core/commit/6a2905ebdbbd5eff7ecb69b6112c1b51a1224d75)
