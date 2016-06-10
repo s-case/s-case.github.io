@@ -1,10 +1,10 @@
 ## Release Notes
 
-### Version: 1.12
+### Version: 1.13
 
 _Date of release: 10/6/2016_
 - Fix for displaying correctly the first annotation in Requirements Editor. GitHub [entry](https://github.com/s-case/requirements-editor/commit/c88fc85d740f2d91ec64f12e2d8e3b4ced34a35b), OpenProject [issue](https://openproject.scasefp7.com/work_packages/199)
-- Fix for supporting multi-word annotations in Requirements Editor from NLP component. GitHub [entry](https://github.com/s-case/requirements-editor/commit/d1700f8778ec817dbdd6fb4746842133923758e1), OpenProject [issue](https://openproject.scasefp7.com/work_packages/194)
+- Fix for supporting multi-word annotations from NLP component. GitHub [entry](https://github.com/s-case/requirements-editor/commit/d1700f8778ec817dbdd6fb4746842133923758e1), OpenProject [issue](https://openproject.scasefp7.com/work_packages/194)
 - Fix for save as functionality of storyboards. GitHub [entry](https://github.com/s-case/storyboard-creator/commit/52bfae3289775511c77fd54e956e31e1e93a9c50), OpenProject [issue](https://openproject.scasefp7.com/work_packages/193)
 
 ### Version: 1.12
