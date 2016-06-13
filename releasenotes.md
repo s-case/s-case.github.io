@@ -18,6 +18,11 @@ String, Integer or Double. GitHub
 [entry](https://github.com/s-case/mde/commit/ebfc3f142911b42c7388d08ecfd409ee4dcb0560), OpenProject [issue](https://openproject.scasefp7.com/work_packages/200)
 - Fixed a UI logic bug, that allowed the developer to select invalid combinations of CRUD Activities and intput/output models. GitHub
 [entry](https://github.com/s-case/mde/commit/3d9b2ed811b1c3878b77ae7bc9b97911c7e902a0), OpenProject [issue](https://openproject.scasefp7.com/work_packages/208)
+- Created a new client for SC for uploading the composite web service to the S-CASE server in order to use HTTP connection instead of SFTP. GitHub [entry](https://github.com/s-case/web-service-composition/commit/6bb0ddec8d5a0bd3dc425798054fe6791d1dad0e)
+- Added support of variable matching between array elements in SC plugin. GitHub [entry](https://github.com/s-case/web-service-composition/commit/21fac7d5084f1ecababf24f1920a98aba5152d85),  [entry2](https://github.com/s-case/web-service-composition/commit/069339462d7be8bad74cca3036de477d93cbde4f)
+- Added support for handling output variables that don't always have the same type (are either array or object) in SC plugin. GitHub [entry](https://github.com/s-case/web-service-composition/commit/f2c663e7ff9ede82a76d3ba44ba1a79b53ea2dca)
+- Added a dialog for the user to choose the appropriate opperation for replacement in the workflow in cases of equal probability (SC plugin). GitHub [entry](https://github.com/s-case/web-service-composition/commit/8a687e485d05090a815f7111930e571f49e1fb53)
+- Improve performance in SC plugin by loading operations when service composition view opens or when a new ontology is downloaded and not every time the user creates a new composition. GitHub [entry](https://github.com/s-case/web-service-composition/commit/d0cab6394b4ce57cc85e57f9f06e14fd45890531)
 
 
 ### Version: 1.12
