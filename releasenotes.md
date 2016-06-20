@@ -1,5 +1,10 @@
 ## Release Notes
 
+### Version: 1.14
+
+_Date of release: TBD_
+- Refactor of Dashboard to have each module contribute its own buttons. GitHub [entry1](https://github.com/s-case/s-case-core/commit/775298dcc9a168e71b100d517da3c807cde11267), [entry2](https://github.com/s-case/s-case-core/commit/378aeb4f811ba5d352d0a60b0318fd247f62b7db),...
+
 ### Version: 1.13
 
 _Date of release: 10/6/2016_
