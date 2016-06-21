@@ -3,7 +3,18 @@
 ### Version: 1.14
 
 _Date of release: TBD_
-- Refactor of Dashboard to have each module contribute its own buttons. GitHub [entry1](https://github.com/s-case/s-case-core/commit/775298dcc9a168e71b100d517da3c807cde11267), [entry2](https://github.com/s-case/s-case-core/commit/378aeb4f811ba5d352d0a60b0318fd247f62b7db),...
+- Refactor of Dashboard to have each module contribute its own buttons. GitHub [entry1](https://github.com/s-case/s-case-core/commit/775298dcc9a168e71b100d517da3c807cde11267), [entry2](https://github.com/s-case/s-case-core/commit/378aeb4f811ba5d352d0a60b0318fd247f62b7db),
+[entry3](https://github.com/s-case/s-case-core/commit/61b85d07590ae3fb72e3429f82f3c53136db8ad0),
+[entry4](https://github.com/s-case/s-case-core/commit/61b85d07590ae3fb72e3429f82f3c53136db8ad0),
+[entry5](https://github.com/s-case/mde/commit/9518c4ced1d36036f527cd5a14135b834ae50d7b),
+[entry6](https://github.com/s-case/mde/commit/00818fe0b63553760a82f28abd30fc88c42077bd),
+[entry7](https://github.com/s-case/mde/commit/435065f89f8f52936414a68e9a8c46f15159244e),
+[entry8](https://github.com/s-case/mde/commit/f496f68d8a9259d9f57b9dd23c324ce33e0a8c26),
+[entry9](https://github.com/s-case/requirements-editor/commit/b91f6ffbe1fc500c1f1442a70d86f8031ec99103),
+[entry10](https://github.com/s-case/requirements-editor/commit/db0d6a0e06365039d4760ac056c3d0a8c9d04407),
+[entry11](https://github.com/s-case/storyboard-creator/commit/9f95a7dfb9a2ebaf54b4082f42a3b0554f41f731),
+[entry12](https://github.com/s-case/uml-extraction/commit/2e55439cb9ff60f18ec0ef3ec4c90c34c7275cca),
+[entry13](https://github.com/s-case/web-service-composition/commit/a0b05a7544f6b26a26887addabf24691fc3d424d)
 
 ### Version: 1.13
 
