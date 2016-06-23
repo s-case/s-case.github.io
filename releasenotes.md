@@ -14,7 +14,8 @@ _Date of release: TBD_
 [entry10](https://github.com/s-case/requirements-editor/commit/db0d6a0e06365039d4760ac056c3d0a8c9d04407),
 [entry11](https://github.com/s-case/storyboard-creator/commit/9f95a7dfb9a2ebaf54b4082f42a3b0554f41f731),
 [entry12](https://github.com/s-case/uml-extraction/commit/2e55439cb9ff60f18ec0ef3ec4c90c34c7275cca),
-[entry13](https://github.com/s-case/web-service-composition/commit/a0b05a7544f6b26a26887addabf24691fc3d424d)
+[entry13](https://github.com/s-case/web-service-composition/commit/a0b05a7544f6b26a26887addabf24691fc3d424d),
+[entry14](https://github.com/s-case/s-case-update-site/commit/2156ea8f8b675cc9cf152aa8f8c4c5aab51d7161)
 
 ### Version: 1.13
 
