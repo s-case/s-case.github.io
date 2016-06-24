@@ -1,0 +1,1888 @@
+#%RAML 0.8
+title: The Foreman Host Management
+baseUri: https://foreman.res.eng.it
+version: 1
+securitySchemes:
+   - basic:
+      type: Basic Authentication
+      description: Basic authentication
+schemas:
+   - #list structures
+    "Hosts_list":
+        '{
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "id": "http://jsonschema.net",
+            "type": "object",
+            "properties": 
+                {
+                    "total": 
+                        {
+                            "id": "http://jsonschema.net/total",
+                            "type": "integer"
+                        },
+                    "subtotal": 
+                        {
+                            "id": "http://jsonschema.net/subtotal",
+                                      "type": "integer"
+                        },
+            "page": 
+                {
+                    "id": "http://jsonschema.net/page",
+                    "type": "integer"
+                },
+            "per_page": 
+                {
+                    "id": "http://jsonschema.net/per_page",
+                    "type": "integer"
+                },
+            "search": 
+                {
+                    "id": "http://jsonschema.net/search",
+                    "type": ["string","null"]
+                },
+            "sort": 
+                {
+                    "id": "http://jsonschema.net/images",
+                    "type": "object",
+                    "properties": 
+                        {
+                            "by": 
+                                {
+                                    "type": ["string","null"]
+                                },
+                            "order": 
+                                {
+                                    "id": "http://jsonschema.net/sort/order",
+                                    "type": ["string","null"]
+                                }
+                        }
+                        }
+                },
+            "results": 
+                {
+                    "id": "http://jsonschema.net/results",
+                    "type": "array",
+                    "items": 
+                    {
+                        "$ref": "Host_response"
+                    },
+                     "minItems": 0,
+                    "uniqueItems": true
+                },
+            "required": [
+                    "total",
+                    "subtotal",
+                    "page",
+                    "per_page",
+                    "results"
+                    ]
+            }' 
+            
+    "PuppetClasses_list":
+        '{
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "id": "http://jsonschema.net",
+            "type": "object",
+            "properties": 
+                {
+                    "id": 
+                        {
+                            "id": "http://jsonschema.net/total",
+                            "type": "integer"
+                        },
+                    "subtotal": 
+                        {
+                            "id": "http://jsonschema.net/subtotal",
+                            "type": "integer"
+                        },
+                    "page": 
+                        {
+                            "id": "http://jsonschema.net/page",
+                            "type": "integer"
+                        },
+                    "per_page": 
+                        {
+                            "id": "http://jsonschema.net/per_page",
+                            "type": "integer"
+                        },
+                    "search": 
+                        {
+                            "id": "http://jsonschema.net/search",
+                            "type": ["string","null"]
+                        },
+                    "sort": 
+                        {
+                            "id": "http://jsonschema.net/sort",
+                            "type": "object",
+                            "properties": 
+                                {
+                                    "by": 
+                                        {
+                                            "id": "http://jsonschema.net/sort/by",
+                                            "type": ["string","null"]
+                                        },
+                                    "order": 
+                                        {
+                                            "id": "http://jsonschema.net/sort/order",
+                                            "type": ["string","null"]
+                                        }
+                                }
+                        },
+                    "results": 
+                        {
+                            "id": "http://jsonschema.net/puppetclasses",
+                            "type": "object",
+                            "patternProperties": 
+                                {
+                                    ".": 
+                                        {
+                                            "id": "http://jsonschema.net/results/puppetClass",
+                                            "type": "array",
+                                            "items": 
+                                                {
+                                                    "id": "http://jsonschema.net/results/puppetClassElement",
+                                                    "type": "object",
+                                                    "properties": 
+                                                            {
+                                                                "id": 
+                                                                    {
+                                                                                     "id": "http://jsonschema.net/results/apache/0/id",
+                                                                                     "type": "integer"
+                                                                    },
+                                                                "name": 
+                                                                    {
+                                                                        "id": "http://jsonschema.net/results/apache/0/name",
+                                                                        "type": "string"
+                                                                    },
+                                                                "module_name": 
+                                                                    {
+                                                                        "id": "http://jsonschema.net/results/apache/0/name",
+                                                                        "type": "string"
+                                                                    },              
+                                                                "created_at": 
+                                                                    {
+                                                                        "id": "http://jsonschema.net/results/apache/0/created_at",
+                                                                        "type": "string"
+                                                                    },
+                                                                "updated_at": 
+                                                                    {
+                                                                        "id": "http://jsonschema.net/results/apache/0/updated_at",
+                                                                        "type": "string"
+                                                                    }
+                                                            }
+                                                   }
+                                        }
+                                }
+                        }
+                },
+                "required": 
+                        [
+                            "total",
+                            "subtotal",
+                            "page",
+                            "per_page",
+                            "results"
+                        ]
+        }'   
+            
+    "PuppetClassIDs_list":
+        '{
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "id": "http://jsonschema.net",
+            "type": "object",
+            "properties": 
+                {
+                    "results": 
+                        {
+                            "id": "http://jsonschema.net/results",
+                            "type": "array",
+                            "items": 
+                                {
+                                    "id": "http://jsonschema.net/results/0",
+                                    "type": "integer"
+                                }
+                        }
+                },
+            "required": 
+                [
+                          "results"
+                    ]
+              }'
+              
+              
+    "Hostgroup_list":
+        '{
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "id": "http://jsonschema.net",
+            "type": "object",
+            "properties": 
+                    {
+                        "total": 
+                            {
+                                "id": "http://jsonschema.net/total",
+                                "type": "integer"
+                            },
+                        "subtotal": 
+                            {
+                                 "id": "http://jsonschema.net/subtotal",
+                                "type": "integer"
+                            },
+                        "page": 
+                            {
+                                "id": "http://jsonschema.net/page",
+                                "type": "integer"
+                            },
+                        "per_page": 
+                            {
+                                "id": "http://jsonschema.net/per_page",
+                                "type": "integer"
+                            },
+                        "search": 
+                            {
+                                "id": "http://jsonschema.net/search",
+                                "type": ["string","null"]
+                            },
+                        "sort": 
+                            {
+                                "id": "http://jsonschema.net/sort",
+                                "type": "object",
+                                "properties": 
+                                    {
+                                        "by": 
+                                            {
+                                                "id": "http://jsonschema.net/sort/by",
+                                                "type": ["string","null"]
+                                            },
+                                        "order": 
+                                            {
+                                                "id": "http://jsonschema.net/sort/order",
+                                                "type": ["string","null"]
+                                            }
+                                    }
+                            },
+                        "results": 
+                            {
+                                "id": "http://jsonschema.net/results",
+                                "type": "array",
+                                "item": {"$ref": "Hostgroup_response"},"minItems":0,"uniqueItems":true
+                            }
+                    },
+                "required": 
+                        [
+                            "total",
+                            "subtotal",
+                            "page",
+                            "per_page",
+                            "search",
+                            "sort",
+                            "results"
+                        ]
+        }'
+                
+# END lists
+# Request data
+  
+    "Host_request":
+        '{
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "id": "http://jsonschema.net",
+            "type": "object",
+            "properties": 
+            {
+                "host": 
+                {
+                    "id": "http://jsonschema.net/host",
+                    "type": "object",
+                     "properties": 
+                    {
+                        "name": 
+                        {
+                            "id": "http://jsonschema.net/host/name",
+                            "type": "string"
+                        },
+                        "environment_id": 
+                        {
+                            "id": "http://jsonschema.net/host/environment_id",
+                            "type": ["string","null"]
+                        },
+                        "domain_id": 
+                        {
+                            "id": "http://jsonschema.net/host/domain_id",
+                            "type": ["integer","null"]
+                        },
+                        "ip": 
+                        {
+                            "id": "http://jsonschema.net/host/ip",
+                            "type": ["string","null"]
+                        },
+                        "mac": 
+                        {
+                            "id": "http://jsonschema.net/host/mac",
+                            "type": ["string","null"]
+                         },
+                         "realm_id": 
+                         {
+                              "id": "http://jsonschema.net/realm_id",
+                              "type": ["integer","null"]
+                         },
+                        "ptable_id": 
+                        {
+                            "id": "http://jsonschema.net/host/ptable_id",
+                            "type": ["string","null"]
+                        },
+                        "medium_id": 
+                        {
+                            "id": "http://jsonschema.net/host/medium_id",
+                            "type": ["string","null"]
+                        },
+                        "architecture_id": 
+                        {
+                            "id": "http://jsonschema.net/host/architecture_id",
+                            "type": ["string","null"]
+                        },
+                        "operatingsystem_id": 
+                        {
+                            "id": "http://jsonschema.net/host/operatingsystem_id",
+                            "type": ["string","null"]
+                        },
+                        "puppet_proxy_id": 
+                        {
+                            "id": "http://jsonschema.net/host/puppet_proxy_id",
+                            "type": ["integer","null"]
+                        },
+                        "puppet_class_ids": 
+                        {
+                            "id": "http://jsonschema.net/host/puppet_class_ids",
+                            "type": "array",
+                            "items": 
+                            [
+                                {
+                                     "id": "http://jsonschema.net/host/puppet_class_ids/0",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "subnet_id": 
+                          {
+                              "id": "http://jsonschema.net/host/subnet_id",
+                              "type": ["integer","null"]
+                          },
+                        "compute_resource_id": 
+                        {
+                            "id": "http://jsonschema.net/host/compute_resource_id",
+                            "type": ["string","null"]
+                        },
+                        "root_pass": 
+                        {
+                            "id": "http://jsonschema.net/host/root_pass",
+                            "type": ["string","null"]
+                        },
+                        "model_id": 
+                        {
+                            "id": "http://jsonschema.net/host/model_id",
+                            "type": ["integer","null"]
+                        },
+                         "location_id": 
+                        {
+                            "id": "http://jsonschema.net/host/location_id",
+                            "type": "string"
+                        },
+                        "hostgroup_id": 
+                        {
+                            "id": "http://jsonschema.net/host/hostgroup_id",
+                            "type": ["integer","null"]
+                        },
+                      "owner_id": 
+                        {
+                            "id": "http://jsonschema.net/host/owner_id",
+                            "type": ["integer","null"]
+                        },
+                      "owner_type": 
+                        {
+                            "id": "http://jsonschema.net/host/owner_type",
+                            "enum": ["User","Usergroup"]
+                        },
+                      "puppet_ca_proxy_id": 
+                        {
+                            "id": "http://jsonschema.net/host/puppet_ca_proxy_id",
+                            "type": ["integer","null"]
+                        },
+                      "image_id": 
+                        {
+                            "id": "http://jsonschema.net//hostimage_id",
+                            "type": ["integer","null"]
+                        },
+                        "organization_id": 
+                        {
+                            "id": "http://jsonschema.net/host/organization_id",
+                            "type": "string"
+                        },
+                        "host_parameters_attributes": 
+                        {
+                            "id": "http://jsonschema.net/host/host_parameters_attributes",
+                            "type": "array",
+                            "items": 
+                            [
+                                {
+                                     "id": "http://jsonschema.net/host/host_parameters_attribute/0",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                      "build": 
+                        {
+                            "id": "http://jsonschema.net/host/build",
+                            "type": ["boolean","null"]
+                        },
+                      "enabled": 
+                        {
+                            "id": "http://jsonschema.net/host/enabled",
+                            "type": ["boolean","null"]
+                        },
+                      "provision_method": 
+                        {
+                            "id": "http://jsonschema.net/host/provision_method",
+                            "type": ["string","null"]
+                        },
+                      "progress_report_id": 
+                        {
+                            "id": "http://jsonschema.net/host/progress_report_id",
+                            "type": ["string","null"]
+                        },
+                      "managed": 
+                        {
+                            "id": "http://jsonschema.net/host/managed",
+                            "type": ["boolean","null"]
+                        },
+                      "comment": 
+                        {
+                            "id": "http://jsonschema.net/host/comment",
+                            "type": ["string","null"]
+                        },
+                      "capabilities": 
+                        {
+                            "id": "http://jsonschema.net/host/capabilities",
+                            "type": ["string","null"]
+                        },
+                      "compute_profile_id": 
+                        {
+                            "id": "http://jsonschema.net/host/compute_profile_id",
+                            "type": ["integer","null"]
+                        },
+                      "interfaces_attributes": 
+                          {
+                              "id": "http://jsonschema.net/host/interfaces_attributes",
+                              "type": "array",
+                              "items": 
+                                  {
+                                      "$ref": "InterfaceAttribute_request"
+                                  },
+                              "minItems": 0,
+                              "uniqueItems": true
+                          },
+                       "compute_attributes": 
+                       {
+                            "id": "http://jsonschema.net/host/compute_attributes",
+                            "type": ["string","null"]
+                       }
+                              },
+                              "required": 
+                        [
+                            "name",
+                            "location_id",
+                            "organization_id"
+                        ]
+                }
+                  },
+                  "required": 
+            [
+                        "host"
+                     ]
+    }'
+    
+    
+    "InterfaceAttribute_request": 
+        '{
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "id": "http://jsonschema.net/interfaces/0",
+            "type": "object",
+            "properties": 
+                {
+
+                    "name": 
+                        {
+                            "id": "http://jsonschema.net/interfaces/0/name",
+                            "type": "string"
+                        },
+                    "type": 
+                        {
+                            "id": "http://jsonschema.net/interfaces/0/type",
+                            "enum": ["interface","bmc","bond"]
+                        },
+                    "ip": 
+                        {
+                            "id": "http://jsonschema.net/interfaces/0/ip",
+                            "type": "string"
+                        },
+                    "mac": 
+                        {
+                            "id": "http://jsonschema.net/interfaces/0/mac",
+                            "type": "string"
+                        },
+                    "subnet_id": 
+                        {
+                            "id": "http://jsonschema.net/interfaces/0/subnet_id",
+                            "type": ["integer","null"]
+                        },
+                     "domain_id": 
+                        {
+                            "id": "http://jsonschema.net/interfaces/0/domain_id",
+                            "type": ["integer","null"]
+                        },
+                       "identifier": 
+                       {
+                            "id": "http://jsonschema.net/interfaces/0/identifier",
+                            "type": ["string","null"]
+                       },
+                       "managed": 
+                       {
+                            "id": "http://jsonschema.net/interfaces/0/managed",
+                            "type": ["boolean","null"]
+                       },
+                       "primary": 
+                       {
+                            "id": "http://jsonschema.net/interfaces/0/primary",
+                            "type": ["boolean","null"]
+                       },
+                       "provision": 
+                       {
+                            "id": "http://jsonschema.net/interfaces/0/provision",
+                            "type": ["boolean","null"]
+                       },
+                       "username": 
+                       {
+                            "id": "http://jsonschema.net/interfaces/0/username",
+                            "type": ["string","null"]
+                       },
+                       "password": 
+                       {
+                            "id": "http://jsonschema.net/interfaces/0/password",
+                            "type": ["string","null"]
+                       },
+                        "provider": 
+                       {
+                            "id": "http://jsonschema.net/interfaces/0/provider",
+                            "type": ["string","null"]
+                       },
+                       "virtual": 
+                       {
+                            "id": "http://jsonschema.net/interfaces/0/virtual",
+                            "type": ["boolean","null"]
+                       },
+                       "tag": 
+                       {
+                            "id": "http://jsonschema.net/interfaces/0/tag",
+                            "type": ["string","null"]
+                       },
+                       "attached_to": 
+                       {
+                            "id": "http://jsonschema.net/interfaces/0/attached_to",
+                            "type": ["string","null"]
+                       },
+                       "mode": 
+                        {
+                            "id": "http://jsonschema.net/interfaces/0/mode",
+                            "enum": ["balance-rr","active-backup","balance-xor","broadcast","802.3ad","balance-tlb","balance-alb"]
+                        },
+                        "attached_devices": 
+                        {
+                            "id": "http://jsonschema.net/interfaces/0/attached_devices",
+                            "type": "array",
+                            "items": 
+                            [
+                                {
+                                     "id": "http://jsonschema.net/interfaces/0/attached_devices/0",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                       "bond_options": 
+                       {
+                            "id": "http://jsonschema.net/interfaces/0/bond_options",
+                            "type": ["string","null"]
+                       },
+                       "compute_attributes": 
+                       {
+                            "id": "http://jsonschema.net/interfaces/0/compute_attributes",
+                            "type": ["string","null"]
+                       }
+                }
+        }'
+    
+    "PuppetClass_request":
+        '{
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "id": "http://jsonschema.net",
+            "type": "object",
+            "properties": 
+                    {
+                        "puppetclass_id": 
+                                    {
+                                        "id": "http://jsonschema.net/puppetclass_id",
+                                        "type": "string"
+                                    },
+                    "required": 
+                    [
+                                  "puppetclass_id"
+                    ]
+                    }
+        }'
+        
+    "Hostgroup_request":     
+        '{
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "id": "http://jsonschema.net",
+            "type": "object",
+            "properties": 
+                {
+                "hostgroup": 
+                    {
+                        "id": "http://jsonschema.net/hostgroup",
+                        "type": "object",
+                        "properties": 
+                            {
+                                "name": 
+                                    {
+                                        "id": "http://jsonschema.net/hostgroup/name",
+                                        "type": "string"
+                                    },
+                                "parent_id": 
+                                    {
+                                        "id": "http://jsonschema.net/hostgroup/parent_id",
+                                        "type": ["integer","null"]
+                                              },
+                                 "environment_id": 
+                                    {
+                                                "id": "http://jsonschema.net/hostgroup/environment_id",
+                                                "type": ["integer","null"]
+                                    },
+                                "operatingsystem_id": 
+                                    {
+                                        "id": "http://jsonschema.net/hostgroup/operatingsystem_id",
+                                        "type": ["integer","null"]
+                                    },
+                                "architecture_id": 
+                                    {
+                                        "id": "http://jsonschema.net/hostgroup/architecture_id",
+                                        "type": ["integer","null"]
+                                    },
+                                "medium_id": 
+                                    {
+                                        "id": "http://jsonschema.net/hostgroup/medium_id",
+                                        "type": ["integer","null"]
+                                    },
+                                "ptable_id": 
+                                    {
+                                        "id": "http://jsonschema.net/hostgroup/ptable_id",
+                                        "type": ["integer","null"]
+                                    },
+                                "puppet_ca_proxy_id": 
+                                    {
+                                        "id": "http://jsonschema.net/hostgroup/puppet_ca_proxy_id",
+                                        "type": ["integer","null"]
+                                    },
+                                "subnet_id": 
+                                    {
+                                        "id": "http://jsonschema.net/hostgroup/subnet_id",
+                                        "type": ["integer","null"]
+                                    },
+                                "domain_id": 
+                                    {
+                                        "id": "http://jsonschema.net/hostgroup/domain_id",
+                                        "type": ["integer","null"]
+                                    },
+                                "realm_id": 
+                                    {
+                                        "id": "http://jsonschema.net/hostgroup/realm_id",
+                                        "type": ["integer","null"]
+                                    },
+                                "puppet_proxy_id": 
+                                    {
+                                        "id": "http://jsonschema.net/hostgroup/puppet_proxy_id",
+                                        "type": ["integer","null"]
+                                    },
+                                "location_ids": 
+                                    {
+                                        "id": "http://jsonschema.net/hostgroup/location_ids",
+                                        "type": "array",
+                                        "items": 
+                                        [
+                                            {
+                                                 "id": "http://jsonschema.net/hostgroup/location_ids/0",
+                                                "type": "string"
+                                            }
+                                        ]
+                                    },
+                                "organization_ids": 
+                                  {
+                                      "id": "http://jsonschema.net/hostgroup/organization_ids",
+                                      "type": "array",
+                                      "items": 
+                                      [
+                                          {
+                                               "id": "http://jsonschema.net/hostgroup/organization_ids/0",
+                                              "type": "string"
+                                          }
+                                      ]
+                                  }
+                            },
+                        "required": 
+                                [
+                                    "name"
+                                ]
+                    }
+                },
+            "required": 
+                    [
+                        "hostgroup"
+                    ]
+        }'  
+        
+        
+# END requests
+
+# responses
+    
+    "Host_response":
+        '{
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "id": "http://jsonschema.net",
+        "type": "object",
+        "properties": 
+            {
+                "name": 
+                    {
+                        "id": "http://jsonschema.net/name",
+                        "type": "string"
+                    },
+                "id": 
+                    {
+                        "id": "http://jsonschema.net/id",
+                        "type": "integer"
+                    },
+                "ip": 
+                    {
+                        "id": "http://jsonschema.net/ip",
+                        "type": ["string","null"]
+                    },
+                "environment_id": 
+                    {
+                        "id": "http://jsonschema.net/environment_id",
+                        "type": ["integer","null"]
+                    },
+                "environment_name": 
+                    {
+                        "id": "http://jsonschema.net/environment_name",
+                        "type": "string"
+                    },
+                "last_report": 
+                    {
+                        "id": "http://jsonschema.net/last_report",
+                        "type": ["string","null"]
+                    },
+                "mac": 
+                    {
+                        "id": "http://jsonschema.net/mac",
+                        "type": ["string","null"]
+                    },
+                "realm_id": 
+                    {
+                        "id": "http://jsonschema.net/realm_id",
+                        "type": ["integer","null"]
+                    },
+                "realm_name": 
+                    {
+                        "id": "http://jsonschema.net/realm_name",
+                        "type": ["string","null"]
+                    },
+                "sp_mac": 
+                    {
+                        "id": "http://jsonschema.net/sp_mac",
+                        "type": ["string","null"]
+                    },
+                "sp_ip": 
+                    {
+                        "id": "http://jsonschema.net/sp_ip",
+                        "type": ["string","null"]
+                    },
+                "sp_name": 
+                    {
+                        "id": "http://jsonschema.net/sp_name",
+                        "type": ["string","null"]
+                    },
+                "domain_id": 
+                    {
+                        "id": "http://jsonschema.net/domain_id",
+                        "type": ["integer","null"]
+                    },
+                "domain_name": 
+                    {
+                        "id": "http://jsonschema.net/domain_name",
+                        "type": "string"
+                    },
+                "architecture_id": 
+                    {
+                        "id": "http://jsonschema.net/architecture_id",
+                        "type": ["integer","null"]
+                    },
+                "architecture_name": 
+                    {
+                        "id": "http://jsonschema.net/architecture_name",
+                        "type": "string"
+                    },
+                "operatingsystem_id": 
+                    {
+                        "id": "http://jsonschema.net/operatingsystem_id",
+                        "type": ["integer","null"]
+                    },
+                "operatingsystem_name": 
+                    {
+                        "id": "http://jsonschema.net/operatingsystem_name",
+                        "type": ["string","null"]
+                    },
+                "subnet_id": 
+                    {
+                        "id": "http://jsonschema.net/subnet_id",
+                        "type": ["integer","null"]
+                    },
+                "subnet_name": 
+                    {
+                        "id": "http://jsonschema.net/subnet_name",
+                        "type": ["string","null"]
+                    },
+                "sp_subnet_id": 
+                    {
+                        "id": "http://jsonschema.net/sp_subnet_id",
+                        "type": ["integer","null"]
+                    },
+                "ptable_id": 
+                    {
+                        "id": "http://jsonschema.net/ptable_id",
+                        "type": ["integer","null"]
+                    },
+                "ptable_name": 
+                    {
+                        "id": "http://jsonschema.net/ptable_name",
+                        "type": "string"
+                    },
+                "medium_id": 
+                    {
+                        "id": "http://jsonschema.net/medium_id",
+                        "type": ["integer","null"]
+                    },
+                "medium_name": 
+                    {
+                        "id": "http://jsonschema.net/medium_name",
+                        "type": "string"
+                    },
+                "build": 
+                    {
+                        "id": "http://jsonschema.net/build",
+                        "type": ["boolean","null"]
+                    },
+                "comment": 
+                    {
+                        "id": "http://jsonschema.net/comment",
+                        "type": ["string","null"]
+                    },
+                "disk": 
+                    {
+                        "id": "http://jsonschema.net/disk",
+                        "type": ["string","null"]
+                    },
+                "installed_at": 
+                    {
+                        "id": "http://jsonschema.net/installed_at",
+                        "type": ["string","null"]
+                    },
+                "model_id": 
+                    {
+                        "id": "http://jsonschema.net/model_id",
+                        "type": ["integer","null"]
+                    },
+                "model_name": 
+                    {
+                        "id": "http://jsonschema.net/model_name",
+                        "type": ["string","null"]
+                    },
+                "hostgroup_id": 
+                    {
+                        "id": "http://jsonschema.net/hostgroup_id",
+                        "type": ["integer","null"]
+                    },
+                "hostgroup_name": 
+                    {
+                        "id": "http://jsonschema.net/hostgroup_name",
+                        "type": ["string","null"]
+                    },
+                "owner_id": 
+                    {
+                        "id": "http://jsonschema.net/owner_id",
+                        "type": ["integer","null"]
+                    },
+                "owner_type": 
+                    {
+                        "id": "http://jsonschema.net/owner_type",
+                        "type": ["string","null"]
+                    },
+                "enabled": 
+                    {
+                        "id": "http://jsonschema.net/enabled",
+                        "type": ["boolean","null"]
+                    },
+                "puppet_ca_proxy_id": 
+                    {
+                        "id": "http://jsonschema.net/puppet_ca_proxy_id",
+                        "type": ["integer","null"]
+                    },
+                "managed": 
+                    {
+                        "id": "http://jsonschema.net/managed",
+                        "type": ["boolean","null"]
+                    },
+                "use_image": 
+                    {
+                        "id": "http://jsonschema.net/use_image",
+                        "type": ["boolean","null"]
+                    },
+                "image_file": 
+                    {
+                        "id": "http://jsonschema.net/image_file",
+                        "type": "string"
+                    },
+                "uuid": 
+                    {
+                        "id": "http://jsonschema.net/uuid",
+                        "type": ["string","null"]
+                    },
+                "compute_resource_id": 
+                    {
+                        "id": "http://jsonschema.net/compute_resource_id",
+                        "type": ["integer","null"]
+                    },
+                "compute_resource_name": 
+                    {
+                        "id": "http://jsonschema.net/compute_resource_name",
+                        "type": ["string","null"]
+                    },
+                "compute_profile_id": 
+                    {
+                        "id": "http://jsonschema.net/compute_profile_id",
+                        "type": ["integer","null"]
+                    },
+                "compute_profile_name": 
+                    {
+                        "id": "http://jsonschema.net/compute_profile_name",
+                        "type": ["string","null"]
+                    },
+                "capabilities": 
+                    {
+                        "id": "http://jsonschema.net/capabilities",
+                        "type": "array",
+                        "items": 
+                            [
+                                {
+                                    "id": "http://jsonschema.net/capabilities/0",
+                                    "type": "string"
+                                }
+                            ]
+                    },
+                "provision_method": 
+                    {
+                        "id": "http://jsonschema.net/provision_method",
+                        "type": ["string","null"]
+                    },
+                "puppet_proxy_id": 
+                    {
+                        "id": "http://jsonschema.net/puppet_proxy_id",
+                        "type": ["integer","null"]
+                    },
+                "certname": 
+                    {
+                        "id": "http://jsonschema.net/certname",
+                        "type": "string"
+                    },
+                "image_id": 
+                    {
+                        "id": "http://jsonschema.net/image_id",
+                        "type": ["integer","null"]
+                    },
+                "image_name": 
+                    {
+                        "id": "http://jsonschema.net/image_name",
+                        "type": ["string","null"]
+                    },
+                "created_at": 
+                    {
+                        "id": "http://jsonschema.net/created_at",
+                        "type": "string"
+                    },
+                "updated_at": 
+                    {
+                        "id": "http://jsonschema.net/updated_at",
+                        "type": "string"
+                    },
+                "last_compile": 
+                    {
+                        "id": "http://jsonschema.net/last_compile",
+                        "type": ["string","null"]
+                    },
+                "last_freshcheck": 
+                    {
+                        "id": "http://jsonschema.net/last_freshcheck",
+                        "type": ["string","null"]
+                    },
+                "serial": 
+                    {
+                        "id": "http://jsonschema.net/serial",
+                        "type": ["string","null"]
+                    },
+                "source_file_id": 
+                    {
+                        "id": "http://jsonschema.net/source_file_id",
+                        "type": ["integer","null"]
+                    },
+                "puppet_status": 
+                    {
+                        "id": "http://jsonschema.net/puppet_status",
+                        "type": "integer"
+                    },
+                "organization_id": 
+                    {
+                        "id": "http://jsonschema.net/organization_id",
+                        "type": ["integer","null"]
+                    },
+                "organization_name": 
+                    {
+                        "id": "http://jsonschema.net/organization_name",
+                        "type": ["string","null"]
+                    },
+                "location_id": 
+                    {
+                        "id": "http://jsonschema.net/location_id",
+                        "type": ["integer","null"]
+                    },
+                "location_name": 
+                    {
+                        "id": "http://jsonschema.net/location_name",
+                        "type": ["string","null"]
+                    },
+                "all_puppetclasses": 
+                    {
+                        "id": "http://jsonschema.net/all_puppetclasses",
+                        "type": "array",
+                        "items": 
+                            {
+                                "$ref": "PuppetClassComplete_response"
+                            },
+                        "minItems": 0,
+                        "uniqueItems": true
+                    },
+                "parameters": 
+                    {
+                        "id": "http://jsonschema.net/parameters",
+                        "type": "array",
+                        "items": 
+                            {
+                                "$ref": "Parameters_response"
+                            },
+                        "minItems": 0,
+                        "uniqueItems": true
+                    },
+                "interfaces": 
+                    {
+                        "id": "http://jsonschema.net/interfaces",
+                        "type": "array",
+                        "items": 
+                            {
+                                "$ref": "Interface_response"
+                            },
+                        "minItems": 0,
+                        "uniqueItems": true
+                    },
+                "puppetclasses": 
+                    {
+                        "id": "http://jsonschema.net/puppetclasses",
+                        "type": "array",
+                        "items": 
+                            {
+                                "$ref": "PuppetClassComplete_response"
+                            },
+                        "minItems": 0,
+                        "uniqueItems": true
+                    },
+                "config_groups": 
+                    {
+                        "id": "http://jsonschema.net/config_groups",
+                        "type": "array",
+                        "items": {"$ref": "ConfigGroups_response"},
+                        "minItems": 0,
+                        "uniqueItems": true
+                    }
+                },
+                "required":
+                        [
+                            "name",
+                            "id",
+                            "environment_name",
+                            "last_report",
+                            "realm_name",
+                            "sp_mac",
+                            "sp_ip",
+                            "image_file",
+                            "compute_resource_id",
+                            "certname",
+                            "created_at",
+                            "updated_at",
+                            "organization_id",
+                            "location_id"
+                        ]
+        }'
+    
+    "Interface_response": 
+        '{
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "id": "http://jsonschema.net/interfaces/0",
+            "type": "object",
+            "properties": 
+                {
+                    "id": 
+                        {
+                            "id": "http://jsonschema.net/interfaces/0/id",
+                            "type": "integer"
+                        },
+                    "name": 
+                        {
+                            "id": "http://jsonschema.net/interfaces/0/name",
+                            "type": "string"
+                        },
+                    "type": 
+                        {
+                            "id": "http://jsonschema.net/interfaces/0/type",
+                            "type": "string"
+                        },
+                    "ip": 
+                        {
+                            "id": "http://jsonschema.net/interfaces/0/ip",
+                            "type": "string"
+                        },
+                    "mac": 
+                        {
+                            "id": "http://jsonschema.net/interfaces/0/mac",
+                            "type": "string"
+                        },
+                    "primary": 
+                       {
+                            "id": "http://jsonschema.net/interfaces/0/primary",
+                            "type": ["boolean","null"]
+                       },
+                    "provision": 
+                       {
+                            "id": "http://jsonschema.net/interfaces/0/provision",
+                            "type": ["boolean","null"]
+                       },
+                    "identifier": 
+                       {
+                            "id": "http://jsonschema.net/interfaces/0/identifier",
+                            "type": ["string","null"]
+                       }
+                }
+        }'
+
+
+
+
+        
+    "PuppetClassIDs_response":
+        '{
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "id": "http://jsonschema.net",
+            "type": "object",
+            "properties": 
+                {
+                    "host_id": 
+                        {
+                            "id": "http://jsonschema.net/host_id",
+                            "type": "integer"
+                        },
+                    "puppetclass_id": 
+                        {
+                            "id": "http://jsonschema.net/puppetclass_id",
+                            "type": "integer"
+                        }
+                },
+            "required": 
+                [
+                    "host_id",
+                    "puppetclass_id"
+                ]
+        }'
+    "PuppetClassHostgroupIDs_response":
+        '{
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "id": "http://jsonschema.net",
+            "type": "object",
+            "properties": 
+                {
+                    "hostgroup_id": 
+                        {
+                            "id": "http://jsonschema.net/host_id",
+                            "type": "integer"
+                        },
+                    "puppetclass_id": 
+                        {
+                            "id": "http://jsonschema.net/puppetclass_id",
+                            "type": "integer"
+                        }
+                },
+            "required": 
+                    [
+                    "hostgroup_id",
+                    "puppetclass_id"
+                    ]
+        }'
+
+
+    "PuppetClassComplete_response": 
+        '{
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "id": "http://jsonschema.net",
+            "type": "object",
+            "properties": 
+                    {
+                        "id": 
+                            {
+                                "id": "http://jsonschema.net/id",
+                                "type": "integer"
+                            },
+                        "name": 
+                            {
+                                "id": "http://jsonschema.net/name",
+                                "type": "string"
+                            },
+                        "module_name": 
+                            {
+                                "id": "http://jsonschema.net/module_name",
+                                "type": "string"
+                            }
+                    },
+                "required": 
+                    [
+                        "id",
+                        "name",
+                        "module_name"
+                    ]
+        }'
+    "TemplateCombination_response": 
+        '{
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "id": "http://jsonschema.net",
+            "type": "object",
+            "properties": 
+                    {
+                        "id": 
+                            {
+                                "id": "http://jsonschema.net/id",
+                                "type": "integer"
+                            },
+                        "config_template_id": 
+                            {
+                                "id": "http://jsonschema.net/config_template_id",
+                                "type": "integer"
+                            },
+                        "config_template_name": 
+                            {
+                                "id": "http://jsonschema.net/config_template_name",
+                                "type": "string"
+                            },
+                        "hostgroup_id": 
+                            {
+                                "id": "http://jsonschema.net/hostgroup_id",
+                                "type": "integer"
+                            },
+                        "hostgroup_name": 
+                            {
+                                "id": "http://jsonschema.net/hostgroup_name",
+                                "type": "string"
+                            },
+                        "environment_id": 
+                            {
+                                "id": "http://jsonschema.net/environment_id",
+                                "type": "integer"
+                            },
+                        "environment_name": 
+                            {
+                                "id": "http://jsonschema.net/environment_name",
+                                "type": "string"
+                            }
+                    },
+            "required": 
+                [
+                    "id",
+                    "config_template_id",
+                    "config_template_name",
+                    "hostgroup_id",
+                    "hostgroup_name",
+                    "environment_id",
+                    "environment_name"
+                ]
+        }'
+    "ConfigGroups_response": '{
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "id": "http://jsonschema.net",
+            "type": "array",
+            "items": [
+              {
+                "id": "http://jsonschema.net/0",
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "id": "http://jsonschema.net/0/id",
+                    "type": "integer"
+                  },
+                  "name": {
+                    "id": "http://jsonschema.net/0/name",
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "id": "http://jsonschema.net/0/created_at",
+                    "type": "string"
+                  },
+                  "updated_at": {
+                    "id": "http://jsonschema.net/0/updated_at",
+                    "type": "string"
+                  },
+                  "puppetclasses": {
+                    "id": "http://jsonschema.net/0/puppetclasses",
+                    "type": "array",
+                    "items": {"$ref": "PuppetClassComplete_response"},"minItems":0,"uniqueItems":true
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "created_at",
+                  "updated_at",
+                  "puppetclasses"
+                ]
+              }
+            ]
+          }'
+
+    "IdName_response": 
+        '{
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "id": "http://jsonschema.net",
+            "type": "object",
+            "properties": 
+                {
+                    "id": 
+                        {
+                            "id": "http://jsonschema.net/id",
+                            "type": "number"
+                        },
+                    "name": 
+                        {
+                            "id": "http://jsonschema.net/name",
+                            "type": ["string","null"]
+                        }
+                },
+            "required": 
+                [
+                    "id",
+                    "name"
+                ]
+        }'
+    "Parameters_response": 
+        '{
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "id": "http://jsonschema.net",
+            "type": "object",
+            "properties": 
+                {
+                    "id": 
+                        {
+                            "id": "http://jsonschema.net/id",
+                            "type": "integer"
+                        },
+                    "name": 
+                        {
+                            "id": "http://jsonschema.net/name",
+                            "type": "string"
+                        },
+                    "value": 
+                        {
+                            "id": "http://jsonschema.net/value",
+                            "type": "string"
+                        }
+                },
+            "required": 
+                    [
+                        "id",
+                        "name",
+                        "value"
+                    ]
+        }'
+ 
+    "Hostgroup_response": 
+        '{
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "id": "http://jsonschema.net",
+            "type": "object",
+            "properties": 
+                    {
+                        "id": 
+                            {
+                                "id": "http://jsonschema.net/id",
+                                "type": "integer"
+                            },
+                        "name": 
+                            {
+                                "id": "http://jsonschema.net/name",
+                                "type": "string"
+                            },
+                        "title": 
+                            {
+                                "id": "http://jsonschema.net/title",
+                                "type": ["string","null"]
+                            },
+                        "subnet_id": 
+                            {
+                                "id": "http://jsonschema.net/subnet_id",
+                                "type": ["integer","null"]
+                            },
+                        "subnet_name": 
+                            {
+                                "id": "http://jsonschema.net/subnet_name",
+                                "type": ["string","null"]
+                            },
+                        "operatingsystem_id": 
+                            {
+                                "id": "http://jsonschema.net/operatingsystem_id",
+                                "type": ["integer","null"]
+                            },
+                        "operatingsystem_name": 
+                            {
+                                "id": "http://jsonschema.net/operatingsystem_name",
+                                "type": ["string","null"]
+                            },
+                        "domain_id": 
+                            {
+                                "id": "http://jsonschema.net/domain_id",
+                                "type": ["integer","null"]
+                            },
+                        "domain_name": 
+                            {
+                                "id": "http://jsonschema.net/domain_name",
+                                "type": ["string","null"]
+                            },
+                        "environment_id": 
+                            {
+                                "id": "http://jsonschema.net/environment_id",
+                                "type": ["integer","null"]
+                            },
+                        "environment_name": 
+                            {
+                                "id": "http://jsonschema.net/environment_name",
+                                "type": ["string","null"]
+                            },
+                        "compute_profile_id": 
+                            {
+                                "id": "http://jsonschema.net/compute_profile_id",
+                                "type": ["integer","null"]
+                            },
+                        "compute_profile_name": 
+                            {
+                                "id": "http://jsonschema.net/compute_profile_name",
+                                "type": ["string","null"]
+                            },
+                        "ancestry": 
+                            {
+                                "id": "http://jsonschema.net/ancestry",
+                                "type": ["string","null"]
+                            },
+                        "puppet_proxy_id": 
+                            {
+                                "id": "http://jsonschema.net/puppet_proxy_id",
+                                "type": ["integer","null"]
+                            },
+                        "puppet_ca_proxy_id": 
+                            {
+                                "id": "http://jsonschema.net/puppet_ca_proxy_id",
+                                "type": ["integer","null"]
+                            },
+                        "ptable_id": 
+                            {
+                                "id": "http://jsonschema.net/ptable_id",
+                                "type": ["integer","null"]
+                            },
+                        "ptable_name": 
+                            {
+                                "id": "http://jsonschema.net/ptable_name",
+                                "type": ["string","null"]
+                            },
+                        "medium_id": 
+                            {
+                                "id": "http://jsonschema.net/medium_id",
+                                "type": ["integer","null"]
+                            },
+                        "medium_name": 
+                            {
+                                "id": "http://jsonschema.net/medium_name",
+                                "type": ["string","null"]
+                            },
+                        "architecture_id": 
+                            {
+                                "id": "http://jsonschema.net/architecture_id",
+                                "type": ["integer","null"]
+                            },
+                        "architecture_name": 
+                            {
+                                "id": "http://jsonschema.net/architecture_name",
+                                "type": ["string","null"]
+                            },
+                        "realm_id": 
+                            {
+                                "id": "http://jsonschema.net/realm_id",
+                                "type": ["integer","null"]
+                            },
+                        "realm_name": 
+                            {
+                                "id": "http://jsonschema.net/realm_name",
+                                 "type": ["string","null"]
+                            },
+                        "created_at": 
+                            {
+                                "id": "http://jsonschema.net/created_at",
+                                "type": "string"
+                            },
+                        "updated_at": 
+                            {
+                                "id": "http://jsonschema.net/updated_at",
+                                "type": "string"
+                            },
+                        "all_puppetclasses": 
+                            {
+                                "id": "http://jsonschema.net/all_puppetclasses",
+                                "type": "array",
+                                "item": {"$ref": "PuppetClassComplete_response"},"minItems":0,"uniqueItems":true
+                            },
+                        "locations": 
+                            {
+                                "id": "http://jsonschema.net/locations",
+                                "type": "array",
+                                "item": {"$ref": "IdName_response"},"minItems":0,"uniqueItems":true
+                            },
+                        "organizations": 
+                            {
+                                "id": "http://jsonschema.net/organizations",
+                                "type": "array",
+                                "item": {"$ref": "IdName_response"},"minItems":0,"uniqueItems":true
+                            },
+                        "parameters": 
+                            {
+                                "id": "http://jsonschema.net/parameters",
+                                "type": "array",
+                                "item": {"$ref": "Parameters_response"},"minItems":0,"uniqueItems":true
+                            },
+                        "template_combinations": 
+                            {
+                                "id": "http://jsonschema.net/template_combinations",
+                                "type": "array",
+                                "item": {"$ref": "TemplateCombination_response"},"minItems":0,"uniqueItems":true
+                            },
+                        "puppetclasses": 
+                            {
+                                "id": "http://jsonschema.net/puppetclasses",
+                                "type": "array",
+                                "item": {"$ref": "PuppetClassComplete_response"},"minItems":0,"uniqueItems":true
+                            },
+                        "config_groups": 
+                            {
+                                "id": "http://jsonschema.net/config_groups",
+                                "type": "array",
+                                "item": {"$ref": "ConfigGroups_response"},"minItems":0,"uniqueItems":true
+                            }
+            },
+        "required": 
+            [
+                "id",
+                "name",
+                 "title",
+                "subnet_id",
+                "subnet_name",
+                "operatingsystem_id",
+                "operatingsystem_name",
+                "domain_id",
+                "domain_name",
+                "environment_id",
+                "environment_name",
+                "compute_profile_id",
+                "compute_profile_name",
+                "ancestry",
+                "puppet_proxy_id",
+                "puppet_ca_proxy_id",
+                "ptable_id",
+                "ptable_name",
+                "medium_id",
+                "medium_name",
+                "architecture_id",
+                "architecture_name",
+                 "realm_id",
+                "realm_name",
+                "created_at",
+                "updated_at"
+            ]
+        }'
+
+
+/api/hosts:
+    description: Hosts management API
+    securedBy: [basic]
+    get:
+        queryParameters:
+            search:
+                required: false
+                type: string
+            order:
+                required: false
+                type: string
+            page:
+                required: false
+                type: string
+            per_page:
+                required: false
+                type: string
+        description: list all hosts
+        responses:
+            200:
+                body:
+                    application/json:
+                        schema: "Hosts_list"
+    post:
+        description: Creates a host
+        body:
+            application/json:
+                schema: "Host_request"
+        responses:
+            200:
+                description: host created
+                body:
+                    application/json:
+                        schema: "Host_response"
+    /{host_id}:
+        description: Manage a certain host
+        securedBy: [basic]
+        uriParameters:
+            host_id:
+                description: identified a host
+                type: integer
+                required: true
+                displayName: host id
+        get:
+            description: get the detail of a host
+            responses:
+                200:
+                    body:
+                        application/json:
+                            schema: "Host_response"
+                400:
+                    description: Not found
+              
+        put:
+            description: update a host
+            body:
+                application/json:
+                    schema: "Host_request"
+            responses:
+                200:
+                    body:
+                        application/json:
+                            schema: "Host_response"
+                400: 
+                    description: Not found
+        delete:
+            description: delete a host
+            responses:
+                200:
+                    body:
+                        application/json:
+                            schema: "Host_response"        
+                400:
+                    description: Not found  
+        /puppetclasses:
+            description: Puppetclasses associated to a host
+            securedBy: [basic]
+            get:
+                queryParameters:
+                    search:
+                        required: false
+                        type: string
+                    order:
+                        required: false
+                        type: string
+                    page:
+                        required: false
+                        type: string
+                    per_page:
+                        required: false
+                        type: string
+                description: get associated puppetclasses
+                responses:
+                    200:
+                        body:
+                            application/json:
+                                schema: "PuppetClasses_list"
+        /puppetclass_ids:
+            securedBy: [basic]
+            post:
+                description: add a puppet class to a host through its id
+                body:
+                    application/json:
+                        schema: "PuppetClass_request"
+                responses:
+                    200:
+                        description: Association succeeded
+                        body:
+                            application/json:
+                                schema: "PuppetClassIDs_response"
+                    400:
+                        description: Host or puppetclass not found
+            get:
+                description: get puppet class IDs for a host
+                responses:
+                    200:
+                        body:
+                            application/json:
+                                schema: "PuppetClassIDs_list" 
+            /{puppetclass_id}:
+                securedBy: [basic]
+                delete:
+                    description: removes a puppet class from a host
+                    responses:
+                        200:
+                            description: operation succeeded
+                        400: 
+                            description: host or puppet class not found
+/api/hostgroups:
+    description: Host groups management
+    securedBy: [basic]
+    get:
+        queryParameters:
+            search:
+                required: false
+                type: string
+            order:
+                required: false
+                type: string
+            page:
+                required: false
+                type: string
+            per_page:
+                required: false
+                type: string
+        description: list all host groups
+        responses:
+            200:
+                description: the list (can be empty)
+                body:
+                    application/json:
+                        schema: "Hostgroup_list"
+    post:
+        description: create a host group    
+        body:
+            application/json:
+                schema: "Hostgroup_request"
+        responses:
+            200:
+                description: Host group created
+                body:
+                    application/json:
+                        schema: "Hostgroup_response"
+            400:
+                description: Not found
+    /{hostgroup_id}:
+        description: Manage a certain host group
+        securedBy: [basic]
+        uriParameters:
+            hostgroup_id:
+                description: the id f the host group
+                required: true
+                type: string
+        get:
+            description: get the details of a host group
+            responses:
+                200:
+                    description: details found
+                    body:
+                        application/json: 
+                            schema: "Hostgroup_response"
+                400:
+                    description: Not found
+        put:
+            description: update a host group
+            body:
+                application/json:
+                    schema: "Hostgroup_request"
+            responses:
+                200:
+                    description: operation completed
+                    body:
+                        application/json:
+                            schema: "Hostgroup_response"
+        delete:
+            description: delete a host group                      
+            responses:
+                200:
+                    description: Host group deleted
+                    body: 
+                        application/json:
+                            schema:  "Hostgroup_response"
+                400:
+                    description: Not found
+        /puppetclass_ids:
+            securedBy: [basic]
+            get:
+                description: list all puppet class IDs for host group
+                responses:
+                    200:
+                        description: list of puppet ids
+                        body:
+                            application/json:
+                                schema: "PuppetClassIDs_list"       
+            post:
+                description: add a puppet class to host group
+                body:
+                    application/json:
+                        schema: "PuppetClass_request"
+                responses:
+                    200:
+                        description: Operation succeeded
+                        body:
+                            application/json:
+                                schema: "PuppetClassHostgroupIDs_response"
+            /{puppetclass_id}:
+                securedBy: [basic]
+                uriParameters:
+                    puppetclass_id:
+                        type: string
+                        required: true
+                        description: puppet class id
+                delete:
+                    description: removes a puppet class from a hostgroup
+                    responses:
+                        200:
+                            description: operation succeded
+                        400:
+                            description: not found
+                      
