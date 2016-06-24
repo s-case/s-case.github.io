@@ -1,0 +1,677 @@
+#%RAML 0.8
+---
+title: wAPI
+baseUri: http://wapo-apis.azurewebsites.net/api/webapi/{version}
+version: v1
+
+/metaData:
+	/metrics: 
+		/tsAggregation:
+			post:
+				description: |
+					Compute (a) aggregated values and (b) number of (distinct) days and samples taken into account. 
+					Multiple aggregation levels are supported ("day", "week", "month", "year", "none" - with "none" meaning "sum all posted measerements without grouping them"). 
+					Multiple aggregation functions are supporteds ("max", "min", "average", "sum").
+					# Should we allow the mapping of results to specific points ("targetPointIds")?        
+					# Should we also include "count" or "count(condition)"?        
+				queryParameters:
+					access_token:
+						type: string
+						description: The access token provided by the authentication application.
+						example: AABBCCDD
+						required: true
+					groupBy:
+						type: string
+						description: Group by "day", "week", "month", "year".
+						example: "day"
+						required: true
+					functions: 
+						type: string
+						description: Aggregation functions to be applied ("max", "min", "mean", "sum").
+						example: "sum, max, mean"	
+						required: true
+				body:
+                    application/json:
+                        schema: |
+                        {
+                            "$schema": "http://json-schema.org/draft-04/schema#",
+                            "type" : "object", 
+                            "properties" : {
+                                "points" : {
+                                    "type" : "array",
+                                    "items" : {
+                                        "type" : object, 
+                                        "properties" : {
+                                            "pointId" : {
+                                                "type" : "integer"
+                                            },
+                                            "equipmentId" : {
+                                                "type" : "integer"
+                                            },
+                                            "pointName" : {
+                                                "type" : "string"
+                                            },  
+                                            "samplingRate" : {
+                                                "type" : "integer"
+                                            }, 
+                                            "timestamps" : {
+                                                "type" : "array", 
+                                                "items" : {
+                                                    "type" : "string"
+                                                }
+                                            }, 
+                                            "values" : {
+                                                "type" : "array", 
+                                                "items" : {
+                                                    "type" : "number"
+                                                }
+                                            }
+                                        },
+                                        "required": [
+                                            "pointId",
+                                            "equipmentId",
+                                            "pointName",
+                                            "samplingRate",
+                                            "timestamps",
+                                            "values"
+                                        ]
+                                    } 
+                                }
+                            } 
+                            "required" : [ "points" ]
+                        }
+                        example: |
+                        {
+                          "points": [
+                            {
+                                "pointId": 48,
+                                "equipmentId": 3,  
+                                "pointName": "401_V020003",
+                                "samplingRate": 15,
+                                "timestamps": [
+                                    "2015-11-08T12:00:00+02:00",
+                                    "2015-11-08T13:00:00+02:00",
+                                    "2015-11-08T14:00:00+02:00"
+                                ],
+                                "values": [
+                                    1.0,
+                                    2.2505,
+                                     3.5505
+                                ]
+                            },
+                            {
+                                "pointId": 49,
+                                "equipmentId": 3, 
+                                "pointName": "401_V020008",
+                                "samplingRate": 15,
+                                "timestamps": [
+                                    "2015-11-05T22:00:00+02:00",
+                                    "2015-11-05T23:00:00+02:00",
+                                    "2015-11-05T24:00:00+02:00"
+                                ],
+                                "values": [
+                                    21.0,
+                                    21.2505,
+                                    21.5505
+                                ]
+                            }
+                            ]
+                        }
+                response:
+                    200:
+                        body:
+                            application/json:
+                                schema: |
+                                {
+                                    "$schema": "http://json-schema.org/draft-04/schema#",
+                                    "type" : "object", 
+                                    "properties" : {
+                                        "points" : {
+                                            "type" : "array",
+                                            "items" : {
+                                                "type" : object, 
+                                                "properties" : {
+                                                    "pointId" : {
+                                                        "type" : "integer"
+                                                    },
+                                                    "equipmentId" : {
+                                                        "type" : "integer"
+                                                    },
+                                                    "pointName" : {
+                                                        "type" : "string"
+                                                    },  
+                                                    "samplingRate" : {
+                                                        "type" : "integer"
+                                                    }, 
+                                                    "timestamps" : {
+                                                        "type" : "array", 
+                                                        "items" : {
+                                                            "type" : "string"
+                                                        }
+                                                    }, 
+                                                    "values" : {
+                                                        "type" : "array", 
+                                                        "items" : {
+                                                            "type" : "number"
+                                                        }
+                                                    }
+                                                },
+                                                "required": [
+                                                    "pointId",
+                                                    "equipmentId",
+                                                    "pointName",
+                                                    "samplingRate",
+                                                    "timestamps",
+                                                    "values"
+                                                ]
+                                            } 
+                                        },
+                                        "parameters": {
+                                            "type": "object", 
+                                            "properties": {
+                                                "groupBy" : {
+                                                    "type" : "string"
+                                                },
+                                                "functions" : {
+                                                    "type" : "string"
+                                                }
+                                            },
+                                            "required": [
+                                            	"functions",
+                                            	"groupBy"
+                                            ]
+                                        }
+                                    },
+                                    "required" : [ "points", "parameters" ]
+                                }
+                                example: |
+                                {
+                                   "points": [
+                                    {
+                                        "pointId": 48,
+                                        "equipmentId": 3,  
+                                        "pointName": "401_V020003",
+                                        "samplingRate": 15,
+                                        "timestamps": [
+                                            "2015-11-08T12:00:00+02:00",
+                                            "2015-11-08T13:00:00+02:00",
+                                            "2015-11-08T14:00:00+02:00"
+                                        ],
+                                        "values": [
+                                            1.0,
+                                            2.2505,
+                                             3.5505
+                                        ]
+                                    },
+                                    {
+                                        "pointId": 49,
+                                        "equipmentId": 3, 
+                                        "pointName": "401_V020008",
+                                        "samplingRate": 15,
+                                        "timestamps": [
+                                            "2015-11-05T22:00:00+02:00",
+                                            "2015-11-05T23:00:00+02:00",
+                                            "2015-11-05T24:00:00+02:00"
+                                        ],
+                                        "values": [
+                                            21.0,
+                                            21.2505,
+                                            21.5505
+                                        ]
+                                    }
+                                    ],
+                                    "parameters:" {
+                                        "groupBy": "day",
+                                        "functions": "sum, min, max",
+                                    }
+                                }  
+		/energy:
+			post:
+				description: |
+					Compute aggregated 
+					(a) consumption values (working hours, non-working hours, total); 
+					(b) number of (distinct) days and samples taken into account; 
+					(c) costs and 
+					(d) CO2 emissions from posted measurement data (that have a specific sampling rate). 
+					Multiple aggregation levels are supported 
+					("day", "week", "month", "year", "none" - with "none" meaning "sum all posted measerements without grouping them"). 
+					# When the "groupBy" parameter has the value "day", the posted data should probably have a sampling rate less than or equal to 30 minutes in order for working/non-working hours to be computed. What about the other cases?
+					# Should we allow the mapping of results to specific points ("targetPointIds")?  
+					# Can be implemented as a composition of the "filtering" and "tsAggregation" services?            
+				queryParameters:
+					access_token:
+						type: string
+						description: The access token provided by the authentication application.
+						example: AABBCCDD
+						required: true
+					workingHours:
+						type: string
+						description: Working hours for each day of the week, starting from Monday.
+						example: "06:30:00-21:00:00, 06:30:00-21:00:00, 06:30:00-21:00:00, 06:30:00-21:00:00, 06:30:00-21:00:00, 06:30:00-20:00:00,"
+						required: false
+					squareMeters:
+						type: integer
+						description: Square meters value for calculating kwh/m^2.
+						example: 400
+						required: false
+					kwhToCurrency:
+						type: number
+						description: Price of kwh.
+						example: 0.12
+						required: false
+					groupBy:
+						type: string
+						description: Group by "day", "week", "month", "year"
+						example: "day"
+						required: true
+				body:
+                    application/json:
+                        schema: |
+                        {
+                            "$schema": "http://json-schema.org/draft-04/schema#",
+                            "type" : "object", 
+                            "properties" : {
+                                "points" : {
+                                    "type" : "array",
+                                    "items" : {
+                                        "type" : object, 
+                                        "properties" : {
+                                            "pointId" : {
+                                                "type" : "integer"
+                                            },
+                                            "equipmentId" : {
+                                                "type" : "integer"
+                                            },
+                                            "pointName" : {
+                                                "type" : "string"
+                                            },  
+                                            "samplingRate" : {
+                                                "type" : "integer"
+                                            }, 
+                                            "timestamps" : {
+                                                "type" : "array", 
+                                                "items" : {
+                                                    "type" : "string"
+                                                }
+                                            }, 
+                                            "values" : {
+                                                "type" : "array", 
+                                                "items" : {
+                                                    "type" : "number"
+                                                }
+                                            }
+                                        },
+                                        "required": [
+                                            "pointId",
+                                            "equipmentId",
+                                            "pointName",
+                                            "samplingRate",
+                                            "timestamps",
+                                            "values"
+                                        ]
+                                    } 
+                                }
+                            } 
+                            "required" : [ "points" ]
+                        }
+                        example: |
+                        {
+                          "points": [
+                            {
+                                "pointId": 48,
+                                "equipmentId": 3,  
+                                "pointName": "401_V020003",
+                                "samplingRate": 15,
+                                "timestamps": [
+                                    "2015-11-08T12:00:00+02:00",
+                                    "2015-11-08T13:00:00+02:00",
+                                    "2015-11-08T14:00:00+02:00"
+                                ],
+                                "values": [
+                                    1.0,
+                                    2.2505,
+                                     3.5505
+                                ]
+                            },
+                            {
+                                "pointId": 49,
+                                "equipmentId": 3, 
+                                "pointName": "401_V020008",
+                                "samplingRate": 15,
+                                "timestamps": [
+                                    "2015-11-05T22:00:00+02:00",
+                                    "2015-11-05T23:00:00+02:00",
+                                    "2015-11-05T24:00:00+02:00"
+                                ],
+                                "values": [
+                                    21.0,
+                                    21.2505,
+                                    21.5505
+                                ]
+                            }
+                            ]
+                        }
+                response:
+                    200:
+                        body:
+                            application/json:
+                                schema: |
+                                {
+                                    "$schema": "http://json-schema.org/draft-04/schema#",
+                                    "type" : "object", 
+                                    "properties" : {
+                                        "points" : {
+                                            "type" : "array",
+                                            "items" : {
+                                                "type" : object, 
+                                                "properties" : {
+                                                    "pointId" : {
+                                                        "type" : "integer"
+                                                    },
+                                                    "equipmentId" : {
+                                                        "type" : "integer"
+                                                    },
+                                                    "pointName" : {
+                                                        "type" : "string"
+                                                    },  
+                                                    "samplingRate" : {
+                                                        "type" : "integer"
+                                                    }, 
+                                                    "timestamps" : {
+                                                        "type" : "array", 
+                                                        "items" : {
+                                                            "type" : "string"
+                                                        }
+                                                    }, 
+                                                    "values" : {
+                                                        "type" : "array", 
+                                                        "items" : {
+                                                            "type" : "number"
+                                                        }
+                                                    }
+                                                },
+                                                "required": [
+                                                    "pointId",
+                                                    "equipmentId",
+                                                    "pointName",
+                                                    "samplingRate",
+                                                    "timestamps",
+                                                    "values"
+                                                ]
+                                            } 
+                                        },
+                                        "parameters": {
+                                            "type": "object", 
+                                            "properties": {
+                                                "groupBy" : {
+                                                    "type" : "string"
+                                                },
+                                                "squareMeters" : {
+                                                    "type" : "int"
+                                                },
+                                                "kwhToCurrency" : {
+                                                    "type" : "number"
+                                                },
+                                                "workingHours" : {
+                                                    "type" : "string"
+                                                }
+                                            },
+                                            "required": [
+                                            	"groupBy"
+                                            ]
+                                        }
+                                    },
+                                    "required" : [ "points", "parameters" ]
+                                }
+                                example: |
+                                {
+                                   "points": [
+                                    {
+                                        "pointId": 48,
+                                        "equipmentId": 3,  
+                                        "pointName": "401_V020003",
+                                        "samplingRate": 15,
+                                        "timestamps": [
+                                            "2015-11-08T12:00:00+02:00",
+                                            "2015-11-08T13:00:00+02:00",
+                                            "2015-11-08T14:00:00+02:00"
+                                        ],
+                                        "values": [
+                                            1.0,
+                                            2.2505,
+                                             3.5505
+                                        ]
+                                    },
+                                    {
+                                        "pointId": 49,
+                                        "equipmentId": 3, 
+                                        "pointName": "401_V020008",
+                                        "samplingRate": 15,
+                                        "timestamps": [
+                                            "2015-11-05T22:00:00+02:00",
+                                            "2015-11-05T23:00:00+02:00",
+                                            "2015-11-05T24:00:00+02:00"
+                                        ],
+                                        "values": [
+                                            21.0,
+                                            21.2505,
+                                            21.5505
+                                        ]
+                                    }
+                                    ],
+                                    "parameters:" {
+                                        "workingHours": "06:30:00-21:00:00, 06:30:00-21:00:00, 06:30:00-21:00:00, 06:30:00-21:00:00, 06:30:00-21:00:00, 06:30:00-20:00:00,
+										"squareMeters": 400,
+										"kwhToCurrency": 0.12,
+										"groupBy": "day"
+                                    }
+                                }                  
+		/power:
+			post:
+				description: |
+					Compute aggregated 
+					(a) power values (peak/average demand); 
+					(b) number of (distinct) days and samples taken into account; and 
+					(c) power to average ration (PAR) from posted measurement data (that have a specific sampling rate). 
+					Multiple aggregation levels are supported ("day", "week", "month", "year", "none" - with "none" meaning "sum all posted measerements without grouping them"). 
+				queryParameters:
+					access_token:
+						type: string
+						description: The access token provided by the authentication application.
+						example: AABBCCDD
+						required: true
+					groupBy:
+						type: string
+						description: Group by "day", "week", "month", "year", "none".
+						example: "day"
+						required: true
+				body:
+					application/json:
+                        schema: |
+                        {
+                            "$schema": "http://json-schema.org/draft-04/schema#",
+                            "type" : "object", 
+                            "properties" : {
+                                "points" : {
+                                    "type" : "array",
+                                    "items" : {
+                                        "type" : object, 
+                                        "properties" : {
+                                            "pointId" : {
+                                                "type" : "integer"
+                                            },
+                                            "equipmentId" : {
+                                                "type" : "integer"
+                                            },
+                                            "pointName" : {
+                                                "type" : "string"
+                                            },  
+                                            "samplingRate" : {
+                                                "type" : "integer"
+                                            }, 
+                                            "timestamps" : {
+                                                "type" : "array", 
+                                                "items" : {
+                                                    "type" : "string"
+                                                }
+                                            }, 
+                                            "values" : {
+                                                "type" : "array", 
+                                                "items" : {
+                                                    "type" : "number"
+                                                }
+                                            }
+                                        },
+                                        "required": [
+                                            "pointId",
+                                            "equipmentId",
+                                            "pointName",
+                                            "samplingRate",
+                                            "timestamps",
+                                            "values"
+                                        ]
+                                    } 
+                                }
+                            } 
+                            "required" : [ "points" ]
+                        }
+                        example: |
+                        {
+                          "points": [
+                            {
+                                "pointId": 48,
+                                "equipmentId": 3,  
+                                "pointName": "401_V020003",
+                                "samplingRate": 15,
+                                "timestamps": [
+                                    "2015-11-08T12:00:00+02:00",
+                                    "2015-11-08T13:00:00+02:00",
+                                    "2015-11-08T14:00:00+02:00"
+                                ],
+                                "values": [
+                                    1.0,
+                                    2.2505,
+                                     3.5505
+                                ]
+                            },
+                            {
+                                "pointId": 49,
+                                "equipmentId": 3, 
+                                "pointName": "401_V020008",
+                                "samplingRate": 15,
+                                "timestamps": [
+                                    "2015-11-05T22:00:00+02:00",
+                                    "2015-11-05T23:00:00+02:00",
+                                    "2015-11-05T24:00:00+02:00"
+                                ],
+                                "values": [
+                                    21.0,
+                                    21.2505,
+                                    21.5505
+                                ]
+                            }
+                            ]
+                        }
+                response:
+                    200:
+                        body:
+                            application/json:
+                                schema: |
+                                {
+                                    "$schema": "http://json-schema.org/draft-04/schema#",
+                                    "type" : "object", 
+                                    "properties" : {
+                                        "points" : {
+                                            "type" : "array",
+                                            "items" : {
+                                                "type" : object, 
+                                                "properties" : {
+                                                    "pointId" : {
+                                                        "type" : "integer"
+                                                    },
+                                                    "equipmentId" : {
+                                                        "type" : "integer"
+                                                    },
+                                                    "pointName" : {
+                                                        "type" : "string"
+                                                    },  
+                                                    "samplingRate" : {
+                                                        "type" : "integer"
+                                                    }, 
+                                                    "timestamps" : {
+                                                        "type" : "array", 
+                                                        "items" : {
+                                                            "type" : "string"
+                                                        }
+                                                    }, 
+                                                    "values" : {
+                                                        "type" : "array", 
+                                                        "items" : {
+                                                            "type" : "number"
+                                                        }
+                                                    }
+                                                },
+                                                "required": [
+                                                    "pointId",
+                                                    "equipmentId",
+                                                    "pointName",
+                                                    "samplingRate",
+                                                    "timestamps",
+                                                    "values"
+                                                ]
+                                            } 
+                                        },
+                                        "parameters": {
+                                            "type": "object", 
+                                            "properties": {
+                                                "groupBy" : {
+                                                    "type" : "string"
+                                                }
+                                            },
+                                            "required": [
+                                            	"groupBy"
+                                            ]
+                                        }
+                                    },
+                                    "required" : [ "points", "parameters" ]
+                                }
+                                example: |
+                                {
+                                   "points": [
+                                    {
+                                        "pointId": 48,
+                                        "equipmentId": 3,  
+                                        "pointName": "401_V020003",
+                                        "samplingRate": 15,
+                                        "timestamps": [
+                                            "2015-11-08T12:00:00+02:00",
+                                            "2015-11-08T13:00:00+02:00",
+                                            "2015-11-08T14:00:00+02:00"
+                                        ],
+                                        "values": [
+                                            1.0,
+                                            2.2505,
+                                             3.5505
+                                        ]
+                                    },
+                                    {
+                                        "pointId": 49,
+                                        "equipmentId": 3, 
+                                        "pointName": "401_V020008",
+                                        "samplingRate": 15,
+                                        "timestamps": [
+                                            "2015-11-05T22:00:00+02:00",
+                                            "2015-11-05T23:00:00+02:00",
+                                            "2015-11-05T24:00:00+02:00"
+                                        ],
+                                        "values": [
+                                            21.0,
+                                            21.2505,
+                                            21.5505
+                                        ]
+                                    }
+                                    ],
+                                    "parameters:" {
+										"groupBy": "day"
+                                    }
+                                }

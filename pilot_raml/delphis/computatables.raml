@@ -1,0 +1,909 @@
+#%RAML 0.8
+---
+title: wAPI
+baseUri: http://wapo-apis.azurewebsites.net/api/{version}
+version: v1
+
+/computables:
+    # Data posted to this layer's services are supposed to be already validated. 
+        /cumulativeToInstant:
+            post:
+                description: |
+                Disaggregate posted cumulative measurement data into instant measurements for a specific sampling rate. Applicable only to numeric measurements and, thus, returned values are always of type "Float". The resulting instant measurements are mapped to a new virtual point ("targetPointID").  
+                The point to be disaggregated is identified by a "pointName" - that is the name the user employs for the point in her system. 
+                queryParameters:
+                    access_token:
+                        type: string
+                        description: The access token provided by the authentication application.
+                        example: AABBCCDD
+                        required: true
+                    targetSamplingRate:
+                        type: number
+                        description: In minutes. Sampling rate of disaggregated instant values.
+                        example: 15
+                        required: false
+                    targetPointName:
+                        type: string
+                        description: Name (altID) for the target instant point.
+                        example: 401_V020018
+                        required: true
+                    targetPointId:
+                        type: number
+                        description: PointId for the target instant point (if available from prior system configuration steps).
+                        example: 10001
+                        required: true
+                body:
+                    application/json:
+                        schema: |
+                        {
+                            "$schema": "http://json-schema.org/draft-04/schema#",
+                            "type" : "object", 
+                            "properties" : {
+                                "points" : {
+                                    "type" : "array",
+                                    "items" : {
+                                        "type" : object, 
+                                        "properties" : {
+                                            "pointId" : {
+                                                "type" : "integer"
+                                            },
+                                            "equipmentId" : {
+                                                "type" : "integer"
+                                            },
+                                            "pointName" : {
+                                                "type" : "string"
+                                            },  
+                                            "samplingRate" : {
+                                                "type" : "integer"
+                                            }, 
+                                            "timestamps" : {
+                                                "type" : "array", 
+                                                "items" : {
+                                                    "type" : "string"
+                                                }
+                                            }, 
+                                            "values" : {
+                                                "type" : "array", 
+                                                "items" : {
+                                                    "type" : "number"
+                                                }
+                                            }
+                                        },
+                                        "required": [
+                                            "pointId",
+                                            "equipmentId",
+                                            "pointName",
+                                            "samplingRate",
+                                            "timestamps",
+                                            "values"
+                                        ]
+                                    } 
+                                }
+                            } 
+                            "required" : [ "points" ]
+                        }
+                        example: |
+                        {
+                          "points": [
+                            {
+                                "pointId": 48,
+                                "equipmentId": 3,  
+                                "pointName": "401_V020003",
+                                "samplingRate": 15,
+                                "timestamps": [
+                                    "2015-11-08T12:00:00+02:00",
+                                    "2015-11-08T13:00:00+02:00",
+                                    "2015-11-08T14:00:00+02:00"
+                                ],
+                                "values": [
+                                    1.0,
+                                    2.2505,
+                                     3.5505
+                                ]
+                            },
+                            {
+                                "pointId": 49,
+                                "equipmentId": 3, 
+                                "pointName": "401_V020008",
+                                "samplingRate": 15,
+                                "timestamps": [
+                                    "2015-11-05T22:00:00+02:00",
+                                    "2015-11-05T23:00:00+02:00",
+                                    "2015-11-05T24:00:00+02:00"
+                                ],
+                                "values": [
+                                    21.0,
+                                    21.2505,
+                                    21.5505
+                                ]
+                            }
+                            ]
+                        }
+                response:
+                    200:
+                        body:
+                            application/json:
+                                schema: |
+                                {
+                                    "$schema": "http://json-schema.org/draft-04/schema#",
+                                    "type" : "object", 
+                                    "properties" : {
+                                        "points" : {
+                                            "type" : "array",
+                                            "items" : {
+                                                "type" : object, 
+                                                "properties" : {
+                                                    "pointId" : {
+                                                        "type" : "integer"
+                                                    },
+                                                    "equipmentId" : {
+                                                        "type" : "integer"
+                                                    },
+                                                    "pointName" : {
+                                                        "type" : "string"
+                                                    },  
+                                                    "samplingRate" : {
+                                                        "type" : "integer"
+                                                    }, 
+                                                    "timestamps" : {
+                                                        "type" : "array", 
+                                                        "items" : {
+                                                            "type" : "string"
+                                                        }
+                                                    }, 
+                                                    "values" : {
+                                                        "type" : "array", 
+                                                        "items" : {
+                                                            "type" : "number"
+                                                        }
+                                                    }
+                                                },
+                                                "required": [
+                                                    "pointId",
+                                                    "equipmentId",
+                                                    "pointName",
+                                                    "samplingRate",
+                                                    "timestamps",
+                                                    "values"
+                                                ]
+                                            } 
+                                        },
+                                        "parameters": {
+                                            "type": "object", 
+                                            "properties": {
+                                                "sourcePointName" : {
+                                                    "type" : "string"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "required" : [ "points", "parameters" ]
+                                }
+                                example: |
+                                {
+                                   "points": [
+                                    {
+                                        "pointId": 48,
+                                        "equipmentId": 3,  
+                                        "pointName": "401_V020003",
+                                        "samplingRate": 15,
+                                        "timestamps": [
+                                            "2015-11-08T12:00:00+02:00",
+                                            "2015-11-08T13:00:00+02:00",
+                                            "2015-11-08T14:00:00+02:00"
+                                        ],
+                                        "values": [
+                                            1.0,
+                                            2.2505,
+                                             3.5505
+                                        ]
+                                    },
+                                    {
+                                        "pointId": 49,
+                                        "equipmentId": 3, 
+                                        "pointName": "401_V020008",
+                                        "samplingRate": 15,
+                                        "timestamps": [
+                                            "2015-11-05T22:00:00+02:00",
+                                            "2015-11-05T23:00:00+02:00",
+                                            "2015-11-05T24:00:00+02:00"
+                                        ],
+                                        "values": [
+                                            21.0,
+                                            21.2505,
+                                            21.5505
+                                        ]
+                                    }
+                                    ],
+                                    "parameters:" {
+                                        "sourcePointName": "401_V020019",
+                                    }
+                                }
+                                
+        /linearTransformation:
+            post:
+                description: |
+                    Transform posted (numeric) measurement data according to the simple formula: X' = a*X + b.
+                    The point to be transformed is identified by a "pointName" - that is the name the user employs for the point in her system. 
+                    If "targetPointName" is present, the transformation result is mapped to a new point, otherwise the source point values are transformed.    
+                queryParameters:
+                    access_token:
+                        type: string
+                        description: The access token provided by the authentication application.
+                        example: AABBCCDD
+                        required: true
+                    aParam: 
+                        type: number
+                        description: The value of "a" in the transformation formula X' = a*X + b.
+                        example: 0.001
+                        required: false
+                        default: 1
+                    bParam: 
+                        type: number
+                        description: The value of "b" in the transformation formula X' = a*X + b.
+                        example: 10
+                        required: false
+                        default: 0
+                    targetPointName:
+                        type: string
+                        description: Name (altID) for the target point.
+                        example: 401_V020018
+                        required: true
+                    targetPointId:
+                            type: number
+                            description: PointId for the target point (if available from prior system configuration steps).
+                            example: 10001
+                            required: true
+                body:
+                    application/json:
+                        schema: |
+                        {
+                            "$schema": "http://json-schema.org/draft-04/schema#",
+                            "type" : "object", 
+                            "properties" : {
+                                "points" : {
+                                    "type" : "array",
+                                    "items" : {
+                                        "type" : object, 
+                                        "properties" : {
+                                            "pointId" : {
+                                                "type" : "integer"
+                                            },
+                                            "equipmentId" : {
+                                                "type" : "integer"
+                                            },
+                                            "pointName" : {
+                                                "type" : "string"
+                                            },  
+                                            "samplingRate" : {
+                                                "type" : "integer"
+                                            }, 
+                                            "timestamps" : {
+                                                "type" : "array", 
+                                                "items" : {
+                                                    "type" : "string"
+                                                }
+                                            }, 
+                                            "values" : {
+                                                "type" : "array", 
+                                                "items" : {
+                                                    "type" : "number"
+                                                }
+                                            }
+                                        },
+                                        "required": [
+                                            "pointId",
+                                            "equipmentId",
+                                            "pointName",
+                                            "samplingRate",
+                                            "timestamps",
+                                            "values"
+                                        ]
+                                    } 
+                                }
+                            } 
+                            "required" : [ "points" ]
+                        }
+                        example: |
+                        {
+                          "points": [
+                            {
+                                "pointId": 48,
+                                "equipmentId": 3,  
+                                "pointName": "401_V020003",
+                                "samplingRate": 15,
+                                "timestamps": [
+                                    "2015-11-08T12:00:00+02:00",
+                                    "2015-11-08T13:00:00+02:00",
+                                    "2015-11-08T14:00:00+02:00"
+                                ],
+                                "values": [
+                                    1.0,
+                                    2.2505,
+                                     3.5505
+                                ]
+                            },
+                            {
+                                "pointId": 49,
+                                "equipmentId": 3, 
+                                "pointName": "401_V020008",
+                                "samplingRate": 15,
+                                "timestamps": [
+                                    "2015-11-05T22:00:00+02:00",
+                                    "2015-11-05T23:00:00+02:00",
+                                    "2015-11-05T24:00:00+02:00"
+                                ],
+                                "values": [
+                                    21.0,
+                                    21.2505,
+                                    21.5505
+                                ]
+                            }
+                            ]
+                        }
+                responses:
+                    200:
+                        body:
+                            application/json:
+                                schema: |
+                                {
+                                    "$schema": "http://json-schema.org/draft-04/schema#",
+                                    "type" : "object", 
+                                    "properties" : {
+                                        "points" : {
+                                            "type" : "array",
+                                            "items" : {
+                                                "type" : object, 
+                                                "properties" : {
+                                                    "pointId" : {
+                                                        "type" : "integer"
+                                                    },
+                                                    "equipmentId" : {
+                                                        "type" : "integer"
+                                                    },
+                                                    "pointName" : {
+                                                        "type" : "string"
+                                                    },  
+                                                    "samplingRate" : {
+                                                        "type" : "integer"
+                                                    }, 
+                                                    "timestamps" : {
+                                                        "type" : "array", 
+                                                        "items" : {
+                                                            "type" : "string"
+                                                        }
+                                                    }, 
+                                                    "values" : {
+                                                        "type" : "array", 
+                                                        "items" : {
+                                                            "type" : "number"
+                                                        }
+                                                    }
+                                                },
+                                                "required": [
+                                                    "pointId",
+                                                    "equipmentId",
+                                                    "pointName",
+                                                    "samplingRate",
+                                                    "timestamps",
+                                                    "values"
+                                                ]
+                                            } 
+                                        },
+                                        "parameters" : {
+                                            "type" : "object", 
+                                            "properties" : {
+                                                "sourcePointId" : {
+                                                    "type" : "integer"
+                                                },
+                                                "sourcePointName" : {
+                                                    "type" : "string"
+                                                },
+                                                "aParam" : {
+                                                    "type" : "number"
+                                                },
+                                                "bParam" : {
+                                                    "type" : "number"
+                                                },
+                                                "formula" : {
+                                                    "type" : "string"
+                                                }
+                                            },
+                                            "required" : [
+                                                "sourcePointId",
+                                                "sourcePointName",
+                                                "aParam",
+                                                "bParam",
+                                                "formula"
+                                            ]
+                                        }
+                                    },
+                                    "required" : [ "point" ]
+                                }
+                                example: |
+                                {
+                                    "points": [
+                                        {
+                                            "pointId": 48,
+                                            "equipmentId": 3,  
+                                            "pointName": "401_V020003",
+                                            "samplingRate": 15,
+                                            "timestamps": [
+                                                "2015-11-08T12:00:00+02:00",
+                                                "2015-11-08T13:00:00+02:00",
+                                                "2015-11-08T14:00:00+02:00"
+                                            ],
+                                            "values": [
+                                                1.0,
+                                                2.2505,
+                                                 3.5505
+                                            ]
+                                        },
+                                        {
+                                            "pointId": 49,
+                                            "equipmentId": 3, 
+                                            "pointName": "401_V020008",
+                                            "samplingRate": 15,
+                                            "timestamps": [
+                                                "2015-11-05T22:00:00+02:00",
+                                                "2015-11-05T23:00:00+02:00",
+                                                "2015-11-05T24:00:00+02:00"
+                                            ],
+                                            "values": [
+                                                21.0,
+                                                21.2505,
+                                                21.5505
+                                            ]
+                                        }
+                                    ],
+                                    "parameters:" {
+                                        "sourcePointId": 51, # no targetPoint parameters provided - the source point values are transformed
+                                        "sourcePointName": "401_V020019",
+                                        "aParam": 0.001,
+                                        "bParam": -0.1,
+                                        "formula": "0.001 * {x} + (-0.1)" # aParam * {x} + bParam
+                                    }
+                                }
+        /powerToInstantEnergy:
+            post:
+                description: |
+                    Compute instant energy from posted instant power measurement data, according to the formula: E = P * (samplingRate/60). 
+                    The resulting instant energy measurements are mapped to a new virtual point ("targetPointID"). 
+                    The source power point is identified by a "pointName" - that is the name the user employs for the point in her system. 
+                queryParameters:
+                    access_token:
+                        type: string
+                        description: The access token provided by the authentication application.
+                        example: AABBCCDD
+                        required: true
+                    targetPointName:
+                        type: string
+                        description: Name (altID) for the target point.
+                        example: 401_V020018
+                        required: true
+                    targetPointId:
+                        type: number
+                        description: PointId for the target point (if available from prior system configuration steps).
+                        example: 10001
+                        required: true
+                body:
+                    application/json:
+                        schema: |
+                        {
+                            "$schema": "http://json-schema.org/draft-04/schema#",
+                            "type" : "object", 
+                            "properties" : {
+                                "points" : {
+                                    "type" : "array",
+                                    "items" : {
+                                        "type" : object, 
+                                        "properties" : {
+                                            "pointId" : {
+                                                "type" : "integer"
+                                            },
+                                            "equipmentId" : {
+                                                "type" : "integer"
+                                            },
+                                            "pointName" : {
+                                                "type" : "string"
+                                            },  
+                                            "samplingRate" : {
+                                                "type" : "integer"
+                                            }, 
+                                            "timestamps" : {
+                                                "type" : "array", 
+                                                "items" : {
+                                                    "type" : "string"
+                                                }
+                                            }, 
+                                            "values" : {
+                                                "type" : "array", 
+                                                "items" : {
+                                                    "type" : "number"
+                                                }
+                                            }
+                                        },
+                                        "required": [
+                                            "pointId",
+                                            "equipmentId",
+                                            "pointName",
+                                            "samplingRate",
+                                            "timestamps",
+                                            "values"
+                                        ]
+                                    } 
+                                }
+                            },
+                            "required" : [ "points" ]
+                        }
+                        example: |
+                        {    
+                            "points": [
+                            {
+                                "pointId": 48,
+                                "equipmentId": 3,  
+                                "pointName": "401_V020003",
+                                "samplingRate": 15,
+                                "timestamps": [
+                                    "2015-11-08T12:00:00+02:00",
+                                    "2015-11-08T13:00:00+02:00",
+                                    "2015-11-08T14:00:00+02:00"
+                                ],
+                                "values": [
+                                    1.0,
+                                    2.2505,
+                                     3.5505
+                                ]
+                            },
+                            {
+                                "pointId": 49,
+                                "equipmentId": 3, 
+                                "pointName": "401_V020008",
+                                "samplingRate": 15,
+                                "timestamps": [
+                                    "2015-11-05T22:00:00+02:00",
+                                    "2015-11-05T23:00:00+02:00",
+                                    "2015-11-05T24:00:00+02:00"
+                                ],
+                                "values": [
+                                    21.0,
+                                    21.2505,
+                                    21.5505
+                                ]
+                            }]
+                        }
+                responses:
+                    200:
+                        body:
+                            application/json:
+                                schema: |
+                                {
+                                    "$schema": "http://json-schema.org/draft-04/schema#",
+                                    "type" : "object", 
+                                    "properties" : {
+                                        "points" : {
+                                            "type" : "array",
+                                            "items" : {
+                                                "type" : object, 
+                                                "properties" : {
+                                                    "pointId" : {
+                                                        "type" : "integer"
+                                                    },
+                                                    "equipmentId" : {
+                                                        "type" : "integer"
+                                                    },
+                                                    "pointName" : {
+                                                        "type" : "string"
+                                                    },  
+                                                    "samplingRate" : {
+                                                        "type" : "integer"
+                                                    }, 
+                                                    "timestamps" : {
+                                                        "type" : "array", 
+                                                        "items" : {
+                                                            "type" : "string"
+                                                        }
+                                                    }, 
+                                                    "values" : {
+                                                        "type" : "array", 
+                                                        "items" : {
+                                                            "type" : "number"
+                                                        }
+                                                    }
+                                                },
+                                                "required": [
+                                                    "pointId",
+                                                    "equipmentId",
+                                                    "pointName",
+                                                    "samplingRate",
+                                                    "timestamps",
+                                                    "values"
+                                                ]
+                                            } 
+                                        },
+                                        "parameters" : {
+                                            "type" : "object", 
+                                            "properties" : {
+                                                "sourcePointId" : {
+                                                    "type" : "integer"
+                                                },
+                                                "sourcePointName" : {
+                                                    "type" : "string"
+                                                },
+                                                "formula" : {
+                                                    "type" : "string"
+                                                }
+                                            },
+                                            "required" : [
+                                                "sourcePointId",
+                                                "sourcePointName",
+                                                "formula"
+                                            ]
+                                        }
+                                    },
+                                    "required" : [ "points" ]
+                                }
+                                example: |
+                                {    
+                                    "points": [
+                                        {
+                                            "pointId": 48,
+                                            "equipmentId": 3,  
+                                            "pointName": "401_V020003",
+                                            "samplingRate": 15,
+                                            "timestamps": [
+                                                "2015-11-08T12:00:00+02:00",
+                                                "2015-11-08T13:00:00+02:00",
+                                                "2015-11-08T14:00:00+02:00"
+                                            ],
+                                            "values": [
+                                                1.0,
+                                                2.2505,
+                                                 3.5505
+                                            ]
+                                        },
+                                        {
+                                            "pointId": 49,
+                                            "equipmentId": 3, 
+                                            "pointName": "401_V020008",
+                                            "samplingRate": 15,
+                                            "timestamps": [
+                                                "2015-11-05T22:00:00+02:00",
+                                                "2015-11-05T23:00:00+02:00",
+                                                "2015-11-05T24:00:00+02:00"
+                                            ],
+                                            "values": [
+                                                21.0,
+                                                21.2505,
+                                                21.5505
+                                            ]
+                                        }
+                                    ],
+                                    "parameters:" {
+                                            "sourcePointId": 60,
+                                            "sourcePointName": "401_P020001",
+                                            "formula": "{x} * 0.25" # "{x} * (samplingRate/60)", samplingRate=15
+                                    }
+                                }
+        /instantEnergyToPower:
+    post:
+        description: |
+            Compute instant power from posted instant energy measurement data, according to the formula: P = E * (60/samplingRate). 
+            The resulting power measurements are mapped to a new virtual point ("targetPointID"). 
+            The source instant energy point is identified by a "pointName" - that is the name the user employs for the point in her system.  
+        queryParameters:
+            access_token:
+                type: string
+                description: The access token provided by the authentication application.
+                example: AABBCCDD
+                required: true
+            targetPointName:
+                type: string
+                description: Name (altID) for the target instant point.
+                example: 401_V020018
+                required: true
+            targetPointId:
+                type: number
+                description: PointId from point table.
+                example: 10001
+                required: true
+        body:
+            application/json:
+                schema: |
+                {
+                    "$schema": "http://json-schema.org/draft-04/schema#",
+                    "type" : "object", 
+                    "properties" : {
+                        "points" : {
+                            "type" : "array",
+                            "items" : {
+                                "type" : object, 
+                                "properties" : {
+                                    "pointId" : {
+                                        "type" : "integer"
+                                    },
+                                    "equipmentId" : {
+                                        "type" : "integer"
+                                    },
+                                    "pointName" : {
+                                        "type" : "string"
+                                    },  
+                                    "samplingRate" : {
+                                        "type" : "integer"
+                                    }, 
+                                    "timestamps" : {
+                                        "type" : "array", 
+                                        "items" : {
+                                            "type" : "string"
+                                        }
+                                    }, 
+                                    "values" : {
+                                        "type" : "array", 
+                                        "items" : {
+                                            "type" : "number"
+                                        }
+                                    }
+                                },
+                                "required": [
+                                    "pointId",
+                                    "equipmentId",
+                                    "pointName",
+                                    "samplingRate",
+                                    "timestamps",
+                                    "values"
+                                ]
+                            } 
+                        }s
+                    },
+                    "required" : ["points"]
+                }
+                example: |
+                    {    
+                        "points": [
+                        {
+                            "pointId": 48,
+                            "equipmentId": 3,  
+                            "pointName": "401_V020003",
+                            "samplingRate": 15,
+                            "timestamps": [
+                                "2015-11-08T12:00:00+02:00",
+                                "2015-11-08T13:00:00+02:00",
+                                "2015-11-08T14:00:00+02:00"
+                            ],
+                            "values": [
+                                1.0,
+                                2.2505,
+                                 3.5505
+                            ]
+                        },
+                        {
+                            "pointId": 49,
+                            "equipmentId": 3, 
+                            "pointName": "401_V020008",
+                            "samplingRate": 15,
+                            "timestamps": [
+                                "2015-11-05T22:00:00+02:00",
+                                "2015-11-05T23:00:00+02:00",
+                                "2015-11-05T24:00:00+02:00"
+                            ],
+                            "values": [
+                                21.0,
+                                21.2505,
+                                21.5505
+                            ]
+                        }
+                        ]
+                    }
+        responses:
+            200:
+                body:
+                    application/json:
+                        schema: |
+                        {
+                        "$schema": "http://json-schema.org/draft-04/schema#",
+                        "type" : "object", 
+                        "properties" : {
+                            "points" : {
+                                "type" : "array",
+                                "items" : {
+                                    "type" : object, 
+                                    "properties" : {
+                                        "pointId" : {
+                                            "type" : "integer"
+                                        },
+                                        "equipmentId" : {
+                                            "type" : "integer"
+                                        },
+                                        "pointName" : {
+                                            "type" : "string"
+                                        },  
+                                        "samplingRate" : {
+                                            "type" : "integer"
+                                        }, 
+                                        "timestamps" : {
+                                            "type" : "array", 
+                                            "items" : {
+                                                "type" : "string"
+                                            }
+                                        }, 
+                                        "values" : {
+                                            "type" : "array", 
+                                            "items" : {
+                                                "type" : "number"
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "pointId",
+                                        "equipmentId",
+                                        "pointName",
+                                        "samplingRate",
+                                        "timestamps",
+                                        "values"
+                                    ]
+                                } 
+                            },
+                            "parameters" : {
+                                "type" : "object", 
+                                "properties" : {
+                                    "sourcePointId" : {
+                                        "type" : "integer"
+                                    },
+                                    "sourcePointName" : {
+                                        "type" : "string"
+                                    },
+                                    "formula" : {
+                                        "type" : "string"
+                                    }
+                                },
+                                "required": [
+                                    "sourcePointId",
+                                    "sourcePointName",
+                                    "formula"   
+                                ]
+                            }
+                        },
+                        "required" : ["points"]
+                    }
+                    example: |
+                    {    
+                        "points": [
+                        {
+                            "pointId": 48,
+                            "equipmentId": 3,  
+                            "pointName": "401_V020003",
+                            "samplingRate": 15,
+                            "timestamps": [
+                                "2015-11-08T12:00:00+02:00",
+                                "2015-11-08T13:00:00+02:00",
+                                "2015-11-08T14:00:00+02:00"
+                            ],
+                            "values": [
+                                1.0,
+                                2.2505,
+                                 3.5505
+                            ]
+                        },
+                        {
+                            "pointId": 49,
+                            "equipmentId": 3, 
+                            "pointName": "401_V020008",
+                            "samplingRate": 15,
+                            "timestamps": [
+                                "2015-11-05T22:00:00+02:00",
+                                "2015-11-05T23:00:00+02:00",
+                                "2015-11-05T24:00:00+02:00"
+                            ],
+                            "values": [
+                                21.0,
+                                21.2505,
+                                21.5505
+                            ]
+                        }
+                        ],
+                        "parameters:" {
+                            "sourcePointId": 50,
+                            "sourcePointName": "401_V020018",
+                            "formula": "{x} * 4" # {x} * (60/samplingRate), samplingRate=15
+                        }
+                    }
