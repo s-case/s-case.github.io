@@ -1,0 +1,53 @@
+#%RAML 0.8
+title: Search algorithmic service
+version: 1.0
+baseUri: https://etics.eng.it/eticsbtem/api/
+securitySchemes:
+   - basic:
+      type: Basic Authentication
+      description: Basic authentication
+/AlgovirtualMachineCompare:
+  post:
+    description: perform a search
+    queryParameters:
+      searchKeyword:
+        description: 
+        type: string
+        required: false
+        displayName: searchKeyword
+      searchSoftwareName:
+        description: 
+        type: string
+        required: false
+        displayName: searchSoftwareName
+      searchVirtualmachineId:
+        description: 
+        type: string
+        required: false
+        displayName: searchVirtualmachineId
+      searchVirtualmachineHdDimension:
+        description: 
+        type: string
+        required: false
+        displayName: searchVirtualmachineHdDimension
+      searchVirtualmachineCpuPower:
+        description: 
+        type: string
+        required: false
+        displayName: searchVirtualmachineCpuPower
+    responses:
+        200:
+          description: Elements found
+          body:
+            application/json:
+              schema: "hyperlink_schema"
+
+/AlgooperationCommit:
+  post:
+    description: commit the modifications to the Virtual Infrastructure
+    responses:
+       200:
+          description: Operation completed
+          body:
+            application/json:
+              schema: "hyperlink_schema"

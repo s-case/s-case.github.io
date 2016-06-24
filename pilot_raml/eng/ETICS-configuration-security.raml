@@ -1,0 +1,42 @@
+#%RAML 0.8
+title: Account generation service
+version: 1.0
+baseUri: https://etics.res.eng.it/eticsbtem/api/
+/account:
+  post:
+    description: Creates a new account object
+    body:
+      application/json:
+          example: '{"username":"scase", "password":"scase" }'
+    responses:
+      200:
+        description: "Account created"
+        body:
+          application/json:
+                schema: "hyperlink_schema"
+  get:
+    description: Gat all the accounts
+    responses:
+      200:
+        description: "Account found"
+        body:
+          application/json:
+                schema: "hyperlink_schema"
+  /{account_id}:
+    description: Get the details of an account
+    uriParameters:
+      account_id:
+        description: "The id of the requested account"
+        type: integer
+        required: true
+    get:
+     description: "Get the information about a certain ccount (defined by its id)"
+     responses:
+          200:
+            description: Account found
+            body:
+              application/json:
+                schema: "hyperlink_schema"
+
+        
+          

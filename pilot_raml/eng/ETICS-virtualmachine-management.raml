@@ -1,0 +1,69 @@
+#%RAML 0.8
+title: services-wadl.xml
+version: 1.0
+baseUri: https://etics.res.eng.it/eticsbtem/api/virtualmachine/
+securitySchemes:
+   - basic:
+      type: Basic Authentication
+      description: Basic authentication
+/{virtualmachineId}/software:
+      uriParameters:
+        virtualmachineId:
+          description: 
+          type: integer
+          required: false
+          displayName: virtualmachineId
+      get:
+        description: Get a list of software installed on the Virtual Machine
+        responses: 
+          200:
+            description: Software found
+            body:
+              application/json:
+                schema: "hyperlink_schema"
+      post:
+        description: Create a new software record
+        body:
+          application/json:
+            example: '{"id":"tomcat7","name":"Tomcat","version":"7.1"}'
+        responses: 
+          200:
+            description: Software created
+            body:
+              application/json:
+                schema: "hyperlink_schema"
+          
+      /{softwareId}:
+        uriParameters:
+          softwareId:
+            description: 
+            type: integer
+            required: false
+            displayName: softwareId
+        get:
+          description: Get the details of the software
+          responses: 
+            200:
+              description: Software data found
+              body:
+                application/json:
+                  schema: "hyperlink_schema"
+        put:
+          description: Modify the details of a software
+          body:
+            application/json:
+              example: '{"id":"tomcat7","name":"Tomcat","version":"7.1"}'
+          responses: 
+            200:
+              description: Software data modified
+              body:
+                application/json:
+                  schema: "hyperlink_schema"
+        delete:
+          description: Remove a software
+          responses: 
+            200:
+              description: Software removed
+              body:
+                application/json:
+                  schema: "hyperlink_schema"
