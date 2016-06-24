@@ -1,0 +1,341 @@
+#%RAML 0.8
+---
+title: getDataFromFacebook
+version: v1
+baseUri: https://graph.facebook.com/v2.5
+
+/me:
+    get:
+        description: Liked movies, books, music or list of friends on Facebook
+        queryParameters:
+            fields:
+                required: true
+                example: books|movies|music|friends
+            access_token:
+                required: true
+
+        responses:
+          200:
+            body:
+              application/json:
+                schema: |
+                  {
+                    "$schema": "http://json-schema.org/draft-04/schema#",
+                    "id": "/",
+                    "type": "object",
+                    "anyOf": [{
+                    "properties": {
+                      "books": {
+                        "id": "books",
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "id": "data",
+                            "type": "array",
+                            "items": {
+                              "id": "0",
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "id": "name",
+                                  "type": "string"
+                                },
+                                "id": {
+                                  "id": "id",
+                                  "type": "string"
+                                },
+                                "created_time": {
+                                  "id": "created_time",
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "name"
+                              ]
+                            }
+                          },
+                          "paging": {
+                            "id": "paging",
+                            "type": "object",
+                            "properties": {
+                              "cursors": {
+                                "id": "cursors",
+                                "type": "object",
+                                "properties": {
+                                  "before": {
+                                    "id": "before",
+                                    "type": "string"
+                                  },
+                                  "after": {
+                                    "id": "after",
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "id": {
+                        "id": "id",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "books"
+                    ]
+                    }, {
+                    "properties": {
+                      "movies": {
+                        "id": "movies",
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "id": "data",
+                            "type": "array",
+                            "items": {
+                              "id": "0",
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "id": "name",
+                                  "type": "string"
+                                },
+                                "id": {
+                                  "id": "id",
+                                  "type": "string"
+                                },
+                                "created_time": {
+                                  "id": "created_time",
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "name"
+                              ]
+                            }
+                          },
+                          "paging": {
+                            "id": "paging",
+                            "type": "object",
+                            "properties": {
+                              "cursors": {
+                                "id": "cursors",
+                                "type": "object",
+                                "properties": {
+                                  "before": {
+                                    "id": "before",
+                                    "type": "string"
+                                  },
+                                  "after": {
+                                    "id": "after",
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "id": {
+                        "id": "id",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "movies"
+                    ]
+                    }, {
+                    "properties": {
+                      "music": {
+                        "id": "music",
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "id": "data",
+                            "type": "array",
+                            "items": {
+                              "id": "0",
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "id": "name",
+                                  "type": "string"
+                                },
+                                "id": {
+                                  "id": "id",
+                                  "type": "string"
+                                },
+                                "created_time": {
+                                  "id": "created_time",
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "name"
+                              ]
+                            }
+                          },
+                          "paging": {
+                            "id": "paging",
+                            "type": "object",
+                            "properties": {
+                              "cursors": {
+                                "id": "cursors",
+                                "type": "object",
+                                "properties": {
+                                  "before": {
+                                    "id": "before",
+                                    "type": "string"
+                                  },
+                                  "after": {
+                                    "id": "after",
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "id": {
+                        "id": "id",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "music"
+                    ]
+                    }, {
+                    "properties": {
+                      "friends": {
+                        "id": "friends",
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "id": "data",
+                            "type": "array",
+                            "items": {
+                              "id": "0",
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "id": "name",
+                                  "type": "string"
+                                },
+                                "id": {
+                                  "id": "id",
+                                  "type": "string"
+                                },
+                                "created_time": {
+                                  "id": "created_time",
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "name"
+                              ]
+                            }
+                          },
+                          "paging": {
+                            "id": "paging",
+                            "type": "object",
+                            "properties": {
+                              "cursors": {
+                                "id": "cursors",
+                                "type": "object",
+                                "properties": {
+                                  "before": {
+                                    "id": "before",
+                                    "type": "string"
+                                  },
+                                  "after": {
+                                    "id": "after",
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "id": {
+                        "id": "id",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "friends"
+                    ]
+                    }]
+                  }
+                example: |
+                  {
+                    "books": {
+                      "data": [
+                        {
+                          "name": "Not Without My Daughter",
+                          "id": "174348862609315",
+                          "created_time": "2013-11-01T23:38:34+0000"
+                        }
+                      ],
+                      "paging": {
+                        "cursors": {
+                          "before": "MTc0MzQ4ODYyNjA5MzE1",
+                          "after": "MTc0MzQ4ODYyNjA5MzE1"
+                        }
+                      }
+                    },
+                    "id": "10152528901001929"
+                  }
+          400:
+            body:
+              application/json:
+                schema: |
+                  {
+                    "$schema": "http://json-schema.org/draft-04/schema#",
+                    "id": "/",
+                    "type": "object",
+                    "properties": {
+                      "error": {
+                        "id": "error",
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "id": "message",
+                            "type": "string"
+                          },
+                          "type": {
+                            "id": "type",
+                            "type": "string"
+                          },
+                          "code": {
+                            "id": "code",
+                            "type": "integer"
+                          },
+                          "fbtrace_id": {
+                            "id": "fbtrace_id",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "message",
+                          "type",
+                          "code",
+                          "fbtrace_id"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "error"
+                    ]
+                  }
+                example: |
+                  {
+                    "error": {
+                      "message": "The access token could not be decrypted",
+                      "type": "OAuthException",
+                      "code": 190,
+                      "fbtrace_id": "Erb/J3fZyUp"
+                    }
+                  }
