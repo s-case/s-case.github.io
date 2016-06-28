@@ -13,3 +13,4 @@
 
 - [RESTBoards requirements](https://github.com/s-case/s-case.github.io/blob/master/events/hackathon/RESTBoards.rqs)
 - [RESTReviews requirements](https://github.com/s-case/s-case.github.io/blob/master/events/hackathon/RESTReviews.rqs)
+- [Web Service Composition storyboards](https://github.com/s-case/s-case.github.io/tree/master/events/hackathon/WSC)
