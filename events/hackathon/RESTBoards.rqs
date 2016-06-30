@@ -1,0 +1,125 @@
+REQUIREMENTS
+------------
+A client should be able to create an account with a username and a password
+A client should be able to read, update and delete an account
+A client should be able to create a board with a name under an account
+A client should be able to read, update and delete a board
+A client should be able to create a list with name under a board
+A client should be able to read, update and delete a list
+A client should be able to create a card with a name and a description under a list
+A client should be able to read, update and delete a card
+A client should be able to create a comment with description under the card
+A client should be able to read, update and delete a comment
+A client should be able to locate cards
+------------
+
+ANNOTATIONS
+------------
+3:R1	IsActorOf 3:T2 3:T1
+3:R2	ActsOn 3:T1 3:T3
+3:R4	HasProperty 3:T3 3:T5
+3:T1	Action 27 33	create
+3:T2	Actor 2 8	client
+3:T3	Object 36 41	board
+3:T5	Property 49 53	name
+4:R1	IsActorOf 4:T2 4:T1
+4:R2	ActsOn 4:T1 4:T3
+4:R3	IsActorOf 4:T2 4:T4
+4:R4	ActsOn 4:T4 4:T3
+4:R5	IsActorOf 4:T2 4:T5
+4:R6	ActsOn 4:T5 4:T3
+4:T1	Action 33 39	update
+4:T2	Actor 2 8	client
+4:T3	Object 53 58	board
+4:T4	Action 44 50	delete
+4:T5	Action 27 31	read
+5:R1	IsActorOf 5:T2 5:T1
+5:R2	ActsOn 5:T1 5:T3
+5:R4	HasProperty 5:T3 5:T5
+5:T1	Action 27 33	create
+5:T2	Actor 2 8	client
+5:T3	Object 36 40	list
+5:T5	Property 46 50	name
+6:R1	IsActorOf 6:T2 6:T1
+6:R2	ActsOn 6:T1 6:T3
+6:R3	IsActorOf 6:T2 6:T4
+6:R4	ActsOn 6:T4 6:T3
+6:R5	IsActorOf 6:T2 6:T5
+6:R6	ActsOn 6:T5 6:T3
+6:T1	Action 44 50	delete
+6:T2	Actor 2 8	client
+6:T3	Object 53 57	list
+6:T4	Action 27 31	read
+6:T5	Action 33 39	update
+7:R1	IsActorOf 7:T2 7:T1
+7:R3	ActsOn 7:T1 7:T4
+7:R6	HasProperty 7:T4 7:T6
+7:T1	Action 27 33	create
+7:T2	Actor 2 8	client
+7:T4	Object 36 40	card
+7:T6	Property 48 52	name
+8:R1	IsActorOf 8:T2 8:T1
+8:R2	ActsOn 8:T1 8:T3
+8:R3	IsActorOf 8:T2 8:T4
+8:R4	ActsOn 8:T4 8:T3
+8:R5	IsActorOf 8:T2 8:T5
+8:R6	ActsOn 8:T5 8:T3
+8:T1	Action 44 50	delete
+8:T2	Actor 2 8	client
+8:T3	Object 53 57	card
+8:T4	Action 33 39	update
+8:T5	Action 27 31	read
+9:R1	IsActorOf 9:T2 9:T1
+9:R2	ActsOn 9:T1 9:T3
+9:R4	HasProperty 9:T3 9:T5
+9:T1	Action 27 33	create
+9:T2	Actor 2 8	client
+9:T3	Object 36 43	comment
+9:T5	Property 49 60	description
+10:R1	IsActorOf 10:T2 10:T1
+10:R2	ActsOn 10:T1 10:T3
+10:R3	IsActorOf 10:T2 10:T4
+10:R4	ActsOn 10:T4 10:T3
+10:R5	IsActorOf 10:T2 10:T5
+10:R6	ActsOn 10:T5 10:T3
+10:T1	Action 27 31	read
+10:T2	Actor 2 8	client
+10:T3	Object 53 60	comment
+10:T4	Action 44 50	delete
+10:T5	Action 33 39	update
+3:T4	Object 63 70	account
+3:R3	RelatesTo 3:T4 3:T3
+5:T4	Object 59 64	board
+5:R3	RelatesTo 5:T4 5:T3
+7:T5	Object 79 83	list
+7:R4	RelatesTo 7:T5 7:T4
+7:T3	Property 59 70	description
+7:R2	HasProperty 7:T4 7:T3
+9:T4	Object 71 75	card
+9:R3	RelatesTo 9:T4 9:T3
+1:T1	Actor 2 8	client
+1:T2	Action 27 33	create
+1:R1	IsActorOf 1:T1 1:T2
+1:T3	Object 37 44	account
+1:R2	ActsOn 1:T2 1:T3
+1:T4	Property 52 60	username
+1:T5	Property 67 75	password
+1:R3	HasProperty 1:T3 1:T5
+1:R4	HasProperty 1:T3 1:T4
+2:T1	Actor 2 8	client
+2:T2	Action 27 31	read
+2:T3	Action 33 39	update
+2:T4	Action 44 50	delete
+2:T5	Object 54 61	account
+2:R1	IsActorOf 2:T1 2:T3
+2:R2	IsActorOf 2:T1 2:T2
+2:R3	IsActorOf 2:T1 2:T4
+2:R4	ActsOn 2:T2 2:T5
+2:R5	ActsOn 2:T3 2:T5
+2:R6	ActsOn 2:T4 2:T5
+11:T1	Actor 2 8	client
+11:T2	Action 27 33	locate
+11:T3	Object 34 39	cards
+11:R1	IsActorOf 11:T1 11:T2
+11:R2	ActsOn 11:T2 11:T3
+------------
