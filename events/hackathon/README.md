@@ -7,7 +7,7 @@
 3. Requirements Editing
 4. Web Service Composition
 5. S-CASE Workflow
-6. RESTAPPS
+6. [RESTAPPS](https://github.com/s-case/s-case.github.io/blob/master/events/hackathon/RESTApps%20-%20RESTBOARDS%20and%20RESTREVIEWS.pdf)
 
 ## Material
 
