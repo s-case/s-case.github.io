@@ -2,18 +2,17 @@
 
 ## Presentations
 
-1. Introduction
-2. Code Generation
-3. Requirements Editing
-4. Web Service Composition
-5. S-CASE Workflow
+1. [Introduction](https://github.com/s-case/s-case.github.io/blob/master/events/hackathon/Introduction.pdf)
+2. [Code Generation](https://github.com/s-case/s-case.github.io/blob/master/events/hackathon/Code%20Generation%20Engine.pdf)
+3. [Requirements Editing](https://github.com/s-case/s-case.github.io/blob/master/events/hackathon/RequirementsEditor.pdf)
+4. [Web Service Composition](https://github.com/s-case/s-case.github.io/blob/master/events/hackathon/Web%20Service%20Composition.pdf)
+5. [S-CASE Workflow](https://www.youtube.com/watch?v=PmhZYpdSudk)
 6. [RESTAPPS](https://github.com/s-case/s-case.github.io/blob/master/events/hackathon/RESTApps%20-%20RESTBOARDS%20and%20RESTREVIEWS.pdf)
 
 ## Material
 
- - [Informational Material](https://docs.google.com/document/d/1JNJA8a_8T1GLz22XUSK4GTtaP9PGxRPdy_YzSE9P91Y/edit?usp=sharing)
- - [Pre-Survey](http://goo.gl/forms/Uo3ew6JJtwXfBMEx2)
- - [Post-Survey](http://goo.gl/forms/k29ATu2dIWzCDsU43)
+ - [S-CASE dev website](http://s-case.github.io)
+ - [Web book](http://s-case.github.io/webbook.html#1) for getting started
 
 ## Artefacts
 
