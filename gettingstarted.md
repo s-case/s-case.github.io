@@ -8,7 +8,7 @@ Your first step is to install the S-CASE Eclipse plugin:
 
 1. Download & start Eclipse IDE
 2. Select the menu item Install new software...
-3. Add as a new remote repository the URL: https://eclipse.scasefp7.com/eclipse/s-case_update_site/
+3. Add as a new remote repository the URL: `https://eclipse.scasefp7.com/eclipse/s-case_update_site/`
 
 <br>
 
