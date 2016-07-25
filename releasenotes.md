@@ -1,5 +1,11 @@
 ## Release Notes
 
+### Version: 1.15
+
+_Date of release: TBD_
+- Store Control Tower tokena and secret securely. GitHub [entry](https://github.com/s-case/s-case-core/commit/d2172217843064478856b97c7e8002d5bd4034a3)
+- Add database migration option. GitHub [entry1](https://github.com/s-case/mde/commit/dd7e567ccbf92f4fc8a85686e32dec3b160997d6), [entry2](https://github.com/s-case/mde/commit/62a4cb8b4f20b8ff2177dd2565d911ecbbb70541), [entry3](https://github.com/s-case/mde/commit/2537648d81a15fbf60882675ff67852f74e156e8), [entry4](https://github.com/s-case/mde/commit/8a9c59e48426661faf2bd63e9728661fb778a39e), [entry5](https://github.com/s-case/mde/commit/5fd7767d3ca02d5402924bd88faf77ed82d6b194)
+
 ### Version: 1.14
 
 _Date of release: 24/6/2016_
