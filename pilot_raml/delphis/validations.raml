@@ -1,0 +1,352 @@
+#%RAML 0.8
+---
+title: wAPI
+baseUri: http://wapo-apis.azurewebsites.net/api/webapi/{version}
+version: v1
+
+/dataCollection:
+	description: This is the "Data Collection" layer.
+	/validation:
+		/instant:
+			post:
+				description: |
+						Validate posted measurement data for a point with a specific sampling rate. 
+						The point to be validated is identified by a "pointName" (altID) - that is the name the user employs for the point in her system.
+				queryParameters:
+					access_token:
+						type: string
+						description: The access token provided by the authentication application.
+						example: AABBCCDD
+						required: true
+					type:
+						type: string
+						description: The point's measurements/values type ("Int", "Float", "Binary"), used for correctly parsing measurement values.  
+						example: "Float"
+						required: true
+					distinctValues:
+						type: string 
+						description: Comma-separated list of possible values for points of type "Distinct". 
+						example: "1, 2, 3"
+						required: false
+					min:
+						type: number
+						description: If provided, all measurements are validated against this min value (and set to it if they are less than min). 
+						example: 0
+						required: false
+					max:
+						type: number
+						description: If provided, all measurements will be validated against this max value (and set to it if they are greater than max). 
+						example: 100
+						required: false
+					startTs: 
+						type: date
+						description: If provided, it will be used to identify missing values in the beginning of the measurements array.
+						example: "2015-11-05T22:00:00+02:00"
+						required: false
+					endTs: 
+						type: date
+						description: If provided, it will be used to identify missing values in the end of the measurements array.
+						example: "2015-11-05T22:00:00+03:15"
+						required: false
+					includeValidationEvents: 
+						type: boolean
+						description: Whether the response will include the timestamps where each of the following validation events occurred ["toMin", "toMax", "parseError", "errorFlag", "missing"].
+						example: "true"
+						required: false
+				body:
+					application/json:
+						schema: |
+						{
+							"$schema": "http://json-schema.org/draft-04/schema#",
+							"type" : "object", 
+							"properties" : {
+								"points" : {
+									"type" : "array", 
+									"items":{
+										"type": object,
+										"properties" : {
+											"pointId" : {
+												"type" : "integer"
+											},
+											"equipmentId": {
+												"type": "integer"
+											},
+											"pointName" : {
+												"type" : "string"
+											}, 
+											"samplingRate" : {
+												"report-typepe" : "integer"
+											}, 
+											"timestamps" : {
+												"type" : "array", 
+												"items" : {
+													"type" : "string"
+												}
+											}, 
+											"values" : {
+												"type" : "array", 
+												"items" : {
+													"type" : "number"
+												}
+											}
+										},
+										"required": [
+											"pointId",
+											"equipmentId",
+											"pointName",
+											"samplingRate",
+											"timestamps",
+											"values"
+										]
+									}
+								}
+							},
+							"required": ["points"]
+						}
+						example: |
+						{    
+							"points": [{
+								"pointId": 50,
+								"equipmentId": 100,
+								"pointName": "401_V020018",
+								"samplingRate": 15,
+								"timestamps": [
+									"2015-11-05T21:30:00+02:00",
+									"2015-11-05T22:15:00+02:00",
+									"2015-11-05T22:30:00+02:00",
+									"2015-11-05T22:45:00+02:00",
+									"2015-11-05T23:00:00+02:00",
+									"2015-11-05T23:15:00+02:00",
+									"2015-11-05T23:30:00+02:00"
+								],
+								"values": [
+									105.0,
+									5.0,
+									-0.1,
+									3.2,
+									-99999,
+									2.2,
+									100.1
+								]
+							}]
+						}
+				responses:
+					200:
+						body:
+							application/json:
+								schema: |
+								{
+									"$schema": "http://json-schema.org/draft-04/schema#",
+									"type" : "object", 
+									"properties" : {
+										"points" : {
+											"type" : "array", 
+											"items":{
+												"type": object,
+												"properties" : {
+													"pointId" : {
+														"type" : "integer"
+													},
+													"equipmentId": {
+														"type": "integer"
+													},
+													"pointName" : {
+														"type" : "string"
+													}, 
+													"samplingRate" : {
+														"report-typepe" : "integer"
+													}, 
+													"timestamps" : {
+														"type" : "array", 
+														"items" : {
+															"type" : "string"
+														}
+													}, 
+													"values" : {
+														"type" : "array", 
+														"items" : {
+															"type" : "number"
+														}
+													}
+												},
+												"required": [
+													"pointId",
+													"equipmentId",
+													"pointName",
+													"samplingRate",
+													"timestamps",
+													"values"
+												]
+											}
+										}, 
+										"report" : {
+											"type" : "object", 
+											"properties" : {
+												"report-type" : {
+													"type": "string"
+												}, 
+												"createdAt" : {
+													"type" : "string"
+												},
+												"valid" : {
+													"type" : "boolean"
+												}, 
+												"belowMin" : {
+													"type" : "integer"
+												}, 
+												"aboveMax" : {
+													"type" : "integer"
+												}, 
+												"parseErrors" : {
+													"type" : "integer"
+												}, 
+												"errorFlags" : {
+													"type" : "integer"
+												}, 
+												"missing" : {
+													"type" : "integer"
+												}, 
+												"overallMissing" : {
+													"type" : "integer"
+												}
+											},
+											"required": [
+												"report-type",
+												"createdAt",
+												"valid",
+												"parseErrors",
+												"errorFlags",
+												"missing",
+												"overallMissing"
+											]
+										}, 
+										"parameters" : {
+											"type" : "object", 
+											"properties" : {
+												"min": {
+													"type" : "number"
+												}, 
+												"max": {
+													"type" : "number"
+												}, 
+												"startTs": {
+													"type" : "string"
+												}, 
+												"endTs": {
+													"type" : "string"
+												},
+												"distinctValues": {
+													"type" : "string"
+												},
+												"errorFlag": {
+													"type" : "number"
+												},
+												"type": {
+													"type" : "string"
+												}
+											},
+											"required": [
+												"errorFlag",
+												"type",
+												"startTs",
+												"endTs"
+											]
+										}, 
+										"validationEvents": {
+											"type" : "object", 
+											"properties" : {
+												"toMin" : {
+													"type" : "array", 
+													"items" : {
+														"type" : "string"
+													}
+												}, 
+												"toMax" : {
+													"type" : "array", 
+													"items" : {
+														"type" : "string"
+													}
+												}, 
+												"parseErrors" : {
+													"type" : "array", 
+													"items" : {
+														"type" : "string" 
+													}
+												},
+												"errorFlags" : {
+													"type" : "array", 
+													"items" : {
+														"type" : "string" 
+													}
+												},
+												"missing" : {
+													"type" : "array", 
+													"items" : {
+														"type" : "string"
+													}
+												}
+											},
+											"required": [
+												"errorFlags",
+												"parseErrors",
+												"missing"
+											]
+
+										}
+									},
+									"required": [
+										"points",
+										"report",
+										"parameters"
+									]
+								}
+							example: |
+							{    
+								"points": [{
+									"pointId": 50,
+									"equipmentId": 100,
+									"pointName": "401_V020018",
+									"samplingRate": 15,
+									"timestamps": [
+										"2015-11-05T21:30:00+02:00",
+										"2015-11-05T22:15:00+02:00",
+										"2015-11-05T22:30:00+02:00",
+										"2015-11-05T22:45:00+02:00",
+										"2015-11-05T23:15:00+02:00",
+										"2015-11-05T23:30:00+02:00"
+									],
+									"values": [
+										100.0,
+										5.0,
+										0.0,
+										3.2,
+										2.2,
+										100.0
+									]
+								}],
+								"report": {
+									"report-type": "validation-report",
+									"createdAt": "2015-11-25T11:48:14.926",
+									"valid": true,
+									"belowMin": 1,
+									"aboveMax": 2,
+									"parseErrors": 0,
+									"errorFlags": 1,
+									"missing": 5,
+									"overallMissing": 4
+								},
+								"parameters": {
+									"min": 0,
+									"max": 100,
+									"startTs": "2015-11-05T21:00:0002:00",
+									"endTs": "2015-11-05T23:45:0002:00",
+									"errorFlag": -99999,
+								},
+								"validationEvents": {
+									{"toMin": ["2015-11-05T22:30:00+02:00"]},
+									{"toMax": ["2015-11-05T21:30:00+02:00",  "2015-11-05T23:30:00+02:00"]},
+									{"parseErrors": []},
+									{"errorFlags": ["2015-11-05T23:00:00+02:00"]},
+									{"missing": ["2015-11-05T21:00:0002:00", "2015-11-05T21:15:0002:00", "2015-11-05T21:45:0002:00", "2015-11-05T22:00:0002:00", "2015-11-05T23:45:0002:00"]}
+								}
+							}

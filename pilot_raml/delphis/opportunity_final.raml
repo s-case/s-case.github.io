@@ -1,0 +1,1694 @@
+#%RAML 0.8
+---
+title: wAPI
+baseUri: http://40.121.136.79:8080/waposervices/webapi
+
+/dataCollection:
+	/computables:
+		/filtering:
+			post:
+				description: |
+					Filter the timestamps of the posted measurement data (that have a specific sampling rate). The user defines: 
+					(a) hours to be included (not filtered) per day of week (Mon-Sun) - "workingHours" parameter;
+					(b) hours to be included (not filtered) for specific dates - "includeDates" parameter (overrides "workingHours"); and
+					(c) hours to be excluded (filtered) for specific dates - "excludeDates" parameter (overrides "workingHours").  
+					The point to be filtered (in terms of timestamps) is identified by a "pointName" - that is the name the user employs for the point in her system.
+					If "targetPointName" is present, the result is mapped to a new point, otherwise the source point values are filtered.           
+				queryParameters:
+					access_token:
+						type: string
+						description: The access token provided by the authentication application.
+						example: AABBCCDD
+						required: true
+					workingHours:
+						type: string
+						description: Hours to be included per day of week (Mon-Sun).
+						example: {hoursPerWeekday: [06:30:00-21:00:00, 06:30:00-21:00:00, 06:30:00-21:00:00, 06:30:00-21:00:00, 06:30:00-21:00:00, 06:30:00-20:00:00, ]}
+						required: false
+					includeDates:
+						type: string
+						description: Hours to be included for specific dates. Overrides "workingHours".
+						example: {dates: [2015-12-20, 2015-12-27], hours: [11:00:00-18:00:00, 11:00:00-18:00:00]}
+						required: false
+					excludeDates:  
+						type: string
+						description: Hours to be excluded for specific dates. Overrides "workingHours".
+						example: {dates: [2015-12-25], hours: [00:00:00-23:59:59]}
+						required: false
+					targetPointName:
+						type: string
+						description: Name (altID) for the target instant point.
+						example: 401_V020018
+						required: false
+					targetPointId:
+						type: number
+						description: PointId for the target instant point (if available from prior system configuration steps).
+						example: 10001
+						required: false
+				body:
+					application/json:
+						schema: |
+							{
+								"$schema": "http://json-schema.org/draft-04/schema#",
+								"type": "object",
+								"properties": {
+									"points": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"equipmentId": {
+													"type": "integer"
+												},
+												"pointId": {
+													"type": "integer"
+												},
+												"pointName": {
+													"type": "string"
+												},
+												"samplingRate": {
+													"type": "integer"
+												},
+												"timestamps": {
+													"type": "array",
+													"items": {
+													  "type": "string"
+													}
+												},
+												"values": {
+													"type": "array",
+													"items": {
+													  "type": "number"
+													}
+												}
+											},
+											"required": [
+												"pointId",
+												"pointName",
+												"samplingRate",
+												"timestamps",
+												"values"
+											]
+										}
+									},
+									"parameters": {
+										"type": "object",
+										"properties": {
+											"sourcePointId": {
+												"type": "integer"
+											},
+											"sourcePointName": {
+												"type": "string"
+											},
+											"excludeDates": {
+												"type": "string"
+											},
+											"includeDates": {
+												"type": "string"
+											},
+											"valueForExcludedTs": {
+												"type": "integer"
+											},
+											"workingHours": {
+												"type": "string"
+											}
+										},
+										"required": [
+											"sourcePointId",
+											"sourcePointName"
+										]
+									},
+									"report": {
+										"type": "object",
+										"properties": {
+											"report_type": {
+												"type": "string"
+											},
+											"createdAt": {
+												"type": "string"
+											},
+											"message": {
+												"type": "string"
+											},
+											"defrosts": {
+												"type": "integer"
+											},
+											"defrosts_ts": {
+												"type": "string"
+											},
+											"exceedances": {
+												"type": "integer"
+											}
+										},
+										"required": [
+											"createdAt"
+										]
+									}
+								}
+							}
+						example: |
+							{
+								"points": [
+									{
+										"pointId": 48,
+										"equipmentId": 3,  
+										"pointName": "401_V020003",
+										"samplingRate": 15,
+										"timestamps": [
+											"2015-11-05T12:00:00+02:00",
+											"2015-11-05T13:00:00+02:00",
+											"2015-11-05T14:00:00+02:00",
+											"2015-11-05T20:30:00+02:00",
+											"2015-11-05T22:00:00+02:00",
+											"2015-11-05T23:00:00+02:00",
+											"2015-11-05T23:15:00+02:00",
+											"2015-11-08T12:00:00+02:00",
+											"2015-11-08T13:00:00+02:00",
+											"2015-11-08T14:00:00+02:00",
+											"2015-12-20T17:45:00+02:00",
+											"2015-12-25T17:15:00+02:00",
+											"2015-12-28T00:00:00+02:00",
+											"2015-12-28T00:15:00+02:00",
+											"2015-12-28T00:30:00+02:00",
+											"2015-12-28T00:45:00+02:00",
+											"2015-12-28T10:00:00+02:00",
+											"2015-12-28T10:15:00+02:00",
+											"2015-12-28T10:30:00+02:00",
+											"2015-12-28T10:45:00+02:00"
+										],
+										"values": [
+											-21.0,
+											1.2505,
+											81.55,
+											21.0,
+											21.2505,
+											21.5505,
+											1.0,
+											2.2505,
+											3.5505,
+											51.0,
+											51.25,
+											51.55,
+											10.2,
+											10.1,
+											10.3,
+											9.8,
+											9.9,
+											12,
+											10,
+											13.4
+										]
+									}
+								] 
+							}
+				responses:
+					200:
+						body:
+							application/json:
+								schema: |
+									{
+										"$schema": "http://json-schema.org/draft-04/schema#",
+										"type": "object",
+										"properties": {
+											"points": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"equipmentId": {
+															"type": "integer"
+														},
+														"pointId": {
+															"type": "integer"
+														},
+														"pointName": {
+															"type": "string"
+														},
+														"samplingRate": {
+															"type": "integer"
+														},
+														"timestamps": {
+															"type": "array",
+															"items": {
+															  "type": "string"
+															}
+														},
+														"values": {
+															"type": "array",
+															"items": {
+															  "type": "number"
+															}
+														}
+													},
+													"required": [
+														"pointId",
+														"pointName",
+														"samplingRate",
+														"timestamps",
+														"values"
+													]
+												}
+											},
+											"parameters": {
+												"type": "object",
+												"properties": {
+													"sourcePointId": {
+														"type": "integer"
+													},
+													"sourcePointName": {
+														"type": "string"
+													},
+													"excludeDates": {
+														"type": "string"
+													},
+													"includeDates": {
+														"type": "string"
+													},
+													"valueForExcludedTs": {
+														"type": "integer"
+													},
+													"workingHours": {
+														"type": "string"
+													}
+												},
+												"required": [
+													"sourcePointId",
+													"sourcePointName"
+												]
+											},
+											"report": {
+												"type": "object",
+												"properties": {
+													"report_type": {
+														"type": "string"
+													},
+													"createdAt": {
+														"type": "string"
+													},
+													"message": {
+														"type": "string"
+													},
+													"defrosts": {
+														"type": "integer"
+													},
+													"defrosts_ts": {
+														"type": "string"
+													},
+													"exceedances": {
+														"type": "integer"
+													}
+												},
+												"required": [
+													"createdAt"
+												]
+											}
+										}
+									}
+								example: |
+									{
+										"output_data_type": "filtering_output",
+										"points": [
+											{
+												"equipmentId": 3,
+												"pointId": 10001,
+												"pointName": "401_V020018",
+												"samplingRate": 15,
+												"timestamps": [
+													"2015-11-05T12:00:00+02:00",
+											        "2015-11-05T13:00:00+02:00",
+											        "2015-11-05T14:00:00+02:00",
+											        "2015-11-05T20:30:00+02:00",
+											        "2015-12-20T17:45:00+02:00",
+											        "2015-12-28T10:00:00+02:00",
+											        "2015-12-28T10:15:00+02:00",
+											        "2015-12-28T10:30:00+02:00",
+											        "2015-12-28T10:45:00+02:00"
+												],
+												"values": [
+													-21,
+											        1.2505,
+											        81.55,
+											        21,
+											        51.25,
+											        9.9,
+											        12,
+											        10,
+											        13.4
+												]
+											}
+										],
+										"parameters": {
+											"sourcePointId": 48,
+											"sourcePointName": "401_V020003",
+											"excludeDates": "{dates: [2015-12-25], hours: [00:00:00-23:59:59]}",
+											"includeDates": "{dates: [2015-12-20, 2015-12-27], hours: [11:00:00-18:00:00, 11:00:00-18:00:00]}",
+											"workingHours": "{hoursPerWeekday: [06:30:00-21:00:00, 06:30:00-21:00:00, 06:30:00-21:00:00, 06:30:00-21:00:00, 06:30:00-21:00:00, 06:30:00-20:00:00, ]}"
+										}
+									}
+
+/opportunityDiscovery: 
+	/totalEnergyMeter:
+		/baseload:
+			post:
+				description: |
+					Compute baseload exceedances during NON-working hours based on posted power data. Working hours are defined through the "workingHours" per weekday parameter, possibly including (specific hours during) additional dates ("includeDates") and excluding specific dates ("excludeDates"). 
+					If a value for the "baseload" parameter is not specified, the baseload-threshold is computed as the absolute minimum value with more than 3 successive occurrences (when taking into account values rounded to integers). 
+				queryParameters:
+					access_token:
+						type: string
+						description: The access token provided by the authentication application.
+						example: AABBCCDD
+						required: true
+					baseload:
+						type: number
+						description: Threshold value against which the exceedances will be computed.
+						example: 11.0
+						required: false
+					workingHours:
+						type: string
+						description: Working hours for each day of week starting from Monday
+						example: '{"hoursPerWeekday": ["06:30:00-21:00:00", "06:30:00-21:00:00", "06:30:00-21:00:00", "06:30:00-21:00:00", "06:30:00-21:00:00", "06:30:00-20:00:00", ""]}'
+						required: true # the user has to define at least the working hours per weekday (so that the non-working hours can be extrapolated) 
+					includeDates:
+						type: string
+						description: Hours to be included for additional dates. Overrides workingHours.
+						example: '{"dates": ["2015-12-20", "2015-12-27"], "hours": ["11:00:00-18:00:00", "11:00:00-18:00:00"]}'
+						required: false
+					excludeDates:  
+						type: string
+						description: Dates to be excluded. Overrides workingHours.
+						example: '["2015-12-25", "2015-12-26"]'
+						required: false
+				body:
+					application/json:
+						schema: |
+							{
+								"$schema": "http://json-schema.org/draft-04/schema#",
+								"type": "object",
+								"properties": {
+									"points": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"equipmentId": {
+													"type": "integer"
+												},
+												"pointId": {
+													"type": "integer"
+												},
+												"pointName": {
+													"type": "string"
+												},
+												"samplingRate": {
+													"type": "integer"
+												},
+												"timestamps": {
+													"type": "array",
+													"items": {
+													  "type": "string"
+													}
+												},
+												"values": {
+													"type": "array",
+													"items": {
+													  "type": "number"
+													}
+												}
+											},
+											"required": [
+												"pointId",
+												"pointName",
+												"samplingRate",
+												"timestamps",
+												"values"
+											]
+										}
+									},
+									"parameters": {
+										"type": "object",
+										"properties": {
+											"sourcePointId": {
+												"type": "integer"
+											},
+											"sourcePointName": {
+												"type": "string"
+											},
+											"excludeDates": {
+												"type": "string"
+											},
+											"includeDates": {
+												"type": "string"
+											},
+											"valueForExcludedTs": {
+												"type": "integer"
+											},
+											"workingHours": {
+												"type": "string"
+											}
+										},
+										"required": [
+											"sourcePointId",
+											"sourcePointName"
+										]
+									},
+									"report": {
+										"type": "object",
+										"properties": {
+											"report_type": {
+												"type": "string"
+											},
+											"createdAt": {
+												"type": "string"
+											},
+											"message": {
+												"type": "string"
+											},
+											"defrosts": {
+												"type": "integer"
+											},
+											"defrosts_ts": {
+												"type": "string"
+											},
+											"exceedances": {
+												"type": "integer"
+											}
+										},
+										"required": [
+											"createdAt"
+										]
+									}
+								}
+							}
+						example: |
+							{
+								"points": [
+									{
+										"pointId": 48,
+										"equipmentId": 3,  
+										"pointName": "401_V020003",
+										"samplingRate": 15,
+										"timestamps": [
+											"2015-11-05T12:00:00+02:00",
+											"2015-11-05T13:00:00+02:00",
+											"2015-11-05T14:00:00+02:00",
+											"2015-11-05T20:30:00+02:00",
+											"2015-11-05T22:00:00+02:00",
+											"2015-11-05T23:00:00+02:00",
+											"2015-11-05T23:15:00+02:00",
+											"2015-11-08T12:00:00+02:00",
+											"2015-11-08T13:00:00+02:00",
+											"2015-11-08T14:00:00+02:00",
+											"2015-12-20T17:45:00+02:00",
+											"2015-12-25T17:15:00+02:00",
+											"2015-12-28T00:00:00+02:00",
+											"2015-12-28T00:15:00+02:00",
+											"2015-12-28T00:30:00+02:00",
+											"2015-12-28T00:45:00+02:00",
+											"2015-12-28T01:00:00+02:00",
+											"2015-12-28T01:15:00+02:00",
+											"2015-12-28T01:30:00+02:00",
+											"2015-12-28T01:45:00+02:00"
+										],
+										"values": [
+											-21.0,
+											1.2505,
+											81.55,
+											21.0,
+											21.2505,
+											21.5505,
+											1.0,
+											2.2505,
+											3.5505,
+											51.0,
+											51.25,
+											51.55,
+											10.2,
+											10.1,
+											10.3,
+											9.8,
+											9.9,
+											12,
+											10,
+											13.4
+										]
+									}
+								] 							
+							}
+				responses:
+					200:
+						body:
+							application/json:
+								schema: |
+									{
+										"$schema": "http://json-schema.org/draft-04/schema#",
+										"type": "object",
+										"properties": {
+											"points": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"equipmentId": {
+															"type": "integer"
+														},
+														"pointId": {
+															"type": "integer"
+														},
+														"pointName": {
+															"type": "string"
+														},
+														"samplingRate": {
+															"type": "integer"
+														},
+														"timestamps": {
+															"type": "array",
+															"items": {
+															  "type": "string"
+															}
+														},
+														"values": {
+															"type": "array",
+															"items": {
+															  "type": "number"
+															}
+														}
+													},
+													"required": [
+														"pointId",
+														"pointName",
+														"samplingRate",
+														"timestamps",
+														"values"
+													]
+												}
+											},
+											"parameters": {
+												"type": "object",
+												"properties": {
+													"sourcePointId": {
+														"type": "integer"
+													},
+													"sourcePointName": {
+														"type": "string"
+													},
+													"excludeDates": {
+														"type": "string"
+													},
+													"includeDates": {
+														"type": "string"
+													},
+													"valueForExcludedTs": {
+														"type": "integer"
+													},
+													"workingHours": {
+														"type": "string"
+													}
+												},
+												"required": [
+													"sourcePointId",
+													"sourcePointName"
+												]
+											},
+											"report": {
+												"type": "object",
+												"properties": {
+													"report_type": {
+														"type": "string"
+													},
+													"createdAt": {
+														"type": "string"
+													},
+													"message": {
+														"type": "string"
+													},
+													"defrosts": {
+														"type": "integer"
+													},
+													"defrosts_ts": {
+														"type": "string"
+													},
+													"exceedances": {
+														"type": "integer"
+													}
+												},
+												"required": [
+													"createdAt"
+												]
+											}
+										}
+									}
+								example: |
+									{
+										"output_data_type": "threshold_output",
+										"points": [
+											{
+												"pointName": "baseloadExceedances",
+												"samplingRate": 15,
+												"timestamps": [
+													"2015-11-05T22:00:00+02:00",
+											        "2015-11-05T23:00:00+02:00",
+											        "2015-11-05T23:15:00+02:00",
+											        "2015-11-08T12:00:00+02:00",
+											        "2015-11-08T13:00:00+02:00",
+											        "2015-11-08T14:00:00+02:00",
+											        "2015-12-25T17:15:00+02:00",
+											        "2015-12-28T00:00:00+02:00",
+											        "2015-12-28T00:15:00+02:00",
+											        "2015-12-28T00:30:00+02:00",
+											        "2015-12-28T00:45:00+02:00",
+											        "2015-12-28T01:00:00+02:00",
+											        "2015-12-28T01:15:00+02:00",
+											        "2015-12-28T01:30:00+02:00",
+											        "2015-12-28T01:45:00+02:00"
+												],
+												"values": [
+													11.2505,
+											        11.5505,
+											        0,
+											        0,
+											        0,
+											        41,
+											        41.55,
+											        0,
+											        0,
+											        0,
+											        0,
+											        0,
+											        2,
+											        0,
+											        3.4
+												]
+											}
+										],
+										"parameters": {
+											"sourcePointId": 48,
+    										"sourcePointName": "401_V020003",
+											"excludeDates": " [2015-12-25, 2015-12-26]",
+											"includeDates": "{dates: [2015-12-20, 2015-12-27], hours: [11:00:00-18:00:00, 11:00:00-18:00:00]}",
+											"workingHours": "{hoursPerWeekday: [06:30:00-21:00:00, 06:30:00-21:00:00, 06:30:00-21:00:00, 06:30:00-21:00:00, 06:30:00-21:00:00, 06:30:00-20:00:00, ]}",
+											"baseload": 10
+										}
+									}
+
+	/submetering:
+		/threshold:
+			/general:
+				post:
+					description: |
+						Compute threshold exceedances during selected hours per weekday, possibly including (specific hours during) additional dates and excluding specific dates. 
+						If no "filtering" parameter is defined, all timestamps are taken into account during exceedance computations.
+					queryParameters:
+						access_token:
+							type: string
+							description: The access token provided by the authentication application.
+							example: AABBCCDD
+							required: true
+						threshold:
+							type: number
+							description: Threshold value against which the exceedances will be computed.
+							example: 20.0
+							required: true
+						workingHours:
+							type: string
+							description: Working hours for each day of week starting from Monday
+							example: '{"hoursPerWeekday": ["06:30:00-21:00:00", "06:30:00-21:00:00", "06:30:00-21:00:00", "06:30:00-21:00:00", "06:30:00-21:00:00", "06:30:00-20:00:00", ""]}'
+							required: false
+						includeDates:
+							type: string
+							description: Hours to be included for additional dates. Overrides workingHours.
+							example: '{"dates": ["2015-12-20", "2015-12-27"], "hours": ["11:00:00-18:00:00", "11:00:00-18:00:00"]}'
+							required: false
+						excludeDates:  
+							type: string
+							description: Dates to be excluded. Overrides workingHours.
+							example: '["2015-12-25, "2015-12-26"]'
+							required: false
+					body:
+						application/json:
+							schema: |
+								{
+									"$schema": "http://json-schema.org/draft-04/schema#",
+									"type": "object",
+									"properties": {
+										"points": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"equipmentId": {
+														"type": "integer"
+													},
+													"pointId": {
+														"type": "integer"
+													},
+													"pointName": {
+														"type": "string"
+													},
+													"samplingRate": {
+														"type": "integer"
+													},
+													"timestamps": {
+														"type": "array",
+														"items": {
+														  "type": "string"
+														}
+													},
+													"values": {
+														"type": "array",
+														"items": {
+														  "type": "number"
+														}
+													}
+												},
+												"required": [
+													"pointId",
+													"pointName",
+													"samplingRate",
+													"timestamps",
+													"values"
+												]
+											}
+										},
+										"parameters": {
+											"type": "object",
+											"properties": {
+												"sourcePointId": {
+													"type": "integer"
+												},
+												"sourcePointName": {
+													"type": "string"
+												},
+												"excludeDates": {
+													"type": "string"
+												},
+												"includeDates": {
+													"type": "string"
+												},
+												"valueForExcludedTs": {
+													"type": "integer"
+												},
+												"workingHours": {
+													"type": "string"
+												}
+											},
+											"required": [
+												"sourcePointId",
+												"sourcePointName"
+											]
+										},
+										"report": {
+											"type": "object",
+											"properties": {
+												"report_type": {
+													"type": "string"
+												},
+												"createdAt": {
+													"type": "string"
+												},
+												"message": {
+													"type": "string"
+												},
+												"defrosts": {
+													"type": "integer"
+												},
+												"defrosts_ts": {
+													"type": "string"
+												},
+												"exceedances": {
+													"type": "integer"
+												}
+											},
+											"required": [
+												"createdAt"
+											]
+										}
+									}
+								}
+							example: |
+								{
+									"points": [
+										{
+											"pointId": 48,
+											"equipmentId": 3,  
+											"pointName": "401_V020003",
+											"samplingRate": 15,
+											"timestamps": [
+												"2015-11-05T12:00:00+02:00",
+												"2015-11-05T13:00:00+02:00",
+												"2015-11-05T14:00:00+02:00",
+												"2015-11-05T20:30:00+02:00",
+												"2015-11-05T22:00:00+02:00",
+												"2015-11-05T23:00:00+02:00",
+												"2015-11-05T23:15:00+02:00",
+												"2015-11-08T12:00:00+02:00",
+												"2015-11-08T13:00:00+02:00",
+												"2015-11-08T14:00:00+02:00",
+												"2015-12-20T17:45:00+02:00",
+												"2015-12-25T17:15:00+02:00",
+												"2015-12-28T00:00:00+02:00",
+												"2015-12-28T00:15:00+02:00",
+												"2015-12-28T00:30:00+02:00",
+												"2015-12-28T00:45:00+02:00",
+												"2015-12-28T01:00:00+02:00",
+												"2015-12-28T01:15:00+02:00",
+												"2015-12-28T01:30:00+02:00",
+												"2015-12-28T01:45:00+02:00"
+											],
+											"values": [
+												-21.0,
+												1.2505,
+												81.55,
+												21.0,
+												21.2505,
+												21.5505,
+												1.0,
+												2.2505,
+												3.5505,
+												51.0,
+												51.25,
+												51.55,
+												10.2,
+												10.1,
+												10.3,
+												9.8,
+												9.9,
+												12,
+												10,
+												13.4
+											]
+										}
+									] 							
+								}					
+					responses:
+						200:
+							body:
+								application/json:
+									schema: |
+										{
+											"$schema": "http://json-schema.org/draft-04/schema#",
+											"type": "object",
+											"properties": {
+												"points": {
+													"type": "array",
+													"items": {
+														"type": "object",
+														"properties": {
+															"equipmentId": {
+																"type": "integer"
+															},
+															"pointId": {
+																"type": "integer"
+															},
+															"pointName": {
+																"type": "string"
+															},
+															"samplingRate": {
+																"type": "integer"
+															},
+															"timestamps": {
+																"type": "array",
+																"items": {
+																  "type": "string"
+																}
+															},
+															"values": {
+																"type": "array",
+																"items": {
+																  "type": "number"
+																}
+															}
+														},
+														"required": [
+															"pointId",
+															"pointName",
+															"samplingRate",
+															"timestamps",
+															"values"
+														]
+													}
+												},
+												"parameters": {
+													"type": "object",
+													"properties": {
+														"sourcePointId": {
+															"type": "integer"
+														},
+														"sourcePointName": {
+															"type": "string"
+														},
+														"excludeDates": {
+															"type": "string"
+														},
+														"includeDates": {
+															"type": "string"
+														},
+														"valueForExcludedTs": {
+															"type": "integer"
+														},
+														"workingHours": {
+															"type": "string"
+														}
+													},
+													"required": [
+														"sourcePointId",
+														"sourcePointName"
+													]
+												},
+												"report": {
+													"type": "object",
+													"properties": {
+														"report_type": {
+															"type": "string"
+														},
+														"createdAt": {
+															"type": "string"
+														},
+														"message": {
+															"type": "string"
+														},
+														"defrosts": {
+															"type": "integer"
+														},
+														"defrosts_ts": {
+															"type": "string"
+														},
+														"exceedances": {
+															"type": "integer"
+														}
+													},
+													"required": [
+														"createdAt"
+													]
+												}
+											}
+										}
+									example: |
+										{
+											"output_data_type": "threshold_output",
+											"points": [
+												{
+													"pointName": "thresholdExceedances",
+													"samplingRate": 15,
+													"timestamps": [
+														"2015-11-05T12:00:00+02:00",
+												        "2015-11-05T13:00:00+02:00",
+												        "2015-11-05T14:00:00+02:00",
+												        "2015-11-05T20:30:00+02:00",
+												        "2015-12-20T17:45:00+02:00"
+													],
+													"values": [
+														0,
+														0,
+														61.55,
+														1,
+														31.25
+													]
+												}
+											],
+											"parameters": {
+												"sourcePointId": 48,
+												"sourcePointName": "401_V020003",
+												"excludeDates": " [2015-12-25, 2015-12-26]",
+												"includeDates": "{dates: [2015-12-20, 2015-12-27], hours: [11:00:00-18:00:00, 11:00:00-18:00:00]}",
+												"workingHours": "{hoursPerWeekday: [06:30:00-21:00:00, 06:30:00-21:00:00, 06:30:00-21:00:00, 06:30:00-21:00:00, 06:30:00-21:00:00, 06:30:00-20:00:00, ]}",
+												"threshold": 20
+											}
+										}
+	
+	/hvac:
+		/setPointsAHU: 
+			post:
+				description: |
+					Compute set-point threshold exceedances, while device is ON. 
+					Depending on the operation "mode", exactly one temperature threshold ("targetCoolSetPoint", "targetHeatSetPoint") 
+					must be defined per service call, against which the posted set-point data are checked. 
+					The rules employed are the following: 
+					(AHU.zoneAirTempSp < targetCoolSetPoint) & (AHU.unitMode = "cool") & (AHU.onOffSensor = "on") -> Low cooling set point
+					(AHU.zoneAirTempSp > targetHeatSetPoint) & (AHU.unitMode = "heat") & (AHU.onOffSensor = "on") -> High heating set point
+					So, the posted data should include 3 points, in exactly the following order: 
+					(1) zone air temperature set-point, 
+					(2) unit mode point, with "cool" being represented by 1 and "heat" by 2.
+					(3) on-off point, with "on" being represented by 1 and "off" by 0.
+				queryParameters:
+					access_token:
+						type: string
+						description: The access token provided by the authentication application.
+						example: AABBCCDD
+						required: true
+					targetCoolSetPoint:
+						type: number
+						description: Minimum set-point temperature. Set-point should be greater than "targetCoolSetPoint". 
+						example: 23.0
+						required: false
+					targeHeatSetPoint:
+						type: number
+						description: Maximum set-point temperature. Set-point should be equal or less than "targeHeatSetPoint". 
+						example: 22.0
+						required: false
+				body:
+					application/json:
+						schema: |
+							{
+								"$schema": "http://json-schema.org/draft-04/schema#",
+								"type": "object",
+								"properties": {
+									"points": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"equipmentId": {
+													"type": "integer"
+												},
+												"pointId": {
+													"type": "integer"
+												},
+												"pointName": {
+													"type": "string"
+												},
+												"samplingRate": {
+													"type": "integer"
+												},
+												"timestamps": {
+													"type": "array",
+													"items": {
+													  "type": "string"
+													}
+												},
+												"values": {
+													"type": "array",
+													"items": {
+													  "type": "number"
+													}
+												}
+											},
+											"required": [
+												"pointId",
+												"pointName",
+												"samplingRate",
+												"timestamps",
+												"values"
+											]
+										}
+									},
+									"parameters": {
+										"type": "object",
+										"properties": {
+											"sourcePointId": {
+												"type": "integer"
+											},
+											"sourcePointName": {
+												"type": "string"
+											},
+											"excludeDates": {
+												"type": "string"
+											},
+											"includeDates": {
+												"type": "string"
+											},
+											"valueForExcludedTs": {
+												"type": "integer"
+											},
+											"workingHours": {
+												"type": "string"
+											}
+										},
+										"required": [
+											"sourcePointId",
+											"sourcePointName"
+										]
+									},
+									"report": {
+										"type": "object",
+										"properties": {
+											"report_type": {
+												"type": "string"
+											},
+											"createdAt": {
+												"type": "string"
+											},
+											"message": {
+												"type": "string"
+											},
+											"defrosts": {
+												"type": "integer"
+											},
+											"defrosts_ts": {
+												"type": "string"
+											},
+											"exceedances": {
+												"type": "integer"
+											}
+										},
+										"required": [
+											"createdAt"
+										]
+									}
+								}
+							}
+						example: |
+							{
+								"points": [
+									{
+										"pointId": 48,
+										"equipmentId": 3,  
+										"pointName": "zoneAirTempSp",
+										"samplingRate": 15,
+										"timestamps": [
+											"2015-11-05T12:00:00+02:00",
+											"2015-11-05T13:00:00+02:00",
+											"2015-11-05T14:00:00+02:00",
+											"2015-11-05T20:30:00+02:00",
+											"2015-11-05T22:00:00+02:00",
+											"2015-11-05T23:00:00+02:00",
+											"2015-11-05T23:15:00+02:00"
+										],
+										"values": [
+											25,
+											22,
+											21,
+											23,
+											25,
+											24,
+											25
+										]
+									},
+									{
+										"pointId": 49,
+										"equipmentId": 3,  
+										"pointName": "unitMode",
+										"samplingRate": 15,
+										"timestamps": [
+											"2015-11-05T12:00:00+02:00",
+											"2015-11-05T13:00:00+02:00",
+											"2015-11-05T14:00:00+02:00",
+											"2015-11-05T20:30:00+02:00",
+											"2015-11-05T22:00:00+02:00",
+											"2015-11-05T23:00:00+02:00",
+											"2015-11-05T23:15:00+02:00"
+										],
+										"values": [
+											1,
+											1,
+											1,
+											1,
+											1,
+											1,
+											2
+										]
+									},
+									{
+										"pointId": 50,
+										"equipmentId": 3,  
+										"pointName": "onOffSensor",
+										"samplingRate": 15,
+										"timestamps": [
+											"2015-11-05T12:00:00+02:00",
+											"2015-11-05T13:00:00+02:00",
+											"2015-11-05T14:00:00+02:00",
+											"2015-11-05T20:30:00+02:00",
+											"2015-11-05T22:00:00+02:00",
+											"2015-11-05T23:00:00+02:00",
+											"2015-11-05T23:15:00+02:00"
+										],
+										"values": [
+											1,
+											1,
+											1,
+											1,
+											1,
+											0,
+											1
+										]
+									}
+								] 
+							}
+				responses:
+					200:
+						body:
+							application/json:
+								schema: |
+									{
+										"$schema": "http://json-schema.org/draft-04/schema#",
+										"type": "object",
+										"properties": {
+											"points": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"equipmentId": {
+															"type": "integer"
+														},
+														"pointId": {
+															"type": "integer"
+														},
+														"pointName": {
+															"type": "string"
+														},
+														"samplingRate": {
+															"type": "integer"
+														},
+														"timestamps": {
+															"type": "array",
+															"items": {
+															  "type": "string"
+															}
+														},
+														"values": {
+															"type": "array",
+															"items": {
+															  "type": "number"
+															}
+														}
+													},
+													"required": [
+														"pointId",
+														"pointName",
+														"samplingRate",
+														"timestamps",
+														"values"
+													]
+												}
+											},
+											"parameters": {
+												"type": "object",
+												"properties": {
+													"sourcePointId": {
+														"type": "integer"
+													},
+													"sourcePointName": {
+														"type": "string"
+													},
+													"excludeDates": {
+														"type": "string"
+													},
+													"includeDates": {
+														"type": "string"
+													},
+													"valueForExcludedTs": {
+														"type": "integer"
+													},
+													"workingHours": {
+														"type": "string"
+													}
+												},
+												"required": [
+													"sourcePointId",
+													"sourcePointName"
+												]
+											},
+											"report": {
+												"type": "object",
+												"properties": {
+													"report_type": {
+														"type": "string"
+													},
+													"createdAt": {
+														"type": "string"
+													},
+													"message": {
+														"type": "string"
+													},
+													"defrosts": {
+														"type": "integer"
+													},
+													"defrosts_ts": {
+														"type": "string"
+													},
+													"exceedances": {
+														"type": "integer"
+													}
+												},
+												"required": [
+													"createdAt"
+												]
+											}
+										}
+									}
+								example: |
+									{
+										"output_data_type": "threshold_output",
+										"points": [
+											{
+												"pointName": "diffFromTargetCoolSetPoint",
+												"samplingRate": 15,
+												"timestamps": [
+													"2015-11-05T12:00:00+02:00",
+													"2015-11-05T13:00:00+02:00",
+													"2015-11-05T14:00:00+02:00",
+													"2015-11-05T20:30:00+02:00",
+													"2015-11-05T22:00:00+02:00",
+													"2015-11-05T23:00:00+02:00",
+													"2015-11-05T23:15:00+02:00"
+												],
+												"values": [
+													0,
+													-1,
+													-2,
+													0,
+													0,
+													0,
+													0
+												]
+											}
+										],
+										"parameters": {
+											"sourcePointId": 48,
+											"sourcePointName": "zoneAirTempSp",
+											"targetCoolSetPoint": 23
+										}
+									}
+
+	/refrigeration:
+		/defrosts:
+			post:
+				description: |
+					Identify defrosts (based on posted temperature data) and compute threshold exceedances 
+					(more defrosts than the "targetNumOfDefrosts" parameter). 
+				queryParameters:
+					access_token:
+						type: string
+						description: The access token provided by the authentication application.
+						example: AABBCCDD
+						required: true
+					targetNumOfDefrosts:
+						type: number
+						description: Target number of defrosts against which the exceedances will be computed.
+						example: 1
+						required: true
+					includeDefrostPoint:
+						type: boolean
+						description: Whether to include a "binary point" for defrosts in the response.
+						example: false
+						default: false
+						required: true
+				body:
+					application/json:
+						schema: |
+							{
+								"$schema": "http://json-schema.org/draft-04/schema#",
+								"type": "object",
+								"properties": {
+									"points": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"equipmentId": {
+													"type": "integer"
+												},
+												"pointId": {
+													"type": "integer"
+												},
+												"pointName": {
+													"type": "string"
+												},
+												"samplingRate": {
+													"type": "integer"
+												},
+												"timestamps": {
+													"type": "array",
+													"items": {
+													  "type": "string"
+													}
+												},
+												"values": {
+													"type": "array",
+													"items": {
+													  "type": "number"
+													}
+												}
+											},
+											"required": [
+												"pointId",
+												"pointName",
+												"samplingRate",
+												"timestamps",
+												"values"
+											]
+										}
+									},
+									"parameters": {
+										"type": "object",
+										"properties": {
+											"sourcePointId": {
+												"type": "integer"
+											},
+											"sourcePointName": {
+												"type": "string"
+											},
+											"excludeDates": {
+												"type": "string"
+											},
+											"includeDates": {
+												"type": "string"
+											},
+											"valueForExcludedTs": {
+												"type": "integer"
+											},
+											"workingHours": {
+												"type": "string"
+											}
+										},
+										"required": [
+											"sourcePointId",
+											"sourcePointName"
+										]
+									},
+									"report": {
+										"type": "object",
+										"properties": {
+											"report_type": {
+												"type": "string"
+											},
+											"createdAt": {
+												"type": "string"
+											},
+											"message": {
+												"type": "string"
+											},
+											"defrosts": {
+												"type": "integer"
+											},
+											"defrosts_ts": {
+												"type": "string"
+											},
+											"exceedances": {
+												"type": "integer"
+											}
+										},
+										"required": [
+											"createdAt"
+										]
+									}
+								}
+							}
+						example: |
+							{
+								"points": [
+									{
+										"pointId": 81,
+										"pointName": "401_V050001",
+										"samplingRate": 15,
+										"timestamps": [
+											"2015-12-27T09:30:00+02:00", 
+											"2015-12-27T09:45:00+02:00",
+											"2015-12-27T10:00:00+02:00",
+											"2015-12-27T10:15:00+02:00",
+											"2015-12-27T10:45:00+02:00",
+											"2015-12-27T11:00:00+02:00",
+											"2015-12-27T11:15:00+02:00",
+											"2015-12-27T11:30:00+02:00",
+											"2015-12-28T09:30:00+02:00", 
+											"2015-12-28T09:45:00+02:00",
+											"2015-12-28T10:00:00+02:00",
+											"2015-12-28T10:15:00+02:00",
+											"2015-12-28T10:45:00+02:00",
+											"2015-12-28T11:00:00+02:00",
+											"2015-12-28T11:15:00+02:00",
+											"2015-12-28T11:30:00+02:00"
+										],
+										"values": [
+											3.5,
+											3.0,
+											12.0, 
+											19.5,  
+											21.0, 
+											12.0,
+											4.0,
+											3.0,
+											3.5,
+											11.0, 
+											19.0,  
+											21.0, 
+											12.5,
+											3.5,
+											4.0,
+											3.5
+										]
+									}
+								] 
+							}
+				responses:
+					200:
+						body:
+							application/json:
+								schema: |
+									{
+										"$schema": "http://json-schema.org/draft-04/schema#",
+										"type": "object",
+										"properties": {
+											"points": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"equipmentId": {
+															"type": "integer"
+														},
+														"pointId": {
+															"type": "integer"
+														},
+														"pointName": {
+															"type": "string"
+														},
+														"samplingRate": {
+															"type": "integer"
+														},
+														"timestamps": {
+															"type": "array",
+															"items": {
+															  "type": "string"
+															}
+														},
+														"values": {
+															"type": "array",
+															"items": {
+															  "type": "number"
+															}
+														}
+													},
+													"required": [
+														"pointId",
+														"pointName",
+														"samplingRate",
+														"timestamps",
+														"values"
+													]
+												}
+											},
+											"parameters": {
+												"type": "object",
+												"properties": {
+													"sourcePointId": {
+														"type": "integer"
+													},
+													"sourcePointName": {
+														"type": "string"
+													},
+													"excludeDates": {
+														"type": "string"
+													},
+													"includeDates": {
+														"type": "string"
+													},
+													"valueForExcludedTs": {
+														"type": "integer"
+													},
+													"workingHours": {
+														"type": "string"
+													}
+												},
+												"required": [
+													"sourcePointId",
+													"sourcePointName"
+												]
+											},
+											"report": {
+												"type": "object",
+												"properties": {
+													"report_type": {
+														"type": "string"
+													},
+													"createdAt": {
+														"type": "string"
+													},
+													"message": {
+														"type": "string"
+													},
+													"defrosts": {
+														"type": "integer"
+													},
+													"defrosts_ts": {
+														"type": "string"
+													},
+													"exceedances": {
+														"type": "integer"
+													}
+												},
+												"required": [
+													"createdAt"
+												]
+											}
+										}
+									}
+								example: |
+									{
+										"output_data_type": "defrosts_output",
+										"points": [
+											{
+												"pointName": "defrosts",
+												"samplingRate": 15,
+												"timestamps": [
+													"2015-12-27T09:30:00+02:00",
+													"2015-12-27T09:45:00+02:00",
+													"2015-12-27T10:00:00+02:00",
+													"2015-12-27T10:15:00+02:00",
+													"2015-12-27T10:45:00+02:00",
+													"2015-12-27T11:00:00+02:00",
+													"2015-12-27T11:15:00+02:00",
+													"2015-12-27T11:30:00+02:00",
+													"2015-12-28T09:30:00+02:00",
+													"2015-12-28T09:45:00+02:00",
+													"2015-12-28T10:00:00+02:00",
+													"2015-12-28T10:15:00+02:00",
+													"2015-12-28T10:45:00+02:00",
+													"2015-12-28T11:00:00+02:00",
+													"2015-12-28T11:15:00+02:00",
+													"2015-12-28T11:30:00+02:00"
+												],
+												"values": [
+													0,
+													0,
+													1,
+													1,
+													1,
+													1,
+													0,
+													0,
+													0,
+													1,
+													1,
+													1,
+													1,
+													0,
+													0,
+													0
+												]
+											}
+										],
+										"parameters": {
+											"sourcePointId": 81,
+											"sourcePointName": "401_V050001",
+											"targetNumOfDefrosts": 1
+										},
+										"report": {
+											"report_type": "opportunity-defrost-report",
+											"createdAt": "2016-04-15T12:50:27.743+03:00",
+											"defrosts": 2,
+											"defrosts_ts": "[{2015-12-27T10:00:00+02:00, 2015-12-27T11:00:00+02:00}, {2015-12-28T09:45:00+02:00, 2015-12-28T10:45:00+02:00}]",
+											"exceedances": 1
+										}
+									}

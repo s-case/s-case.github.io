@@ -1,0 +1,106 @@
+#%RAML 0.8
+title: ETICS Project Management API
+baseUri: https://etics.res.eng.it/eticsbtem/api/
+version: 1.0
+securitySchemes:
+   - basic:
+      type: Basic Authentication
+      description: Basic authentication
+/project:
+  get:
+    description: get all the projects
+    responses: 
+      200:
+        description: Projects found
+        body:
+          application/json:
+            schema: "hyperlink_schema"
+  post:
+    description: creates a new project
+    body:
+      application/json:
+        example: '{"name":"scaseProject"}'
+    responses: 
+      200:
+        description: Projects created
+        body:
+          application/json:
+            schema: "hyperlink_schema"
+
+
+  /{projectId}:
+    uriParameters:
+      projectId:
+        description: 
+        type: integer
+        required: true
+        displayName: projectId
+    get:
+      description: get the detail of a project
+      responses:
+        200:
+          description: Project found
+          body:
+            application/json:
+              schema: "hyperlink_schema"
+        404:
+          description: Project not found
+    delete:
+      description: deletes the project
+      responses:
+        200:
+          description: Project deleted
+          body:
+            application/json:
+              schema: "hyperlink_schema"
+        404:
+          description: Project not found
+    /virtualenvironment:
+        get: 
+          description: gets the list of Virtual Environments associated to a project
+          responses: 
+            200:
+              description: Virtual Environments found
+              body:
+                application/json:
+                  schema: "hyperlink_schema"
+            404:
+              description: Virtual Environments not found
+        post:
+          description: Creates a new Virtual Environment
+          body:
+            application/json:
+              example: '{"id":"scaseVirtualBuildEnvironment","type":"build"}'
+          responses:
+            200:
+              description: Virtual Environments created
+              body:
+                application/json:
+                  schema: "hyperlink_schema"
+
+        /{virtualenvironmentId}:
+            uriParameters:
+              virtualenvironmentId:
+                description: 
+                type: integer
+                required: false
+                displayName: virtualenvironmentId
+            get:
+              description: get the detail of the Virtual Environment
+              responses: 
+                200:
+                  description: Virtual Environment found
+                  body:
+                    application/json:
+                      schema: "hyperlink_schema"
+            delete:
+              description: Deletes a Virtual Environment
+              responses: 
+                200:
+                  description: Virtual Environment deleted
+                  body:
+                    application/json:
+                      schema: "hyperlink_schema"
+                404:
+                  description: Virtual Environment not found
+

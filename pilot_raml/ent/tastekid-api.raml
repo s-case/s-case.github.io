@@ -1,0 +1,159 @@
+#%RAML 0.8
+---
+title: getSimilar
+version: v1
+baseUri: http://www.tastekid.com/api
+
+/similar:
+    get:
+        description: For finding similar movies, books, music.
+        queryParameters:
+            q:
+                description: |
+                Write book, movie or music to find similar ones.
+                example: |
+                    Titanic
+                required: true
+            k:
+                default: 148163-Crazyapp-CUXF3LNU
+                required: true
+            type:
+                example: |
+                music
+                required: true
+            limit:
+                description: Limit the number of elements on the response
+                type: integer
+                required: true
+                default: 10
+
+        responses:
+          200:
+            body:
+              application/json:
+                schema: |
+                  {
+                    "$schema": "http://json-schema.org/draft-04/schema#",
+                    "id": "/",
+                    "type": "object",
+                    "anyOf": [{
+                    "properties": {
+                      "Similar": {
+                        "id": "Similar",
+                        "type": "object",
+                        "properties": {
+                          "Info": {
+                            "id": "Info",
+                            "type": "array",
+                            "items": {
+                              "id": "0",
+                              "type": "object",
+                              "properties": {
+                                "Name": {
+                                  "id": "Name",
+                                  "type": "string"
+                                },
+                                "Type": {
+                                  "id": "Type",
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "Results": {
+                            "id": "Results",
+                            "type": "array",
+                            "items": [
+                              {
+                                "id": "0",
+                                "type": "object",
+                                "properties": {
+                                  "Name": {
+                                    "id": "Name",
+                                    "type": "string"
+                                  },
+                                  "Type": {
+                                    "id": "Type",
+                                    "type": "string"
+                                  }
+                                },
+                                  "required": [
+                                    "Name"
+                                    ]
+                              },
+                              {
+                                "id": "1",
+                                "type": "object",
+                                "properties": {
+                                  "Name": {
+                                    "id": "Name",
+                                    "type": "string"
+                                  },
+                                  "Type": {
+                                    "id": "Type",
+                                    "type": "string"
+                                  }
+                                },
+                                  "required": [
+                                    "Name"
+                                    ]
+                              },
+                              {
+                                "id": "2",
+                                "type": "object",
+                                "properties": {
+                                  "Name": {
+                                    "id": "Name",
+                                    "type": "string"
+                                  },
+                                  "Type": {
+                                    "id": "Type",
+                                    "type": "string"
+                                  }
+                                },
+                                  "required": [
+                                    "Name"
+                                    ]
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                    },{
+                    "properties": {
+                        "error": {
+                          "id": "error",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "error"
+                      ]
+                    }]
+                  }
+                example: |
+                  {
+                    "Similar": {
+                      "Info": [
+                        {
+                          "Name": "Gone Girl",
+                          "Type": "movie"
+                        }
+                      ],
+                      "Results": [
+                        {
+                          "Name": "Nightcrawler",
+                          "Type": "movie"
+                        },
+                        {
+                          "Name": "Whiplash",
+                          "Type": "movie"
+                        },
+                        {
+                          "Name": "Enemy",
+                          "Type": "movie"
+                        }
+                      ]
+                    }
+                  }

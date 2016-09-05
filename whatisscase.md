@@ -23,3 +23,11 @@ Using state-of-the-art technologies in every step of the process, the S-CASE
 Eclipse plugin comprises a credible way to **rapidly scaffold fully functional and
 highly sophisticated web services and applications**, while at the same time
 **eliminates manual source code typing and debugging time**.
+
+<br>
+
+Below is RESTReviews, an example application whose back-end was built with S-CASE in just a few minutes.
+
+<br>
+
+<img src="./whatisscase_images/rest_reviews.png" alt="Drawing" width="90%"/>

@@ -121,11 +121,12 @@ ol li {
           <div class="col-md-3">
           <ul class="nav nav-pills nav-stacked" id="menu">
             <li id="link1"><a href="#1">What is S-CASE</a></li>
-            <li id="link2"><a href="#2">Getting started</a></li>
+            <li id="link2"><a href="#2">Getting Started</a></li>
             <li id="link3"><a href="#3">Requirements Modeling</a></li>
             <li id="link4"><a href="#4">Web Service Composition</a></li>
             <li id="link5"><a href="#5">Code Generation</a></li>
-            <li id="link6"><a href="#6">Deployment</a></li>
+            <li id="link6"><a href="#6">YouREST</a></li>
+            <li id="link7"><a href="#7">Deployment</a></li>
           </ul>
         </div>
         <div class="col-md-9 main">
@@ -135,6 +136,7 @@ ol li {
           <div id="page4"></div>
           <div id="page5"></div>
           <div id="page6"></div>
+          <div id="page7"></div>
         </div>
       </div>
   </div><!-- /.container -->
@@ -174,8 +176,14 @@ ol li {
     html = converter.makeHtml(data);
     target.innerHTML = html;
   }, 'text');
-  jQuery.get('deployment.md', function(data) {
+  jQuery.get('yourest.md', function(data) {
     target = document.getElementById('page6'),
+    converter = new showdown.Converter(),
+    html = converter.makeHtml(data);
+    target.innerHTML = html;
+  }, 'text');
+  jQuery.get('deployment.md', function(data) {
+    target = document.getElementById('page7'),
     converter = new showdown.Converter(),
     html = converter.makeHtml(data);
     target.innerHTML = html;
@@ -227,7 +235,6 @@ ol li {
 	</div>
 </div> <!-- / END CONTAINER -->
 </footer> <!-- / END FOOOTER  -->
-
 <!-- SCRIPTS -->
 <script src="js/bootstrap.min.js"></script>
 <script src="js/wow.min.js"></script>

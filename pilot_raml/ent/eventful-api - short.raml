@@ -1,0 +1,271 @@
+#%RAML 0.8
+---
+title: getEvents
+version: v1
+baseUri: http://api.eventful.com/json/events
+
+/search:
+    get:
+        description: The details about event you want to search by artist
+        queryParameters:
+            keywords:
+                required: true
+            app_key:
+                default: BzmbfWTn6sCrMTpw
+                required: true
+            location:
+                default: london
+            within:
+                default: 100
+            units:
+                default: km
+            include:
+                default: price
+                required: true
+
+        responses:
+          200:
+            body:
+              application/json:
+                schema: |
+                  {
+                        "$schema": "http://json-schema.org/draft-04/schema#",
+                        "id": "/",
+                        "type": "object",
+                        "anyOf": [
+                        {
+                                "properties": {
+                                "events": {
+                                  "id": "events",
+                                  "type": "object",
+                                  "properties": {
+                                    "event": {
+                                      "id": "event",
+                                      "type": "object",
+                                      "properties": {                                       
+                                        "city_name": {
+                                          "id": "city_name",
+                                          "oneOf": [{"type": "null"}, {"type": "string"}]
+                                        },
+                                        "country_name": {
+                                          "id": "country_name",
+                                          "oneOf": [{"type": "null"}, {"type": "string"}]
+                                        },
+                                        "start_time": {
+                                          "id": "start_time",
+                                          "oneOf": [{"type": "null"}, {"type": "string"}]
+                                        },
+                                        "description": {
+                                          "id": "description",
+                                          "oneOf": [{"type": "null"}, {"type": "string"}]
+                                        },
+                                        "price": {
+                                          "id": "price",
+                                          "oneOf": [{"type": "null"}, {"type": "string"}]
+                                        },
+                                        "title": {
+                                          "id": "title",
+                                          "oneOf": [{"type": "null"}, {"type": "string"}]
+                                        },
+                                        "image": {
+                                          "id": "image",
+                                          "type": "object",
+                                          "properties": {                                           
+                                            "medium": {
+                                              "id": "medium",
+                                              "type": "object",
+                                              "properties": {                                                
+                                                "url": {
+                                                  "id": "url",
+                                                  "oneOf": [{"type": "null"}, {"type": "string"}]
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "required": [
+                                        "city_name",
+                                        "country_name",
+                                        "start_time",
+                                        "price",
+                                        "description",
+                                        "title",
+                                        "image"
+                                      ]
+                                    }
+                                  }
+                                }
+                              },
+                              "required": [
+                                "events"
+                              ]},
+                              {
+                              "properties": {                               
+                                "events": {
+                                  "id": "events",
+                                  "type": "object",
+                                  "properties": {
+                                    "event": {
+                                      "id": "event",
+                                      "type": "array",
+                                      "items": {
+                                        "city_name": {
+                                          "id": "city_name",
+                                          "oneOf": [{"type": "null"}, {"type": "string"}]
+                                        },
+                                        "country_name": {
+                                          "id": "country_name",
+                                          "oneOf": [{"type": "null"}, {"type": "string"}]
+                                        },
+                                        "start_time": {
+                                          "id": "start_time",
+                                          "oneOf": [{"type": "null"}, {"type": "string"}]
+                                        },
+                                        "description": {
+                                          "id": "description",
+                                          "oneOf": [{"type": "null"}, {"type": "string"}]
+                                        },
+                                        "price": {
+                                          "id": "price",
+                                          "oneOf": [{"type": "null"}, {"type": "string"}]
+                                        },
+                                        "title": {
+                                          "id": "title",
+                                          "oneOf": [{"type": "null"}, {"type": "string"}]
+                                        },
+                                        "image": {
+                                          "id": "image",
+                                          "type": "object",
+                                          "properties": {
+                                            "medium": {
+                                              "id": "medium",
+                                              "type": "object",
+                                              "properties": {
+                                                "url": {
+                                                  "id": "url",
+                                                  "oneOf": [{"type": "null"}, {"type": "string"}]
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "required": [
+                                        "city_name",
+                                        "country_name",
+                                        "start_time",
+                                        "price",
+                                        "description",
+                                        "title",
+                                        "image"
+                                      ]
+                                    }
+                                  }
+                                }
+                              },
+                              "required": [
+                                "events"
+                              ]
+                              },
+                              {
+                              "properties": {
+                                "status": {
+                                  "id": "status",
+                                  "type": "string"
+                                },
+                                "error": {
+                                  "id": "error",
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "id": "description",
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "status",
+                                "error",
+                                "description"
+                              ]
+                              }]
+                      }
+                example: |
+                      {
+                        "last_item": null,
+                        "total_items": "1",
+                        "first_item": null,
+                        "page_number": "1",
+                        "page_size": "10",
+                        "page_items": null,
+                        "search_time": "0.052",
+                        "page_count": "1",
+                        "events": {
+                          "event": {
+                            "watching_count": null,
+                            "olson_path": "Europe\/London",
+                            "calendar_count": null,
+                            "comment_count": null,
+                            "region_abbr": "London",
+                            "postal_code": "SE1 3HN",
+                            "going_count": null,
+                            "all_day": "0",
+                            "latitude": "51.5000423",
+                            "groups": null,
+                            "url": "http:\/\/london.eventful.com\/events\/tech-startup-hack-weekend-\/E0-001-090816913-4@2016022710?utm_source=apis&utm_medium=apim&utm_campaign=apic",
+                            "id": "E0-001-090816913-4@2016022710",
+                            "privacy": "1",
+                            "city_name": "The Borough",
+                            "link_count": null,
+                            "longitude": "-0.0848597",
+                            "country_name": "United Kingdom",
+                            "country_abbr": "GBR",
+                            "region_name": "Greater London",
+                            "start_time": "2016-02-27 10:00:00",
+                            "tz_id": null,
+                            "description": " Accelerate to Success with Innovify! This weekend series of workshops with help you create or refine your Tech Startup in a single weekend. Business and technical workshops will give you a firm foundation for starting any internet based startup. Workshops include: Your Business in 10-slides This course will explore how to create a robust business plan that can support the 10 critical slides needed to showcase your business to potential investors, mentors and partners. Value Creation and Product Management This course will dive-deep into value creation through the lens of technology as well as provide product management exposure for surviving as a web-based startup. MVP and Product Roadmap This course is all about kick-starting your MVP and helping you walk away with a product roadmap that showcases your new technical understanding. Fundraising and Management This course will take you into the mind of an investor and explore funding alternatives and considerations for your start-up. Additionally this session will also cover the management realities and lessons you will need to lead your start-up to success. Testimonials: Students, Imperial College Business School: &quot;By integrating education, practice and own research, Maulik allowed Imperial students to develop the practical and critical thinking skills they will need to be the inventors and innovators of the future. Through an inspiring session, he enabled the participants to go from concept to drawing, models to prototype, and redesign to final product\u2026&quot; Racheal Brown, Queen Mary Universtiy, London: &quot;It was a great session & in a language that was accessible to students from any background or stage with their start up idea. It provided a realistic overview of the complexities of setting up a tech business, highlighting very clearly areas where students would need to be careful when briefing developers and designers to ensure they would end up with the product they needed\u2026&quot; Incubus Ventures, London: &quot;The workshop was incredibly useful and \u201cpure gold\u201d. We are all eagerly waiting for Innovify\u2019s deck to start work on all the useful things they said\u2026&quot; EDHEC Business School: &quot;Amazing workshop about Agile Management with Maulik Sailor. It was a great learning opportunity. Eagerly waiting for the next workshop to be organised\u2026&quot; More details: http:\/\/innovify.com\/product-foundry\/ ",
+                            "modified": "2016-02-14 08:50:59",
+                            "venue_display": "1",
+                            "tz_country": null,
+                            "performers": null,
+                            "price": null,
+                            "title": "Tech Startup Hack Weekend",
+                            "venue_address": "The Leathermarket Weston Street",
+                            "geocode_type": "EVDB Geocoder",
+                            "tz_olson_path": null,
+                            "free": null,
+                            "recur_string": "daily until February 28, 2016",
+                            "calendars": null,
+                            "owner": "evdb",
+                            "going": null,
+                            "country_abbr2": "GB",
+                            "image": {
+                              "small": {
+                                "width": "48",
+                                "url": "http:\/\/s1.evcdn.com\/images\/small\/I0-001\/025\/916\/556-6.jpeg_\/tech-startup-hack-weekend-56.jpeg",
+                                "height": "48"
+                              },
+                              "width": "48",
+                              "caption": null,
+                              "medium": {
+                                "width": "128",
+                                "url": "http:\/\/s1.evcdn.com\/images\/medium\/I0-001\/025\/916\/556-6.jpeg_\/tech-startup-hack-weekend-56.jpeg",
+                                "height": "128"
+                              },
+                              "url": "http:\/\/s1.evcdn.com\/images\/small\/I0-001\/025\/916\/556-6.jpeg_\/tech-startup-hack-weekend-56.jpeg",
+                              "thumb": {
+                                "width": "48",
+                                "url": "http:\/\/s1.evcdn.com\/images\/thumb\/I0-001\/025\/916\/556-6.jpeg_\/tech-startup-hack-weekend-56.jpeg",
+                                "height": "48"
+                              },
+                              "height": "48"
+                            },
+                            "created": "2016-02-01 14:53:48",
+                            "venue_id": "V0-001-001659924-9",
+                            "tz_city": null,
+                            "stop_time": null,
+                            "venue_name": "Lafone House",
+                            "venue_url": "http:\/\/london.eventful.com\/venues\/lafone-house-\/V0-001-001659924-9?utm_source=apis&utm_medium=apim&utm_campaign=apic"
+                          }
+                        }
+                      }

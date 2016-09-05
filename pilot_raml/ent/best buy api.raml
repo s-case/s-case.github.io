@@ -1,0 +1,140 @@
+#%RAML 1.0
+title: getProducts
+version: v1
+baseUri: https://api.bestbuy.com/v1
+
+/products(search={search}):
+  uriParameters: 
+    search:
+              type: string
+              example: Twighlight
+              description: Search query for target product
+
+  get:
+        description: The details about product that you search
+        queryParameters:
+            apiKey:
+                default: bre9srsvtxpzxtm5qjsh6hmh
+                type: string
+                required: true
+            show:
+                default: name,details.name,image,condition,regularPrice,longDescription,shortDescription
+            sort:
+                example: |
+                  regularPrice.asc
+            format:
+                default: json
+                type: string
+            pageSize:
+                default: 3
+                type: integer
+        
+                      
+        responses:
+          200:
+            body:
+              application/json:
+                schema: |
+                  {
+                    "$schema": "http://json-schema.org/draft-04/schema#",
+                    "id": "http://jsonschema.net",
+                    "type": "object",
+                    "properties": {
+                      "from": {
+                        "id": "http://jsonschema.net/from",
+                        "type": "integer"
+                      },
+                      "to": {
+                        "id": "http://jsonschema.net/to",
+                        "type": "integer"
+                      },
+                      "total": {
+                        "id": "http://jsonschema.net/total",
+                        "type": "integer"
+                      },
+                      "currentPage": {
+                        "id": "http://jsonschema.net/currentPage",
+                        "type": "integer"
+                      },
+                      "totalPages": {
+                        "id": "http://jsonschema.net/totalPages",
+                        "type": "integer"
+                      },
+                      "queryTime": {
+                        "id": "http://jsonschema.net/queryTime",
+                        "type": "string"
+                      },
+                      "totalTime": {
+                        "id": "http://jsonschema.net/totalTime",
+                        "type": "string"
+                      },
+                      "partial": {
+                        "id": "http://jsonschema.net/partial",
+                        "type": "boolean"
+                      },
+                      "canonicalUrl": {
+                        "id": "http://jsonschema.net/canonicalUrl",
+                        "type": "string"
+                      },
+                      "products": {
+                        "id": "http://jsonschema.net/products",
+                        "type": "array",
+                        "items": {
+                          "id": "http://jsonschema.net/products/0",
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "id": "http://jsonschema.net/products/0/name",
+                              "type": "string"
+                            },
+                            "image": {
+                              "id": "http://jsonschema.net/products/0/image",
+                              "type": "string"
+                            },
+                            "regularPrice": {
+                              "id": "http://jsonschema.net/products/0/regularPrice",
+                              "type": "number"
+                            },
+                            "shortDescription": {
+                              "id": "http://jsonschema.net/products/0/shortDescription",
+                              "oneOf" : [{"type" : "null"}, {"type" : "string"}]
+                            }
+                          }
+                        }, "required": [
+                          "name",
+                          "image",
+                          "regularPrice",
+                          "shortDescription"
+                        ]
+                      }
+                      }
+
+                  }
+                example: |
+                  {
+                    "from": 1,
+                    "to": 1,
+                    "total": 98,
+                    "currentPage": 1,
+                    "totalPages": 33,
+                    "queryTime": "0.170",
+                    "totalTime": "0.195",
+                    "partial": false,
+                    "canonicalUrl": "/v1/products(search=\"Toy\"&search=\"Story\")?show=name,details.name,image,condition,regularPrice,longDescription,shortDescription&sort=regularPrice&format=json&apiKey=bre9srsvtxpzxtm5qjsh6hmh",
+                    "products": [
+                    {
+                      "name": "Canta y Cuenta: Toy Story - CD - Various",
+                      "image": "http://images.bestbuy.com/BestBuy_US/images/products/4858/4858078_sa.jpg",
+                      "regularPrice": 4.99,
+                      "shortDescription": null
+                    }
+                    ]
+                  }
+          403:
+            body:
+              application/xml:
+                example: |
+                  <h1>Developer Inactive. Contact developer@bestbuy.com for more information.</h1>
+        body:
+          application/json:
+

@@ -1,0 +1,52 @@
+#%RAML 0.8
+title: Configures Virtual Infrastructures
+version: 1.0
+baseUri: https://etics.res.eng.it/eticsbtem/api/
+securitySchemes:
+   - basic:
+      type: Basic Authentication
+      description: Basic authentication
+/virtualinfrastructure:
+    post:
+      description: Associates a nre Virtual Infrastructure
+      body:
+        application/json:
+          example: '{"is":"infrastructureId","type":"foreman","url":"infraUrl"}'
+      responses:
+        200:
+          description: Infrastructure Associated
+          body:
+            application/json:
+              schema: "hyperlink_schema"
+    get:
+      description: Get All Virtual Infrastructures 
+      responses:
+        200:
+          description: Data found
+          body:
+            application/json:
+              schema: "hyperlink_schema"
+    /{virtualinfrastructureId}:
+      uriParameters:
+        virtualinfrastructureId:
+          description: 
+          type: integer
+          required: false
+          displayName: virtualinfrastructureId
+      get:
+        description: Get Virtual Infrastructure Details
+        responses:
+          200:
+            description: Data found
+            body:
+              application/json:
+                schema: "hyperlink_schema"
+      delete:
+        description: Get Virtual Infrastructure Details
+        responses:
+          200:
+            description: Infrastructure Deleted
+            body:
+              application/json:
+                schema: "hyperlink_schema"
+                

@@ -1,0 +1,448 @@
+#%RAML 1.0
+title: getBooksProducts
+version: v1
+baseUri: https://www.googleapis.com/books/v1
+
+/volumes:
+    get:
+        description: The details about book that you search (including price)
+        queryParameters:
+            q:
+                description: |
+                    Write book to find all info and price for it.
+                example: |
+                  Twighlight
+                required: true
+            printType:
+                default: books
+                type: string
+            country:
+                type: string
+                default: DE
+            maxResults:
+                description: Limit the number of elements on the response
+                type: integer
+                default: 1
+                required: true
+
+
+        responses:
+          200:
+            body:
+              application/json:
+                schema: |
+                  {
+                      "$schema": "http://json-schema.org/draft-04/schema#",
+                      "id": "/",
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "id": "kind",
+                          "type": "string"
+                        },
+                        "totalItems": {
+                          "id": "totalItems",
+                          "type": "integer"
+                        },
+                        "items": {
+                          "id": "items",
+                          "type": "array",
+                          "items": {
+                            "id": "0",
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "id": "kind",
+                                "type": "string"
+                              },
+                              "id": {
+                                "id": "id",
+                                "type": "string"
+                              },
+                              "etag": {
+                                "id": "etag",
+                                "type": "string"
+                              },
+                              "selfLink": {
+                                "id": "selfLink",
+                                "type": "string"
+                              },
+                              "volumeInfo": {
+                                "id": "volumeInfo",
+                                "type": "object",
+                                "properties": {
+                                  "title": {
+                                    "id": "title",
+                                    "type": "string"
+                                    },
+                                  "subtitle": {
+                                    "id": "subtitle",
+                                    "type": "string"
+                                  },
+                                  "authors": {
+                                    "id": "authors",
+                                    "type": "array",
+                                    "items": [
+                                      {
+                                        "id": "0",
+                                        "type": "string"
+                                      },
+                                      {
+                                        "id": "1",
+                                        "type": "string"
+                                      }
+                                    ]
+                                  },
+                                  "publisher": {
+                                    "id": "publisher",
+                                    "type": "string"
+                                  },
+                                  "publishedDate": {
+                                    "id": "publishedDate",
+                                    "type": "string"
+                                  },
+                                  "description": {
+                                    "id": "description",
+                                    "type": "string"
+                                  },
+                                  "industryIdentifiers": {
+                                    "id": "industryIdentifiers",
+                                    "type": "array",
+                                    "items": [
+                                      {
+                                        "id": "0",
+                                        "type": "object",
+                                        "properties": {
+                                          "type": {
+                                            "id": "type",
+                                            "type": "string"
+                                          },
+                                          "identifier": {
+                                            "id": "identifier",
+                                            "type": "string"
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "id": "1",
+                                        "type": "object",
+                                        "properties": {
+                                          "type": {
+                                            "id": "type",
+                                            "type": "string"
+                                          },
+                                          "identifier": {
+                                            "id": "identifier",
+                                            "type": "string"
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "readingModes": {
+                                    "id": "readingModes",
+                                    "type": "object",
+                                    "properties": {
+                                      "text": {
+                                        "id": "text",
+                                        "type": "boolean"
+                                      },
+                                      "image": {
+                                        "id": "image",
+                                        "type": "boolean"
+                                      }
+                                    }
+                                  },
+                                  "pageCount": {
+                                    "id": "pageCount",
+                                    "type": "integer"
+                                  },
+                                  "printType": {
+                                    "id": "printType",
+                                    "type": "string"
+                                  },
+                                  "categories": {
+                                    "id": "categories",
+                                    "type": "array",
+                                    "items": {
+                                      "id": "0",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "maturityRating": {
+                                    "id": "maturityRating",
+                                    "type": "string"
+                                  },
+                                  "allowAnonLogging": {
+                                    "id": "allowAnonLogging",
+                                    "type": "boolean"
+                                  },
+                                  "contentVersion": {
+                                    "id": "contentVersion",
+                                    "type": "string"
+                                  },
+                                  "imageLinks": {
+                                    "id": "imageLinks",
+                                    "type": "object",
+                                    "properties": {
+                                      "smallThumbnail": {
+                                        "id": "smallThumbnail",
+                                        "type": "string"
+                                      },
+                                      "thumbnail": {
+                                        "id": "thumbnail",
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "language": {
+                                    "id": "language",
+                                    "type": "string"
+                                  },
+                                  "previewLink": {
+                                    "id": "previewLink",
+                                    "type": "string"
+                                  },
+                                  "infoLink": {
+                                    "id": "infoLink",
+                                    "type": "string"
+                                  },
+                                  "canonicalVolumeLink": {
+                                    "id": "canonicalVolumeLink",
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "saleInfo": {
+                                "id": "saleInfo",
+                                "type": "object",
+                                "properties": {
+                                  "country": {
+                                    "id": "country",
+                                    "type": "string"
+                                  },
+                                  "saleability": {
+                                    "id": "saleability",
+                                    "type": "string"
+                                  },
+                                  "isEbook": {
+                                    "id": "isEbook",
+                                    "type": "boolean"
+                                  },
+                                  "listPrice": {
+                                    "id": "listPrice",
+                                    "type": "object",
+                                    "properties": {
+                                      "amount": {
+                                        "id": "amount",
+                                        "type": "number"
+                                      },
+                                      "currencyCode": {
+                                        "id": "currencyCode",
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "retailPrice": {
+                                    "id": "retailPrice",
+                                    "type": "object",
+                                    "properties": {
+                                      "amount": {
+                                        "id": "amount",
+                                        "type": "number"
+                                      },
+                                      "currencyCode": {
+                                        "id": "currencyCode",
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "buyLink": {
+                                    "id": "buyLink",
+                                    "type": "string"
+                                  },
+                                  "offers": {
+                                    "id": "offers",
+                                    "type": "array",
+                                    "items": {
+                                      "id": "0",
+                                      "type": "object",
+                                      "properties": {
+                                        "finskyOfferType": {
+                                          "id": "finskyOfferType",
+                                          "type": "integer"
+                                        },
+                                        "listPrice": {
+                                          "id": "listPrice",
+                                          "type": "object",
+                                          "properties": {
+                                            "amountInMicros": {
+                                              "id": "amountInMicros",
+                                              "type": "integer"
+                                            },
+                                            "currencyCode": {
+                                              "id": "currencyCode",
+                                              "type": "string"
+                                            }
+                                          }
+                                        },
+                                        "retailPrice": {
+                                          "id": "retailPrice",
+                                          "type": "object",
+                                          "properties": {
+                                            "amountInMicros": {
+                                              "id": "amountInMicros",
+                                              "type": "integer"
+                                            },
+                                            "currencyCode": {
+                                              "id": "currencyCode",
+                                              "type": "string"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "accessInfo": {
+                                "id": "accessInfo",
+                                "type": "object",
+                                "properties": {
+                                  "country": {
+                                    "id": "country",
+                                    "type": "string"
+                                  },
+                                  "viewability": {
+                                    "id": "viewability",
+                                    "type": "string"
+                                  },
+                                  "embeddable": {
+                                    "id": "embeddable",
+                                    "type": "boolean"
+                                  },
+                                  "publicDomain": {
+                                    "id": "publicDomain",
+                                    "type": "boolean"
+                                  },
+                                  "textToSpeechPermission": {
+                                    "id": "textToSpeechPermission",
+                                    "type": "string"
+                                  },
+                                  "epub": {
+                                    "id": "epub",
+                                    "type": "object",
+                                    "properties": {
+                                      "isAvailable": {
+                                        "id": "isAvailable",
+                                        "type": "boolean"
+                                      }
+                                    }
+                                  },
+                                  "pdf": {
+                                    "id": "pdf",
+                                    "type": "object",
+                                    "properties": {
+                                      "isAvailable": {
+                                        "id": "isAvailable",
+                                        "type": "boolean"
+                                      }
+                                    }
+                                  },
+                                  "webReaderLink": {
+                                    "id": "webReaderLink",
+                                    "type": "string"
+                                  },
+                                  "accessViewStatus": {
+                                    "id": "accessViewStatus",
+                                    "type": "string"
+                                  },
+                                  "quoteSharingAllowed": {
+                                    "id": "quoteSharingAllowed",
+                                    "type": "boolean"
+                                  }
+                                }
+                              },
+                              "searchInfo": {
+                                "id": "searchInfo",
+                                "type": "object",
+                                "properties": {
+                                  "textSnippet": {
+                                    "id": "textSnippet",
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                example: |
+                   {
+                     "kind": "books#volumes",
+                     "totalItems": 311,
+                     "items": [
+                        {
+                         "kind": "books#volume",
+                         "id": "14yjGgAACAAJ",
+                         "etag": "av8l+Uhj790",
+                         "selfLink": "https://www.googleapis.com/books/v1/volumes/14yjGgAACAAJ",
+                         "volumeInfo": {
+                          "title": "Lolita lesen in Teheran",
+                          "authors": [
+                           "Azar Nafisi"
+                          ],
+                          "publishedDate": "2008",
+                          "industryIdentifiers": [
+                           {
+                            "type": "ISBN_10",
+                            "identifier": "3442154820"
+                           },
+                           {
+                            "type": "ISBN_13",
+                            "identifier": "9783442154821"
+                           }
+                          ],
+                          "readingModes": {
+                           "text": false,
+                           "image": false
+                          },
+                          "pageCount": 421,
+                          "printType": "BOOK",
+                          "maturityRating": "NOT_MATURE",
+                          "allowAnonLogging": false,
+                          "contentVersion": "preview-1.0.0",
+                          "imageLinks": {
+                           "smallThumbnail": "http://books.google.de/books/content?id=14yjGgAACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+                           "thumbnail": "http://books.google.de/books/content?id=14yjGgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+                          },
+                          "language": "en",
+                          "previewLink": "http://books.google.de/books?id=14yjGgAACAAJ&dq=intitle:Lolita&hl=&as_pt=BOOKS&cd=1&source=gbs_api",
+                          "infoLink": "http://books.google.de/books?id=14yjGgAACAAJ&dq=intitle:Lolita&hl=&as_pt=BOOKS&source=gbs_api",
+                          "canonicalVolumeLink": "http://books.google.de/books/about/Lolita_lesen_in_Teheran.html?hl=&id=14yjGgAACAAJ"
+                         },
+                         "saleInfo": {
+                          "country": "DE",
+                          "saleability": "NOT_FOR_SALE",
+                          "isEbook": false
+                         },
+                         "accessInfo": {
+                          "country": "DE",
+                          "viewability": "NO_PAGES",
+                          "embeddable": false,
+                          "publicDomain": false,
+                          "textToSpeechPermission": "ALLOWED",
+                          "epub": {
+                           "isAvailable": false
+                          },
+                          "pdf": {
+                           "isAvailable": false
+                          },
+                          "webReaderLink": "http://books.google.de/books/reader?id=14yjGgAACAAJ&hl=&as_pt=BOOKS&printsec=frontcover&output=reader&source=gbs_api",
+                          "accessViewStatus": "NONE",
+                          "quoteSharingAllowed": false
+                         }
+                        }
+                       ]
+                      }
