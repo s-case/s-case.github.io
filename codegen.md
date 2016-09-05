@@ -33,6 +33,7 @@ The rest check boxes configure the generation engine to pop up the required Wiza
 - **ABAC Authorization:** This option when checked, pops up the Attribute Based Access Control Authorization Wizard, which allows the S-CASE developer to embed high level and fine grained authorization rules to his generated Web Service. This functionality will be released shortly.
 - **Database Searching:** This option when checked, pops up the Database Searching Wizard, which allows the S-CASE developer to select some resources of his envisioned Web Service that will embed wide-spread database keyword searching.
 - **External Compositions:** This option when checked, pops up the External Compositions Wizard, which allows the S-CASE developer to model interactions of some resources of his envisioned Web Service with existing Web Services that are live on the internet, either created by the Service Composition Plugin of S-CASE or are 3rd party ones.
+- **Database Migration:** This option when checkd, pops up the Database Migration Wizard which allows the S-CASE developer to model a mapping from an existing database to the new one that will be created once the generated Web Service is executed for the first time.
 
 <br>
 
@@ -269,6 +270,78 @@ The produced service by the Code Generation engine will then automatically inter
 
 -	If the client needs only a subset of the output model, the rest properties (either of primitive or complex data type) can be omitted and not modeled in the Wizard.
 -	However, (for time being) the developer has to make sure that the 3rd party service always returns the values of all the properties that are included in its output model through the External Service Wizard, otherwise it might not function properly.
+
+<br>
+
+#### Database Migration Wizard
+
+<br>
+
+The Database Migration Wizard is triggered at the end of the modelling process with the Code Generation Wizards. This Wizard comprises the following components as the following figure illustrates :
+<br>
+
+<img src="./codegen_images/DBMigrationWizard.png" alt="Drawing" width="90%"/>
+
+<br>
+
+- **DB URL:** The DB URL UI control requires the complete URI to the source database server from which the migration will take place. The S-CASE developer must provide the IP:Port pair e.g. localhost:3306.
+- **DB Type:** The DB Type list allows the S-CASE developer to select the type of the source database. The supported types are MySQL and PostgreSQL.
+- **DB Username:** The DB Username control requires the username with which the Code Generation Engine will connect to the source database. It must provide the appropriate rights so that the Code Generation Engine can list and read the required source database.
+- **DB Password:** The DB Password control requires the password for the provided username that will be used to connect to the source database.
+- **DB Name:** The DB Name is the name of the source database.
+- **Source Database Relations:** The Source Database Relations control lists all the detected relations of the source database, once the S-CASE developer clicks the Fetch DB Schema button.
+- **Available CRUD Resources:** The Available CRUD Resources control lists all the CRUD Resources that the S-CASE developer has created in the REST Wizard.
+- **Created Relations Mappings:** The Created Relations Mappings control lists any source relation to CRUD resource mappings that the S-CASE developer has created. Such mappings provide the Code Generation engine with the required information to know from which source relation it should fetch data in order to fill in the target database relation of the selected CRUD Resource. The S-CASE developer may select any combination of source relations - CRUD resources, but each combination must be unique.
+- **Source Relation Columns:** The Source Relation Columns control lists all the detected columns of the selected mapping source relation.
+- **CRUD Resource Properties:** The CRUD Resource Properties control lists all the properties of the selected mapping CRUD resource that the S-CASE developer has modelled in the REST Wizard.
+- **Created Column Mappings:** Once the S-CASE developer selects a source column and a target property and clicks the Add Mapping button, a new Column Mapping is created and added to the Created Column Mappings list. Such mappings provide the Code Generation Engine with the required information as to which source column data to migrate to which target CRUD Resource property.
+
+<br>
+
+##### Source Database Prerequisites
+
+- The source database must contain valid referencial keys for any 1 to N relationship it comprises.
+- In case the source database comprises also M to N relationships, it must provide appropriate JOIN Tables. Hence, JOIN Tables must have all the required foreign keys to the corresponding relations primary keys **and** have as primary key the combination of the aforementioned foreign keys.
+<br>
+
+##### Remarks on Database Migration process
+
+- The Source Relations are not required to have the same name with the target CRUD resources.
+- The Source Columns are not required to have the same name with the target properties.
+- The Source Relations and Columns may be used in mutliple mappings should this is desired.
+- In case there exists a mapping to a CRUD resource that is related resource of some other CRUD resource, another mapping is also required from the "parent" source relation to the the parent CRUD resource of the specified mapping.
+- In case the S-CASE developer has also opted to use the Database Keyword Searching functionality, the code generation engine will index during the migration the old data, hence it is going to be searchable the desired in the generated Web Service.
+
+<br>
+
+##### Performing the database migration:
+
+In order to perform the actual database migration once the Code Generation Engine has finished executing the S-CASE developer will have to do the following:
+
+<br>
+
+- Navigate to the output folder of the specified project.
+- In the output folder the Code Generation Engine places a new maven project named as <ProjectName>DBMigrator. The S-CASE developer will have to compile the specified maven project using the "mvn package" command.
+- Then executing the generated java application the actual migration will take place. Indicative invocation from command line once in the top project folder: "java -jar target/<ProjectName>DBMigrator.jar"
+- If the S-CASE developer opted to include Database Search functionality, the generated Lucene indexed will be added in a folder named <ProjectName>LuceneIndexes. The S-CASE developer must copy this folder and paste it in the webapps folder of the underlying Jetty/Tomcat application and the start the envisioned Web Service.
+
+<br>
+
+<br>
+
+#### Handling M to N relationships of CRUD resources.
+
+<br>
+
+A Web Client that interaccts with a generated Web Service of S-CASE can utilize the extended PUT Web API of each CRUD resource in order to add more relations towards parent or child resources of the specified one. The extended PUT Web API comprises the following query parameters:
+
+<br>
+
+- **strOptionalUpdateRelations:** This query parameter specifies wether the generated service should update the underlying CRUD resource's relationships or not. Should the client wishes to add/remove a relationship to/from the underlying CRUD resource, it should set this query parameter to the **string value "true"**. Otherwise, it should be set to false or not included at all.
+- **strOptionalUpdateParent:** This query parameter specifies wether the generated service should update the parent or child relationships of the underylying CRUD resource. Should the client wishes to add/remove a relationship to/from an existing parent resource, it should set this query parameter to the **string value "true"**. Otherwise, if it wishes to add/remove a relationship to/from an existing child resource, it should set this query parameter to the **string value "false"**.
+- **strOptionalRelationName:** The strOptionalRelationName query parameter requires the name of the CRUD resource to which a relationship will be added to/removed from the underlying one.
+- **strOptionalAddRelation:** This query parameter specifies wether the generated service will add or remove a relationship to a parent/child resource of the underlying CRUD resource one. Should the client wishes to add a relationship, it should set this query parameter to the **string value "true"**. Otherwise, if it wishes to remove a relationship of the underlying CRUD resource it should set this query parameter to the **string value "false"**.
+- **iOptionalResourceId:** The iOptionalResourceId query parameter requires the Integer value of the id of the parent/child resource to be included to the relationships of the underlying CRUD resource.
 
 <br>
 
