@@ -37,7 +37,7 @@ The rest check boxes configure the generation engine to pop up the required Wiza
 
 <br>
 
-![](./codegen_images/codeGenerationPreferences.png)
+<img src="./codegen_images/codeGenerationPreferences.png" alt="Drawing" width="60%"/>
 
 <br>
 
