@@ -45,7 +45,7 @@ A set of examples (annotations) are available at URL http://s-case.github.io/wsq
 The WSQR RESTful Service is provided as an API and integrated directly into the YouREST platform. 
 The YouREST platform via the WSQR API provides S-CASE Service Providers with the ability to add seamlessly their web services with non-functional annotations. Moreover, the platform provides S-CASE developers, which need to discover a specific service and integrate it to their workflow, the ability to navigate among equivalent services and then find the services that best fit the functional and non-functional developers’ needs. 
 The S-CASE YouREST GUI supports the WSQR annotation process of a service with its non-functional characteristics. Via that GUI, developers can:
-(1) Add a new WS into the YouREST platform annotated with the WSQR framework, and then select between internal or external measures
+(1) Add a new WS into the YouREST platform annotated with the WSQR framework, and then select between internal or external measures to be added.
 
 <br>
 
@@ -53,7 +53,7 @@ The S-CASE YouREST GUI supports the WSQR annotation process of a service with it
 
 <br>
 
-Add new external measures to the representation 
+Developers can add in a simple way external measures to the representation of their service
 
 <br>
 
@@ -62,7 +62,7 @@ Add new external measures to the representation
 <br>
 
 
-Add new internal measures to the representation 
+and also new internal measures to the representation. 
 
 <br>
 
