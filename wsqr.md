@@ -2,8 +2,8 @@
 
 <br>
 
-WSQR is released as a stand-alone tool (as a Java ARchive JAR file) and also as a REST Service. The purpose of WSQR is to support developers 
-in creating the XML document that complements their web services under development with WSQR schemas (i.e., non-functional well formed descriptions of the service).
+The purpose of WSQR is to support developers in creating the XML document that complements their web services under development with WSQR schemas (i.e., non-functional well formed descriptions of the service).
+WSQR is released both as a stand-alone tool (as a Java ARchive JAR file) and also as a RESTful Service and API. 
 
 <br>
 
@@ -28,7 +28,7 @@ With the WSQR Tool, developers can (1) add a new service and select between inte
 
 <br>
 
-![GUI](wsqr/wsqr_gui.png)
+![WSQR GUI](wsqr/wsqr_gui.png)
 
 <br>
 
@@ -42,4 +42,42 @@ A set of examples (annotations) are available at URL http://s-case.github.io/wsq
 
 <br>
 
-The WSQR RESTful Service is provided as an API and integrated directly into the YouREST platform.  
+The WSQR RESTful Service is provided as an API and integrated directly into the YouREST platform. 
+The YouREST platform via the WSQR API provides S-CASE Service Providers with the ability to add seamlessly their web services with non-functional annotations. Moreover, the platform provides S-CASE developers, which need to discover a specific service and integrate it to their workflow, the ability to navigate among equivalent services and then find the services that best fit the functional and non-functional developers’ needs. 
+The S-CASE YouREST GUI supports the WSQR annotation process of a service with its non-functional characteristics. Via that GUI, developers can:
+(1) Add a new WS into the YouREST platform annotated with the WSQR framework, and then select between internal or external measures
+
+<br>
+
+![WSQR REST GUI](wsqr/wsqrrest_gui.png)
+
+<br>
+
+Add new external measures to the representation 
+
+<br>
+
+![WSQR REST EXT](wsqr/wsqrrest_ext.png)
+
+<br>
+
+
+Add new internal measures to the representation 
+
+<br>
+
+![WSQR REST INT](wsqr/wsqrrest_int.png)
+
+<br>
+
+When the process of adding internal or external measures is completed, an XML file is automatically generated and an Ontology associated with the service is generated and populated with all non-functional characteristics of the service. The YouREST platform is updated accorndingly, and the new added service is annotated with all these non-funcitonal characteristics. 
+
+<br>
+
+Via the S-CASE YouREST GUI, developers can also retrieve non-functional characteristics of a service that could be of interest for an S-CASE software developer or integrator. Suppose that a developer is looking for a map provider API to be integrated into his/her workflow. The developer finds in the S-CASE YouREST Repository, two services that satisfy his/her functional requirements (specifically, the GoogleMapsAPI and the ProviderAMapsAPI). Now, the developer can evaluate the non-functional characteristics of both services to select the best one. The developer can simply retrieve the WSQR annotations associated to each service (in a tabular representation), compare the two specifications, and then decide which service to integrate.
+
+<br>
+
+![WSQR REST RET](wsqr/wsqrrest_retrieve.png)
+
+<br>
