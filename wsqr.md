@@ -78,6 +78,6 @@ Via the S-CASE YouREST GUI, developers can also retrieve non-functional characte
 
 <br>
 
-![WSQR REST RET](wsqr/wsqrrest_retrieve.png)
+![WSQR REST RET](wsqr/wsqrrest_retrieve.png.png)
 
 <br>
