@@ -73,7 +73,7 @@ No matter what code generation preferences the S-CASE developer has selected in 
 - **Properties:** This section lists all the properties of the selected resource. The developer may create new or delete existing ones by clicking the Create property or Delete property button.
 - **Property Configuration:** This section provides the configuration details of the selected property. If the Collection option is checked then the property will be an Array, otherwise it will be a Java attribute of multiplicity one. From the Type list, the programmatic data type of the selected property can be defined. Finally, if the naming property option is checked, the envisioned system will use the value of this property for every resource list it sends to its clients for differentiation purposes.
 - **Unrelated Resources:** This section lists all the detected resources that are not related to the selected resource.
-- **Related Resources:** This section lists all the detected resources that are related to the selected resource. One may move one resource from one list to the other by clicking the button Add relation or Delete relation. Note that when such a relation from a resource A to a resource B exists, it should be translated as "Resource A has Resources of type B". At the moment the supported type of such relationships is one to many, although many to many relationships will be also supported.
+- **Related Resources:** This section lists all the detected resources that are related to the selected resource. One may move one resource from one list to the other by clicking the button Add relation or Delete relation. Note that when such a relation from a resource A to a resource B exists, it should be translated as "Resource A has Resources of type B".
 
 <br>
 
