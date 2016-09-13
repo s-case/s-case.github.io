@@ -1,5 +1,11 @@
 ## Release Notes
 
+### Version: 1.16
+
+_Date of release: 13/9/2016_
+- Fixed 4 compilation errors of the generated service that occured in some complex scenarios. Github [entry](https://github.com/s-case/mde/commit/d3079e87fd89cda7a27a35014889f77509803da8),[entry](https://github.com/s-case/mde/commit/62a3bd1aac48ab844b9ef2320f7b50908c0d2358)
+- Fixed an error in Authentication Wizard, introduced in July with the sorted lists update. Once this update is installed, check out the authentication mode for every CRUD activity and fix accordingly. Github [entry](https://github.com/s-case/mde/commit/8a2787333779b0cc4b3be605e233a8ec73507363)
+
 ### Version: 1.15
 
 _Date of release: 30/8/2016_
