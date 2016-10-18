@@ -1,12 +1,14 @@
 ## Release Notes
 
-### Version: 1.16
+### Version: 1.17
 
 _Date of release: 18/10/2016_
 - Fixed the ordering of dashboard groups and buttons. GitHub [entry](https://github.com/s-case/s-case-core/commit/ea22bf18820db1ad1c758899a7cbcc6e86ac69fa)
 - Modified REST clients to accept SSL certificates. GitHub [entry1](https://github.com/s-case/s-case-core/commit/9f191278f58ca40eb68d39387d0d3b13ad183c2f), [entry2](https://github.com/s-case/web-service-composition/commit/26322d59d47c449130dec90e1dcc5235ec1ca4a0), [entry3](https://github.com/s-case/web-service-composition/commit/fdd87c3863d458dd24b3e7b0c33c2f0d431b78ba), [entry4](https://github.com/s-case/web-service-composition/commit/2c95b149586521ad6c08baf2f4287c4248fb1877)
 - Added checks in requirements editor for the case that UML diagram objects do not have names. GitHub [entry](https://github.com/s-case/requirements-editor/commit/075b12cbdaa7e8f87e622e5f69983b580f272ef8)
 - Made ontology instantiation functionality safer. GitHub [entry1](https://github.com/s-case/storyboard-creator/commit/8c8b141abb4adf5909105cea1f4fb0d57dcca7a6), [entry2](https://github.com/s-case/storyboard-creator/commit/8ee7f22b6b6a75c67d6507db4097574197a5ee39), [entry3](https://github.com/s-case/uml-extraction/commit/8d70a7b0b36f51c12e292c79fd74819cb36419a4), [entry4](https://github.com/s-case/uml-extraction/commit/05dd43016b76275fab45e4a0bbcbfc5693380a4d)
+
+### Version: 1.16
 
 _Date of release: 13/9/2016_
 - Fixed 4 compilation errors of the generated service that occured in some complex scenarios. Github [entry](https://github.com/s-case/mde/commit/d3079e87fd89cda7a27a35014889f77509803da8),[entry1](https://github.com/s-case/mde/commit/62a3bd1aac48ab844b9ef2320f7b50908c0d2358)
