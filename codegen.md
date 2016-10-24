@@ -22,7 +22,8 @@ As the Getting Started section of this Web Book describes, any code generation c
 - The **Database server port** field holds the port at which the database server expects incoming requests.
 - The **Database username** field requires the username of the user account through which the generated Web Service will be able to access its database. It is important to note that the provided user account must have all the rights to create, update, read and delete a database and any relations it comprises. If the specified rights are not provided the generated Web Service will fail to function properly.
 - The **Database password** field requires the password of the user account that will be used by the Web Service to interact with the specified database server.
-
+<br>
+It must be noted that OS environment variables can also be used in order to provide the desired username/password combination to the generated service instead of directly providing them. This way, the username and password credentials will not be hardcorded and searchable in any configuration file of the generated service. To do so, the S-CASE developer has to simply input in the corresponding fields the name of the environment variables e.g. ${DB_USERNAME} ${DB_PASS} and then the produced service will use these in the configuration. Finally, on deployment, the container invocation (e.g. Jetty) should be accompanied by these variables definition so that they will be available for the generated service. For example the S-CASE developer should type: "java -DDB_PASS=$DB_PASS -DDB_USERNAME=$DB_USERNAME -jar start.jar" in the case of a Jetty container, within the Jetty installation folder.
 <br>
 
 The rest check boxes configure the generation engine to pop up the required Wizards so that the S-CASE developer will be able to add more functionality other than a plain RESTful Web Service. The options are explained below:
