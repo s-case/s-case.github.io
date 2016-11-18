@@ -1,5 +1,10 @@
 ## Release Notes
 
+### Version: 1.18
+
+_Date of release: 18/11/2016_
+- Updated the MDE ABAC functionality so that is handles also M-N relationships among resources. Is is also extended to apply authorization rules to algorithmic Search-Resources. Github [entry](https://github.com/s-case/mde/commit/f305851463f49c0dbc5a862769a0fe0ff86dda17)
+
 ### Version: 1.17
 
 _Date of release: 18/10/2016_
