@@ -31,7 +31,7 @@ The rest check boxes configure the generation engine to pop up the required Wiza
 <br>
 
 - **Basic Authentication:** This option when checked, pops up the Basic Authentication Wizard when the code generation engine is executed. This Wizard allows the S-CASE developer embed wide-spread username/password authenticaiton to the generated Web Service.
-- **ABAC Authorization:** This option when checked, pops up the Attribute Based Access Control Authorization Wizard, which allows the S-CASE developer to embed high level and fine grained authorization rules to his generated Web Service. This functionality will be released shortly.
+- **ABAC Authorization:** This option when checked, pops up the Attribute Based Access Control Authorization Wizard, which allows the S-CASE developer to embed high level and fine grained authorization rules to his generated Web Service.
 - **Database Searching:** This option when checked, pops up the Database Searching Wizard, which allows the S-CASE developer to select some resources of his envisioned Web Service that will embed wide-spread database keyword searching.
 - **External Compositions:** This option when checked, pops up the External Compositions Wizard, which allows the S-CASE developer to model interactions of some resources of his envisioned Web Service with existing Web Services that are live on the internet, either created by the Service Composition Plugin of S-CASE or are 3rd party ones.
 - **Database Migration:** This option when checkd, pops up the Database Migration Wizard which allows the S-CASE developer to model a mapping from an existing database to the new one that will be created once the generated Web Service is executed for the first time.
@@ -273,6 +273,81 @@ The produced service by the Code Generation engine will then automatically inter
 -	However, (for time being) the developer has to make sure that the 3rd party service always returns the values of all the properties that are included in its output model through the External Service Wizard, otherwise it might not function properly.
 
 <br>
+
+#### ABAC Authorization Wizard
+
+The ABAC Wizard allows the S-CASE developers to fine tune the authorization scheme of their envisioned RESTful service. Attribute Based Access Control (ABAC) is the available authorization scheme withing the MDE Engine of S-CASE and the implementation of it is loosely compatible with the XACML standard. Although this technical manual's goal is not to be a full blown tutorial neither for ABAC nor for XACML, before delving into the UI of the ABAC Wizard, it introduces the basic concepts of either.
+
+<br>
+
+The ABAC authorization's building block is a condition. A condition is a test of an attribute value of the underlying system, against a value of another attribute of it. In terms of a RESTful system such attributes may belong to one of the following categories:
+
+- **Resource properties**: that is properties of a resource as they are already modelled through the REST Wizard. From now on, this category will be referred to as "ACCESSED_RESOURCE".
+- **Requestor properties**: such properties are properties of the entity that performs an HTTP request for a specific resource. This entity is modelled through the Authorization Model that is selected by the developer through the Authentication Wizard, hence conditions may be formed using the respective propertires. This category will be referred to as "ACCESS_SUBJECT".
+- **Contextual properties**: this is a more broad category and comprises the properties of related resource of the resource at which some sort of access is requested. That is, if in the REST Wizard there is a resource A that has as related resource the B, which in turn has resource C as its related resource, then contextual properties of A are only properties of Bs ("CHILD_RESOUCE"), contextual properties of B are properties of related As ("PARENT_RESOURCE") and Cs ("CHILD_RESOURCE") and the contextual properties of C are properties of related Bs ("PARENT_RESOURCE").
+
+<br>
+
+Such conditions, using the XACML structure, model **RULES**. Each RULE may have one or more conditions. A RULE may be of type PERMIT or DENY. If **all** the conditions of a PERMIT-RULE are satisfied then the rule yields permition to the ACCESS_SUBJECT. On the other hand, in the case of a DENY-RULE, if **all** the conditions are satisfied then the rule denies permition to the ACCESS_SUBJECT. One may think that a RULE, regardles of its type, performs a logical AND to the evaluation of all of its conditions in order to determine the authorization results. However, sometimes a RULE might not be applicable, e.g. the Requests demands "GET" access to a resource, but a specific rule does not include the GET allowed action, hence its evaluation will be NOT_APPLICABLE.
+
+<br>
+
+RULES in turn can be combined using **POLICIES**. A POLICY can group one or more RULES. This combination is the logical equivalence of OR among all the evaluation RULE results. Each POLICY has in turn a combining algorithm, which determines how the evaluation result of its constituent rule will contribute to the authorization result of the POLICY as a whole. In the MDE engine of S-CASE there are four such combining algorithmis:
+
+- **PERMIT_OVERRIDES**: This combining algorithm has as a result that a POLICY which has at least one RULE that yields PERMIT after its evalutation, will also yield permition to the ACCESS_SUBJECT. If no RULES yield PERMIT and at least one yields DENY, then the POLICY will also yield DENY. Otherwise, it yields NOT_APPLICABLE.
+- **DENY_OVERRIDES**: On the contrary, DENY_OVERRIDES combining algorithm has as a result that a POLICY which has at least one RULE that yields DENY after its evalutation, will also deny permition to the ACCESS_SUBJECT. If no RULES yield DENY and at least one yields PERMIT, then the POLICY will also yield PERMIT. Otherwise, it results to NOT_APPLICABLE.
+<b>
+However, there are cases, that the authorization designer, wishes to always have a POLICY evaluation to be either PERMIT or DENY. In this case, one of the following combining algorithims could be used:
+
+- **PERMIT_UNLESS_DENY**: In this case, if *any* underlying RULE yields DENY, the whole POLICY evaluation will also be DENY. Otherwise, no matter if the RULES evaluate all to NOT_APPLICABLE or PERMIT, the POLICY outcome is going to be PERMIT.  
+- **DENY_UNLESS_PERMIT**: On the contrary, the DENY_UNLESS_PERMIT combining algorithm, yields PERMIT if *any* underyling RULE yields PERMIT, otherwise if *none* of the rules yields PERMIT, the POLICY outcome will be DENY.
+
+As is modeled in the XACML standard, POLICIES can be grouped in POLICY_SETS so as to model even more complex authorization schemes. The evaluation logic however, still remains the same as in the POLICY/RULE case. That means that a POLICY_SET also has a combining algorithm, that can be one of the four aforementioned ones and this combining algorithm is used to mix the evaluation of the underlying POLICIES so as to determine the final POLICY_SET evaluation. If this is PERMIT then the ACCESS_SUBJECT is granted access to the requested system's resource. Otherwise the client will resource an HTTP 401 Unauthorized error code.
+
+##### ABAC UI 
+
+After explaining the conceptual building blocks of the ABAC authorization scheme, there follows the presentation of the ABAC UI of the MDE Engine of S-CASE. The following figure illustrates the initial UI once the ABAC Wizard pop ups:
+
+<br>
+
+<img src="./codegen_images/ABACInitialUI.png" alt="Drawing" width="90%"/>
+
+<br>
+
+- **Policy and Rule Navigation**: this pane contains a list of all the resources that have been modeled through the MDE Wizards.
+- **Resource Configuration**: this UI section is displayed once a specific resource is selected. By checking the "Is an authorizable resource" checkbox, the developer defines that the generated service should perform ABAC checks when access to instances of this resource are requested. At the lower part of this section, the wizards allows the S-CASE developer to create more properties of the specified resource, on top of those that have been already created through the REST Wizard, in case the modeller wishes to use them specifically for authorization purposes. The system behaviour is exactly the same, no matter if a property is modelled in the REST Wizard or in thie ABAC UI section. This capability is provided to allow the developer to conceptually seperate functional properties from authorization ones.
+
+<br>
+
+The next Figure illustrates the POLICY_SET definition UI. Through this, the S-CASE developer can provide a suitable name and select the combining algorithm. The options are the four aforementioned ones. Additionally, the developer is able to create/delete nested POLICY_SETS and/or POLICIES.
+<br>
+
+<img src="./codegen_images/ABACPolicySET.png" alt="Drawing" width="90%"/>
+
+<br>
+
+Once a developer clicks the create policy button and selects the created policy the below illustrated UI appears. This allows the developer to configure the selected POLICY. That is provide a name, select one of the four aforementioned combining algorithms, create/delete nested POLICIES or underlying RULE. Moreover, one may model conditions that could only filter the ACCESS_SUBJECT that could be evaluated with the underlying rules. Such conditions are modeled the same way as will be demonstrated in the followign section.
+
+<br>
+
+<img src="./codegen_images/ABACPolicy.png" alt="Drawing" width="90%"/>
+
+<br>
+
+Finally, once the developer opts to create a RULE for the selected POLICY the core RULE/CONDITION modeling UI appears as is illustrated below:
+
+- **Rule Name**: Through this field the developer can specify the desired name of the RULE.
+- **Rule Type**: This dropdown menu allows the developer to select the desired RULE type, which can be as already discussed PERMIT or DENY.
+- **Rule Conditions**: This part of the UI permits the authorization conditions definition of the specified RULE. Once the developer clicks on the "New" button, a new empty condition appears. As is illustrated, each such condition comprises two operands and one operator. 
+- **Left/Right side operand**: Each operand (left or right) requires an Attribute Category, specifying the resource at which the desired Attribute originates and lastly specifying the attribute to be used as operand. The attribute categories are as already discussed the "ACCESS_SUBJECT", "ACCESSED_RESOURCE", "PARENT_RESOURCE", "CHILD_RESOURCE" ones. Additionally, the MDE Engine of S-CASE allows to create conditions to check the resources that are included in the PUT or POST request, which belong in the "INCLUDED_RESOURCE" category. 
+-- **Operator**: the operator defines how the two operands can be tested. The available operands (depending on the selected attribute's multiplicity) are: EQUAL, NOT EQUAL, SUBSET, NOT SUBSET, REGEX (standing for regular expression), CONTAINS and finally NOT CONTAINS.
+
+<br>
+
+<img src="./codegen_images/ABACRule.png" alt="Drawing" width="90%"/>
+
+<br>
+
 
 #### Database Migration Wizard
 
