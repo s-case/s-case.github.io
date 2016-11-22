@@ -276,19 +276,33 @@ The produced service by the Code Generation engine will then automatically inter
 
 #### ABAC Authorization Wizard
 
+<br>
+
 The ABAC Wizard allows the S-CASE developers to fine tune the authorization scheme of their envisioned RESTful service. Attribute Based Access Control (ABAC) is the available authorization scheme withing the MDE Engine of S-CASE and the implementation of it is loosely compatible with the XACML standard. Although this technical manual's goal is not to be a full blown tutorial neither for ABAC nor for XACML, before delving into the UI of the ABAC Wizard, it introduces the basic concepts of either.
 
 <br>
 
-The ABAC authorization's building block is a condition. A condition is a test of an attribute value of the underlying system, against a value of another attribute of it. In terms of a RESTful system such attributes may belong to one of the following categories:
-
-- **Resource properties**: that is properties of a resource as they are already modelled through the REST Wizard. From now on, this category will be referred to as "ACCESSED_RESOURCE".
-- **Requestor properties**: such properties are properties of the entity that performs an HTTP request for a specific resource. This entity is modelled through the Authorization Model that is selected by the developer through the Authentication Wizard, hence conditions may be formed using the respective propertires. This category will be referred to as "ACCESS_SUBJECT".
-- **Contextual properties**: this is a more broad category and comprises the properties of related resource of the resource at which some sort of access is requested. That is, if in the REST Wizard there is a resource A that has as related resource the B, which in turn has resource C as its related resource, then contextual properties of A are only properties of Bs ("CHILD_RESOUCE"), contextual properties of B are properties of related As ("PARENT_RESOURCE") and Cs ("CHILD_RESOURCE") and the contextual properties of C are properties of related Bs ("PARENT_RESOURCE").
+##### Conditions
 
 <br>
 
-Such conditions, using the XACML structure, model **RULES**. Each RULE may have one or more conditions. A RULE may be of type PERMIT or DENY. If **all** the conditions of a PERMIT-RULE are satisfied then the rule yields permition to the ACCESS_SUBJECT. On the other hand, in the case of a DENY-RULE, if **all** the conditions are satisfied then the rule denies permition to the ACCESS_SUBJECT. One may think that a RULE, regardles of its type, performs a logical AND to the evaluation of all of its conditions in order to determine the authorization results. However, sometimes a RULE might not be applicable, e.g. the Requests demands "GET" access to a resource, but a specific rule does not include the GET allowed action, hence its evaluation will be NOT_APPLICABLE.
+The ABAC authorization's building block is a condition. A condition is a test of an attribute value of the underlying system, against the value of another attribute of it. In terms of a RESTful system such attributes may belong to one of the following categories:
+
+- **Resource properties**: that is properties of a resource as they are already modelled through the REST Wizard. From now on, this category will be referred to as "ACCESSED_RESOURCE".
+- **Requestor properties**: such properties are properties of the entity that performs an HTTP request for a specific resource. This entity is modelled through the Authorization Model that is selected by the developer through the Authentication Wizard, hence conditions may be formed using the respective properties. This category will be referred to as "ACCESS_SUBJECT".
+- **Contextual properties**: this is a more broad category and comprises the properties of related resources of the resource at which some sort of access is requested. That is, if in the REST Wizard there is a resource A that has as related resource the B, which in turn has resource C as its related resource, then contextual properties of A are only properties of Bs ("CHILD_RESOUCE"), contextual properties of B are properties of related As ("PARENT_RESOURCE") and Cs ("CHILD_RESOURCE") and the contextual properties of C are properties of related Bs ("PARENT_RESOURCE").
+
+<br>
+
+##### Rules
+
+<br>
+
+Such conditions, using the XACML structure, model **RULES**. Each RULE may have one or more conditions. A RULE may be of type PERMIT or DENY. If **all** the conditions of a PERMIT-RULE are satisfied then the rule yields permition to the ACCESS_SUBJECT, otherwise it is denied. On the other hand, in the case of a DENY-RULE, if **all** the conditions are satisfied then the rule denies permition to the ACCESS_SUBJECT, otherwise it permits it. One may think of a RULE, that regardless of its type, it performs a logical AND to the evaluation of all of its conditions in order to determine the authorization results. However, sometimes a RULE might not be applicable, e.g. the request demands "GET" access to a resource, but a specific rule does not include the GET allowed action, hence its evaluation will be NOT_APPLICABLE.
+
+<br>
+
+##### Policies
 
 <br>
 
@@ -296,11 +310,16 @@ RULES in turn can be combined using **POLICIES**. A POLICY can group one or more
 
 - **PERMIT_OVERRIDES**: This combining algorithm has as a result that a POLICY which has at least one RULE that yields PERMIT after its evalutation, will also yield permition to the ACCESS_SUBJECT. If no RULES yield PERMIT and at least one yields DENY, then the POLICY will also yield DENY. Otherwise, it yields NOT_APPLICABLE.
 - **DENY_OVERRIDES**: On the contrary, DENY_OVERRIDES combining algorithm has as a result that a POLICY which has at least one RULE that yields DENY after its evalutation, will also deny permition to the ACCESS_SUBJECT. If no RULES yield DENY and at least one yields PERMIT, then the POLICY will also yield PERMIT. Otherwise, it results to NOT_APPLICABLE.
-<b>
+<br>
 However, there are cases, that the authorization designer, wishes to always have a POLICY evaluation to be either PERMIT or DENY. In this case, one of the following combining algorithims could be used:
-
+<br>
 - **PERMIT_UNLESS_DENY**: In this case, if *any* underlying RULE yields DENY, the whole POLICY evaluation will also be DENY. Otherwise, no matter if the RULES evaluate all to NOT_APPLICABLE or PERMIT, the POLICY outcome is going to be PERMIT.  
 - **DENY_UNLESS_PERMIT**: On the contrary, the DENY_UNLESS_PERMIT combining algorithm, yields PERMIT if *any* underyling RULE yields PERMIT, otherwise if *none* of the rules yields PERMIT, the POLICY outcome will be DENY.
+
+
+##### Policy Sets
+
+<br>
 
 As is modeled in the XACML standard, POLICIES can be grouped in POLICY_SETS so as to model even more complex authorization schemes. The evaluation logic however, still remains the same as in the POLICY/RULE case. That means that a POLICY_SET also has a combining algorithm, that can be one of the four aforementioned ones and this combining algorithm is used to mix the evaluation of the underlying POLICIES so as to determine the final POLICY_SET evaluation. If this is PERMIT then the ACCESS_SUBJECT is granted access to the requested system's resource. Otherwise the client will resource an HTTP 401 Unauthorized error code.
 
