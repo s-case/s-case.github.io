@@ -367,7 +367,174 @@ Finally, once the developer opts to create a RULE for the selected POLICY the co
 
 <br>
 
+##### ABAC Application Example
 
+This section provides an extended example on how to model several authorization rules using the MDE Engine of S-CASE. For this example, RESTReviews, a simple web application will be used. This application comprises 5 resources, 3 of which are CRUD ones and consist of:
+
+- **Account**: a resource that models user accounts that have a username, password, email and role.
+- **Product**: this resource models products, which may have a title, an image, a category, a description and a status.
+- **Review**: this resource models user reviews of products and comprises one rating, a title and a status.
+
+<br>
+
+For this example, the following authorization requirements are assumed:
+
+<br>
+
+- Everyone should be able to create an account, but not with admin role.
+- All should be able to view products that their status is set to approved.
+- Only the account owner should be able to read and update an account, but not set his role to admin.
+- Only admins should be able to delete an account.
+- Only admins should be able to update an account to have admin role.
+- Admins should be able to get/update/delete products, regardless their status.
+- Admins should be able to get/update/delete reviews, regardless their status.
+- Only the user created the product should be able to update the product, but not set its status to approved.
+- The product a user tries to create cannot have its status set to approved.
+- Only the user created a review should be able to update it, but not set its status to approved.
+- A user should not be able to create a review to a product he created.
+- All should be able to view reviews that their status is set to approved 
+- Posted reviews cannot have status approved.
+
+<br>
+
+Although the MDE Engine of S-CASE allows greate flexibility on how to design the required ABAC rules, one straight forward strategy is the following one.
+
+###### Group Authorization Requirements per resource
+
+The first step should be to group the authorization rules according to which resource they should provide access permission to. In this case once such groupping is:
+
+<br>
+
+**Account:**
+
+- AR1: Only the account owner should be able to **read** and **update** an account, but not set his role to admin.
+- AR2: Only admins should be able to **delete** an account
+- AR3: Only admins should be able to **update** an account to have admin role
+- AR4: Everyone should be able to **create** an account, but not with admin role.
+
+**Product:**
+
+- AR5: Only the user created the product should be able to **update** the product, but not set its status to approved.
+- AR6: All should be able to **get** products that their status is set to approved.
+- AR7: Admins should be able to **get/update/delete** products, regardless their status.
+- AR8: The product a user tries to **create** cannot have its status set to approved.
+
+**Review:**
+
+- AR9: Only the user created the review should be able to **update** a review, but not set its status to approved.
+- AR10: A user should not be able to **create** a review to a product he created.
+- AR11: All should be able to **get** reviews that their status is set to approved 
+- AR12: Admins should be able to **get/update/delete** reviews, regardless their status.
+- **Posted** reviews cannot have status approved.
+
+
+###### Create a "Root" Policy Set for every resource
+
+For every resource that requires authorization, a root policy set should be added that has the appropriate combining algorithm, depending on wether the designer wishes to use positive or negative boolean logic. Since in this example the rules are going to be positive, all the root policy sets for every resource will have as combining algorithm the PERMIT_UNLESS_DENY one. This logic also implies, that policies will use PERMIT_OVERRIDES combining algorithm and the underlying rules will be PERMIT rules. The following figure shows the three root policy sets created.
+
+<br>
+
+<img src="./codegen_images/ABACRestReviewsRootPolicySets.png" alt="Drawing" width="90%"/>
+
+<br>
+
+###### Create Policies by grouping rules per CRUD verb **and** per type of ACCESS_SUBJECT
+
+The next step is to create for every root policy set, the set of policies it comprises. Although there are limitless ways to model these policies, one straightforward way is to create a policy per CRUD verb (or set of verbs) per type of ACCESS_SUBJECT, that is policies that include rules that have an ACCESS_SUBJECT (authenticated user) or not. Ofcourse, sometimes it may be usefull to further split the rules that do have an ACCESS_SUBJECT to more policies for conceptual integrity and clarity reasons. The next figure illustrates the policies created for each root policy set.
+<br>
+
+<img src="./codegen_images/ABACRestReviewsPolicies.png" alt="Drawing" width="90%"/>
+
+<br>
+
+As the figure illustrates, following the aforementioned strategy there have been created the following policies:
+
+**Account:**
+
+- **getPolicy**: Since only authenticated users will be able to get accounts and only the owner of an account will be able to retrieve it, the GET HTTP verb requires just one policy for all the authenticated users that consists of all the rules that dictate when an authenticated user should be able to get an account.
+- **upateAndDeletePolicy**: As in the getPolicy case, both PUT and DELETE HTTP verbs restricted to authenticated users, thus one policy for the authenticated users suffices. Moreover, due to the similarity of the Authorization Requirements for these two verbs, the corresponding rules for both of them are grouped in one policy.
+- **createPolicy** This policy will include any rules that restrict users that are going to create policies. Since the restrictions enforced by the Authorization Requirements do not require ACCESS_SUBJECT conditions, once policy for all the users (guests and authenticated) suffices.
+
+**Product:**
+
+- **createProductPolicy**: The Authorization Requirements also dictate, that the only restriction on creating a product, is that its status attribute will not be set to "approved". Hence, once policy with any rules required for the POST HTTP verb that applies to all users suffices.
+- **updateAndDeletePolicy**: This case is similar to updateAndDeletePolicy of the Account.
+- **everyoneReadPolicy**, **adminReadProductPolicy**: The Get HTTP verb for products is however a bit of a different case though. On the one hand there is a rule regardless of the ACCESS_SUBJECT, since everyone should be able to access a product if it has status "approved". On the other hand, admins (so specific ACCESS_SUBJECTS) should be able to access them regardless their status. Hence, the ABAC rules for this case will be splitted to two policies, once will comprise the rules for universal access regardless the ACCESS_SUBJECT and the other will comprise the rules for admins.
+
+**Review:**
+
+The Review resource has about the same authorization requirements scheme as the Product one, hence it will have the corresponding policies: **updateAndDeleteReviewPolicy**, **createReviewPolicy**, **everyoneReadReviewPolicy** and **adminReadReviewPolicy**.
+
+###### Create the required Rules for each Policy
+
+The last step is to define the actual rules and their conditions for every of the defined policies. The description notation that will be used is LO(x) and RO(y) to represent the x and y Left/Right operand of a condition and O(z) that represents the operand z that will decide how x and y will be compared.
+
+**Account:**
+<br>
+**getPolicy**: Since the requriment is that only the owner of an account should be able to get the account and assuming that the username of each user is unique, then this rules boils down to:
+- **accountGetRule**: LO(ACCESS_SUBJECT.account.username) O(EQUAL) RO(ACCESSED_RESOURCE.account.username)". This rule is illustrated in the following figure. It translates to "One must be able to get an account if and only if his username is equal to the username of the account he is trying to get".
+<br>
+**upateAndDeletePolicy**: This policy must embed rules that satisfy AR2 and AR3 Authroziation requirements.
+-**accountOwnerUpdateRule**: (LO(ACCESS_SUBJECT.account.username) O(EQUAL) RO(ACCESSED_RESOURCE.account.username))   **AND**  (LO(INCLUDED_RESOURCE.account.role) O(NOT_EQUAL) RO(CONSTANT.String."admin"))
+-**adminUpdateDeleteRule**: LO(ACCESS_SUBJECT.account.role) O(EQUAL) RO(CONSTANT.String."admin")
+<br>
+**createPolicy**: 
+- **createAccountRule**: LO(INCLUDED_RESOURCE.account.role) O(NOT_EQUAL) RO(CONSTANT.String."admin")
+
+<br>
+
+<img src="./codegen_images/ABACGetAccountRule.png" alt="Drawing" width="90%"/>
+
+<br>
+
+**Product:**
+<br>
+The rules for each policy of the Product resource are as follows.
+
+**createProductPolicy**: 
+<br>
+- **everyoneCreateProductRule**: LO(INCLUDED_RESOURCE.product.status) O(NOT_EQUAL) RO(CONSTANT.String."approved")
+<br>
+**updateAndDeletePolicy**: 
+<br>
+- **ownerUpdateRule**: (LO(ACCESS_ACCOUNT.account.username) O(EQUAL) RO(PARENT_RESOURCE.account.username))  **AND** (LO(INCLUDED_RESOURCE.product.status) O(NOT_EQUAL) RO(CONSTANT.String."approved"))
+- **adminUpdateDeleteRule**: LO(ACCESS_SUBJECT.account.role) O(EQUAL) RO(CONSTANT.String."admin")
+<br>
+**everyoneReadPolicy**:
+<br>
+- **everyoneReadProductRule**: LO(ACCESSED_RESOURCE.product.status) O(EQUAL) RO(CONSTANT.String."approved")
+<br>
+**adminReadProductPolicy**: 
+<br>
+- **adminReadProductRule**: LO(ACCESS_SUBJECT.account.role) O(EQUAL) RO(CONSTANT.String."admin")
+<br>
+
+**Review:**
+<br>
+Finally, the rules for the Review resource policies are the following.
+<br>
+**updateAndDeleteReviewPolicy**:
+<br>
+- **ownerUpdateReviewRule**: (LO(ACCESS_SUBJECT.account.username) O(EQUAL) RO(PARENT_RESOURCE.account.username))  **AND** (LO(INCLUDED_RESOURCE) O(NOT_EQUAL) RO(CONSTANT.String."approved"))
+- **adminUpdateReviewRule**: LO(ACCESS_SUBJECT.account.role) O(EQUAL) RO(CONSTANT.String."admin")
+<br>
+**createReviewPolicy**:
+<br>
+- **createReviewRule**: (LO(ACCESS_SUBJECT.account.username) O(NOT_EQUAL) RO(PARENT_RESOURCE.account.username)) **AND** (LO(INCLUDED_RESOURCE.review.status) O(NOT_EQUAL) RO(CONSTANT.String."approved"))
+<br>
+**everyoneReadReviewPolicy**:
+<br>
+- **everyoneReadReviewRule**: LO(ACCESSED_RESOURCE.review.status) O(EQUAL) RO(CONSTANT.String."approved")
+<br>
+**adminReadReviewPolicy**:
+<br>
+- **adminReadReviewRule**: LO(ACCESS_SUBJECT.account.role) O(EQUAL) RO(CONSTANT.String."admin")
+<br>
+
+##### Final Notes
+<br>
+It must me noted however, that the specification of such authorization scheme is a logic riddle. If the authorization design provides conflicting rules with inappropriate combining algorithms, it could lead to yielding permission to users that should not. Therefore, it is always a good practice to logically test each policy set, policy and the respective rules evaluation against several types of requests per type of ACCESS_SUBJECT and/or HTTP verb.
+<br>
 #### Database Migration Wizard
 
 <br>
