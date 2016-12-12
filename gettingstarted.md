@@ -4,9 +4,11 @@
 
 #### Installation
 
+S-CASE tools require Java 8 to run (Java 1.8.0_101 or later is needed, [read more...](https://community.letsencrypt.org/t/which-browsers-and-operating-systems-support-lets-encrypt/4394)), and were tested on Eclipse Luna, Mars and Neon.
+
 Your first step is to install the S-CASE Eclipse plugin:
 
-1. Download & start Eclipse IDE
+1. Download & start Eclipse IDE of your choice. We suggest to use J2EE, Web developers' or Java [packages](https://www.eclipse.org/downloads/packages/).
 2. Select the menu item Install new software...
 3. Add as a new remote repository the URL: `https://eclipse.scasefp7.com/eclipse/s-case_update_site/`
 
