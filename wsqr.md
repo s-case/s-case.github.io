@@ -32,7 +32,7 @@ With the WSQR Tool, developers can (1) add a new service and select between inte
 
 <br>
 
-A set of examples (annotations) are available at URL http://s-case.github.io/wsqr/examples/
+A set of examples (annotations) are available at URL http://s-case.github.io/wsqr/index.html
 
 <br>
 
